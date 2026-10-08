@@ -51,7 +51,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <a href="#philosophy" className="hover:text-white transition-colors">
-                  Zero-Cloud Privacy
+                  Local-First Privacy
                 </a>
               </li>
               <li>
@@ -111,8 +111,11 @@ export const Footer: React.FC = () => {
 
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#14261E] border border-[#244234] text-[11px] font-mono text-[#E2BE76]">
               <ShieldCheck className="w-3.5 h-3.5" />
-              <span>KNX • Matter • DALI Certified</span>
+              <span>Built on Home Assistant • Runs locally</span>
             </div>
+            <p className="text-[11px] text-[#7A8A81] leading-relaxed mt-4 max-w-xs">
+              Home Assistant is an open source project; Symetra Solution is an independent company.
+            </p>
           </div>
         </div>
 

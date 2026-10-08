@@ -38,7 +38,7 @@ export const InquirySection: React.FC<InquirySectionProps> = ({ onOpenBooking })
                 Ready to Experience Effortless Living?
               </h2>
               <p className="text-sm sm:text-base text-[#4A554E] leading-relaxed max-w-xl mb-8">
-                Schedule a private consultation or showroom demo in Cairo or Riyadh. Speak directly with a certified low-voltage systems engineer.
+                Schedule a private consultation or demo in Cairo or Riyadh. Speak directly with our systems team about your home.
               </p>
 
               {/* Action Buttons */}
@@ -95,7 +95,7 @@ export const InquirySection: React.FC<InquirySectionProps> = ({ onOpenBooking })
                       Inquiry Received
                     </h3>
                     <p className="text-xs text-[#5C6660] mb-4">
-                      A certified engineer from our {projectCity} desk will contact you within 2 business hours.
+                      Our team will contact you about your inquiry for {projectCity}.
                     </p>
                     <button
                       onClick={() => setSubmitted(false)}

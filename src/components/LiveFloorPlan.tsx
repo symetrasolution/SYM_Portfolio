@@ -3,20 +3,17 @@ import { motion, AnimatePresence } from 'motion/react';
 import {
   Lightbulb,
   Radar,
-  Volume2,
   Blinds,
   Moon,
   Sparkles,
-  Thermometer,
-  ShieldAlert,
   ArrowRight,
   Sliders,
   Wind,
   Key,
   Eye,
-  Frame,
+  Camera,
   Bell,
-  Cpu,
+  Wifi,
 } from 'lucide-react';
 import { ROOM_ZONES } from '../content/rooms';
 import { RoomZone } from '../types';
@@ -49,26 +46,20 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
         return <Blinds className="w-4 h-4 text-[#8B7340]" />;
       case 'radar':
         return <Radar className="w-4 h-4 text-[#8B7340]" />;
-      case 'volume-2':
-        return <Volume2 className="w-4 h-4 text-[#8B7340]" />;
       case 'moon':
         return <Moon className="w-4 h-4 text-[#8B7340]" />;
-      case 'thermometer':
-        return <Thermometer className="w-4 h-4 text-[#8B7340]" />;
       case 'sparkles':
         return <Sparkles className="w-4 h-4 text-[#8B7340]" />;
       case 'wind':
         return <Wind className="w-4 h-4 text-[#8B7340]" />;
-      case 'shield-alert':
-        return <ShieldAlert className="w-4 h-4 text-[#8B7340]" />;
       case 'sliders':
         return <Sliders className="w-4 h-4 text-[#8B7340]" />;
       case 'key':
         return <Key className="w-4 h-4 text-[#8B7340]" />;
       case 'eye':
         return <Eye className="w-4 h-4 text-[#8B7340]" />;
-      case 'frame':
-        return <Frame className="w-4 h-4 text-[#8B7340]" />;
+      case 'camera':
+        return <Camera className="w-4 h-4 text-[#8B7340]" />;
       case 'bell':
         return <Bell className="w-4 h-4 text-[#8B7340]" />;
       default:
@@ -186,7 +177,7 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
                     fontFamily="monospace"
                     fontWeight="600"
                   >
-                    LIVING SALON (58m²)
+                    LIVING SALON
                   </text>
                   {/* Node Pin 1 */}
                   <circle
@@ -244,7 +235,7 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
                     fontFamily="monospace"
                     fontWeight="600"
                   >
-                    MASTER SUITE (42m²)
+                    MASTER SUITE
                   </text>
                   {/* Node Pin 2 */}
                   <circle
@@ -302,7 +293,7 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
                     fontFamily="monospace"
                     fontWeight="600"
                   >
-                    GOURMET KITCHEN (26m²)
+                    GOURMET KITCHEN
                   </text>
                   {/* Node Pin 3 */}
                   <circle
@@ -360,7 +351,7 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
                     fontFamily="monospace"
                     fontWeight="600"
                   >
-                    GRAND FOYER & GALLERY (34m²)
+                    GRAND FOYER & GALLERY
                   </text>
                   {/* Node Pin 4 */}
                   <circle
@@ -411,8 +402,8 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
 
             {/* Blueprint Footer */}
             <div className="flex items-center justify-between pt-4 border-t border-[#EAE6DC] text-[11px] text-[#7A867F]">
-              <span className="font-mono">Scale 1:50 Architectural Metric</span>
-              <span>Continuous Local Mesh Connectivity</span>
+              <span className="font-mono">Illustrative layout — not to scale</span>
+              <span>Runs locally in your home</span>
             </div>
           </div>
 
@@ -478,39 +469,17 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
                   )}
                 </div>
 
-                <p className="text-xs text-[#5C6660] leading-relaxed mb-4">
+                <p className="text-xs text-[#5C6660] leading-relaxed">
                   {currentScene.description}
                 </p>
-
-                {/* Scene Real-Time Metrics */}
-                <div className="grid grid-cols-3 gap-2 pt-3 border-t border-[#E4DEC9] text-center text-xs">
-                  <div className="bg-white/80 p-2 rounded-lg border border-[#E8E2D5]">
-                    <span className="text-[10px] text-[#7A867F] block">Dimming</span>
-                    <span className="font-mono font-bold text-[#14231C]">
-                      {currentScene.dimming}
-                    </span>
-                  </div>
-                  <div className="bg-white/80 p-2 rounded-lg border border-[#E8E2D5]">
-                    <span className="text-[10px] text-[#7A867F] block">Temp</span>
-                    <span className="font-mono font-bold text-[#14231C]">
-                      {currentScene.temperature}
-                    </span>
-                  </div>
-                  <div className="bg-white/80 p-2 rounded-lg border border-[#E8E2D5]">
-                    <span className="text-[10px] text-[#7A867F] block">Circuits</span>
-                    <span className="font-mono font-bold text-[#14231C]">
-                      {currentRoom.circuits} Active
-                    </span>
-                  </div>
-                </div>
               </div>
             </div>
 
             {/* Profile Footer */}
             <div className="pt-4 border-t border-[#EAE6DC] flex items-center justify-between text-xs">
               <div className="flex items-center gap-2 text-[#4A554E]">
-                <Cpu className="w-4 h-4 text-[#2E7D32]" />
-                <span>Response Latency: {currentRoom.latency}</span>
+                <Wifi className="w-4 h-4 text-[#2E7D32]" />
+                <span>Runs locally — works without internet</span>
               </div>
               <button
                 onClick={() => setCustomizerOpen(true)}

@@ -12,7 +12,7 @@ export const PhilosophySection: React.FC = () => {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-20">
           <span className="text-xs font-bold uppercase tracking-widest text-[#E2BE76] block mb-3">
-            Zero-Cloud Philosophy
+            Local-First Philosophy
           </span>
           <h2
             className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-white tracking-tight mb-5"
@@ -21,7 +21,7 @@ export const PhilosophySection: React.FC = () => {
             True Luxury is Complete Peace of Mind.
           </h2>
           <p className="text-sm sm:text-base text-[#A6B4AD] leading-relaxed max-w-2xl mx-auto">
-            Your private living spaces should never be monetized, streamed overseas, or rendered disabled by external internet service blackouts.
+            Your home should keep working when the internet drops — and your daily life should stay inside your own walls.
           </p>
         </div>
 
@@ -40,14 +40,14 @@ export const PhilosophySection: React.FC = () => {
                 Runs locally, even without internet
               </h3>
               <p className="text-xs sm:text-sm text-[#A6B4AD] leading-relaxed mb-8">
-                All automations, timed schedules, and wall keypad actions run straight through your villa's local hub. Complete independence from global network drops.
+                All automations, schedules and wall-switch actions run through the Home Assistant hub in your home — not through an internet server.
               </p>
             </div>
 
             <div className="pt-6 border-t border-[#1C362B]">
               <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#E2BE76]">
                 <CheckCircle2 className="w-4 h-4 text-[#22C55E]" />
-                <span className="uppercase tracking-wider">100% Local Uptime</span>
+                <span className="uppercase tracking-wider">Works Without Internet</span>
               </div>
             </div>
           </motion.div>
@@ -65,14 +65,14 @@ export const PhilosophySection: React.FC = () => {
                 Secure remote access
               </h3>
               <p className="text-xs sm:text-sm text-[#A6B4AD] leading-relaxed mb-8">
-                When you travel abroad, our encrypted direct peer-to-peer tunnel connects you safely back to your residence. Zero intermediate data harvesting or paid subscriptions.
+                When you travel, you check in on your home over secure remote access (VPN) — a private road back to your own system.
               </p>
             </div>
 
             <div className="pt-6 border-t border-[#1C362B]">
               <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#E2BE76]">
                 <CheckCircle2 className="w-4 h-4 text-[#22C55E]" />
-                <span className="uppercase tracking-wider">End-To-End Cryptography</span>
+                <span className="uppercase tracking-wider">Secure Remote Access (VPN)</span>
               </div>
             </div>
           </motion.div>
@@ -90,14 +90,14 @@ export const PhilosophySection: React.FC = () => {
                 Your data stays in your home
               </h3>
               <p className="text-xs sm:text-sm text-[#A6B4AD] leading-relaxed mb-8">
-                Video feeds, activity logs, presence maps, and door events are written strictly to hardware located within your private property boundaries.
+                Camera recordings and activity history are stored on hardware inside your home — not uploaded to someone else's servers.
               </p>
             </div>
 
             <div className="pt-6 border-t border-[#1C362B]">
               <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#E2BE76]">
                 <CheckCircle2 className="w-4 h-4 text-[#22C55E]" />
-                <span className="uppercase tracking-wider">Absolute Data Sovereignty</span>
+                <span className="uppercase tracking-wider">Stays In Your Home</span>
               </div>
             </div>
           </motion.div>

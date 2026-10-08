@@ -20,7 +20,7 @@ export const ArchitectureSection: React.FC = () => {
             An integrated intelligence that lives entirely under your roof.
           </h2>
           <p className="text-sm sm:text-base text-[#4A554E] leading-relaxed max-w-2xl mx-auto">
-            Symetra removes the fragile remote cloud. Hardware communicates directly with an on-premises neural processor for unmatched privacy and speed.
+            One system for the whole home: your devices talk to a Home Assistant hub inside the villa — no internet needed for daily life.
           </p>
         </div>
 
@@ -47,22 +47,16 @@ export const ArchitectureSection: React.FC = () => {
                 Integrated Devices
               </h3>
               <p className="text-xs sm:text-sm text-[#5C6660] leading-relaxed mb-6">
-                Lighting, Curtains, Sensors, Locks, Cameras, and Climate nodes communicating via ultra-resilient low-voltage mesh protocols.
+                Lighting, curtains, sensors, cameras, locks and switches — connected over Zigbee and local protocols.
               </p>
             </div>
 
             <div className="pt-6 border-t border-[#F2EFE8] flex flex-wrap gap-2">
               <span className="px-2.5 py-1 text-[11px] font-medium text-[#4A554E] bg-[#F7F5EE] border border-[#E8E2D5] rounded-md">
-                KNX
-              </span>
-              <span className="px-2.5 py-1 text-[11px] font-medium text-[#4A554E] bg-[#F7F5EE] border border-[#E8E2D5] rounded-md">
-                DALI-2
-              </span>
-              <span className="px-2.5 py-1 text-[11px] font-medium text-[#4A554E] bg-[#F7F5EE] border border-[#E8E2D5] rounded-md">
                 Zigbee
               </span>
               <span className="px-2.5 py-1 text-[11px] font-medium text-[#4A554E] bg-[#F7F5EE] border border-[#E8E2D5] rounded-md">
-                Matter
+                Tuya (local key)
               </span>
             </div>
           </motion.div>
@@ -94,14 +88,14 @@ export const ArchitectureSection: React.FC = () => {
                 Smart Brain Inside Your Home
               </h3>
               <p className="text-xs sm:text-sm text-[#B4C2BB] leading-relaxed mb-6">
-                Local Central Controller &amp; Neural Bridge. Operates 24/7 with zero dependence on external cloud servers and an instantaneous 10ms response time.
+                A Home Assistant hub at the heart of your home. Scenes, schedules and automations run locally — daily life keeps working without internet.
               </p>
             </div>
 
             <div className="pt-6 border-t border-[#1C3228]">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#172E23] border border-[#2B4B3B] text-[11px] font-semibold text-[#E2BE76]">
                 <span className="w-2 h-2 rounded-full bg-[#22C55E] animate-pulse"></span>
-                <span>100% In-Villa Local Compute</span>
+                <span>Runs locally • Works without internet</span>
               </div>
             </div>
           </motion.div>
@@ -127,7 +121,7 @@ export const ArchitectureSection: React.FC = () => {
                 Unified Control
               </h3>
               <p className="text-xs sm:text-sm text-[#5C6660] leading-relaxed mb-6">
-                Tactile brushed metal wall touchscreens, bespoke micro-toggles, and iOS/Android control via secure end-to-end encrypted direct peer connections.
+                Familiar wall switches and panels plus one phone app for the family. Away from home, connect back securely over VPN.
               </p>
             </div>
 
@@ -136,7 +130,10 @@ export const ArchitectureSection: React.FC = () => {
                 Wall Panels
               </span>
               <span className="px-2.5 py-1 text-[11px] font-medium text-[#4A554E] bg-[#F7F5EE] border border-[#E8E2D5] rounded-md">
-                Private Mobile App
+                Phone App
+              </span>
+              <span className="px-2.5 py-1 text-[11px] font-medium text-[#4A554E] bg-[#F7F5EE] border border-[#E8E2D5] rounded-md">
+                VPN Remote Access
               </span>
             </div>
           </motion.div>
@@ -146,11 +143,11 @@ export const ArchitectureSection: React.FC = () => {
         <div className="mt-10 p-4 bg-[#F2EFE7] rounded-2xl border border-[#E2DDD0] flex flex-wrap items-center justify-between gap-4 text-xs text-[#5C6660]">
           <div className="flex items-center gap-2 font-medium">
             <Zap className="w-4 h-4 text-[#B3934B]" />
-            <span>Local Neural Bus Active: Zero cloud hops between physical switch press and DALI-2 luminaire dimming.</span>
+            <span>Local-first: wall switch → home hub → light. No internet round-trip for daily life.</span>
           </div>
           <div className="flex items-center gap-4 text-[11px]">
-            <span className="font-mono text-[#14231C]">Protocol: RS-485 / KNX Twisted Pair</span>
-            <span className="font-mono text-[#14231C]">Encryption: AES-256 Hardware Enclave</span>
+            <span className="font-mono text-[#14231C]">Hub: Home Assistant</span>
+            <span className="font-mono text-[#14231C]">Remote: VPN</span>
           </div>
         </div>
       </div>

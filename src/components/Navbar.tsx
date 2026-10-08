@@ -140,7 +140,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
                 </button>
                 <div className="flex items-center justify-center gap-2 text-xs text-[#6B756E]">
                   <ShieldCheck className="w-4 h-4 text-[#2E7D32]" />
-                  <span>100% Zero-Cloud Architectural Privacy</span>
+                  <span>Runs locally • Works without internet</span>
                 </div>
               </div>
             </div>

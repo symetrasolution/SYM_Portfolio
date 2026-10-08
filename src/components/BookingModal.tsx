@@ -125,8 +125,8 @@ END:VCALENDAR`;
               <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#14231C] mt-2 mb-3">
                 Experience Symetra Sanctuary
               </h2>
-              <p className="text-sm text-[#4A554E] max-w-md mx-auto mb-6">
-                Thank you, <span className="font-semibold text-[#14231C]">{formData.fullName || 'Esteemed Guest'}</span>. Your private walkthrough reservation has been allocated to a senior systems engineer.
+                <p className="text-sm text-[#4A554E] max-w-md mx-auto mb-6">
+                Thank you, <span className="font-semibold text-[#14231C]">{formData.fullName || 'Esteemed Guest'}</span>. Your private walkthrough request has been noted — our team will confirm the details with you.
               </p>
 
               {/* VIP Pass Summary Card */}
@@ -470,14 +470,14 @@ END:VCALENDAR`;
                 </div>
               </div>
 
-              {/* Privacy Guarantee Box */}
+              {/* Privacy Note Box */}
               <div className="mb-6 p-3 rounded-xl bg-[#F4F1EA] border border-[#E4DEC9] flex items-start gap-2.5">
                 <ShieldCheck className="w-4 h-4 text-[#2E7D32] shrink-0 mt-0.5" />
                 <p className="text-[11px] text-[#556059] leading-relaxed">
                   <span className="font-semibold text-[#14231C]">
-                    100% Zero-Cloud Privacy Guarantee:
+                    Privacy note:
                   </span>{' '}
-                  Your architectural blueprints and private residence details are stored strictly on-premises and never processed via public third-party telemetry.
+                  We use your details only to arrange your demonstration and never share them with third parties.
                 </p>
               </div>
 

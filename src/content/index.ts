@@ -7,6 +7,7 @@ export { ROOM_ZONES } from './rooms';
 export { SCENARIOS } from './scenarios';
 export { HARDWARE_CATEGORIES } from './hardware';
 export { METHODOLOGY_STEPS, PARTNERSHIP } from './methodology';
+export { HOW_IT_WORKS_STEPS, TECHNICAL_APPENDIX } from './howItWorks';
 export { RESIDENCE_PROJECTS } from './projects';
 export {
   CONTACT_INFO,

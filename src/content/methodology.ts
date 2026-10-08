@@ -1,43 +1,48 @@
 import type { MethodologyStep, PartnershipInfo } from '../types';
 
-/** Delivery steps — extracted verbatim from TurnkeyMethodology.tsx (Phase 1). */
+/** Delivery steps — the agreed five-stage lifecycle. */
 export const METHODOLOGY_STEPS: MethodologyStep[] = [
   {
     number: '01',
-    title: 'Site Visit',
+    title: 'Site visit',
     description:
-      'Architectural review and personalized homeowner lifestyle consultation on-site.',
+      'We walk your home or site with you and note how you live, room by room.',
   },
   {
     number: '02',
-    title: 'System Design',
+    title: 'System design',
     description:
-      'Low-voltage schematics, load calculations, and comprehensive conduit blueprints.',
+      'You receive a clear plan: which devices go where, and what each scene does.',
   },
   {
     number: '03',
     title: 'Installation',
     description:
-      'Structured cabling, DIN-rail automation cabinet assembly, and sensor fitting.',
+      'Devices, wiring and the home hub are installed with minimal disruption.',
   },
   {
     number: '04',
     title: 'Programming',
     description:
-      'Custom automation logic, fine-tuned scene dimming, and personalized UI tailoring.',
+      'Scenes and automations are set up around your routine and tuned with you.',
   },
   {
     number: '05',
-    title: 'Handover',
+    title: 'Testing and handover',
     description:
-      'Stress testing, concierge VIP walkthrough, schematic handover, and 24/7 priority desk.',
+      'Everything is tested end to end, then handed over with a walkthrough and documentation.',
   },
 ];
 
-/** Partnership band — extracted verbatim from TurnkeyMethodology.tsx (Phase 1). */
+/**
+ * Systems partnership: installation and programming are delivered in
+ * partnership with Conecta. Never describe Conecta as helping us.
+ * Logo files: src/assets/logos/symetra.svg + conecta.svg (see CONTENT_TODO).
+ */
 export const PARTNERSHIP: PartnershipInfo = {
-  eyebrow: 'Certified Engineering Alliance',
-  headline: 'In partnership with Conecta, installation and programming.',
-  allianceName: 'Symetra Solution × Conecta Engineering',
+  eyebrow: 'Systems Partnership',
+  headline:
+    'Symetra Solution × Conecta, installation & programming in partnership.',
+  allianceName: 'Symetra Solution × Conecta',
   cities: ['Cairo', 'Alexandria', 'Riyadh', 'Jeddah'],
 };

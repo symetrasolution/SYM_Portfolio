@@ -7,6 +7,7 @@ import React, { useState, useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'motion/react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
+import { HowItWorks } from './components/HowItWorks';
 import { ArchitectureSection } from './components/ArchitectureSection';
 import { LiveFloorPlan } from './components/LiveFloorPlan';
 import { ChoreographedMoments } from './components/ChoreographedMoments';
@@ -94,6 +95,10 @@ export default function App() {
 
         <ArchitecturalScrollSection yOffset={32}>
           <ArchitectureSection />
+        </ArchitecturalScrollSection>
+
+        <ArchitecturalScrollSection yOffset={28}>
+          <HowItWorks onOpenBooking={() => setBookingModalOpen(true)} />
         </ArchitecturalScrollSection>
 
         <ArchitecturalScrollSection yOffset={28}>

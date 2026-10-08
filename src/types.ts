@@ -15,12 +15,16 @@ export interface BookingFormData {
   window: DemoWindow;
 }
 
+/**
+ * Room zones are qualitative only (TRUTH RULES): no areas, latencies,
+ * circuit counts, temperatures or dimming figures. If the owner supplies
+ * verified values, extend this type and CONTENT_TODO.md together.
+ */
 export interface RoomZone {
   id: string;
   name: string;
   tabLabel: string;
   nodeNumber: number;
-  area: string;
   category: string;
   title: string;
   hardwareNodes: {
@@ -31,36 +35,38 @@ export interface RoomZone {
   activeScene: {
     name: string;
     description: string;
-    temperature: string;
-    dimming: string;
-    curtainState: string;
   };
   scenes: {
     id: string;
     name: string;
     description: string;
-    temperature: string;
-    dimming: string;
-    curtainState: string;
   }[];
-  latency: string;
-  circuits: number;
 }
 
+/**
+ * Portfolio entries are illustrative "In progress" placeholders with no
+ * specs. Replace with real projects when available (see CONTENT_TODO.md).
+ */
 export interface ResidenceProject {
   id: string;
   title: string;
   location: string;
   country: string;
-  status: string;
+  status: 'In progress';
   image: string;
   description: string;
-  specs: {
-    circuits: number;
-    protocol: string;
-    controlPoints: number;
-    completion: string;
-  };
+}
+
+export interface HowItWorksStep {
+  number: string;
+  title: string;
+  description: string;
+  icon: string;
+}
+
+export interface TechnicalAppendixItem {
+  title: string;
+  description: string;
 }
 
 export interface Scenario {

@@ -27,13 +27,13 @@ export const PortfolioResidences: React.FC<PortfolioResidencesProps> = ({ onOpen
               Selected Residences
             </h2>
             <p className="text-sm sm:text-base text-[#4A554E] leading-relaxed">
-              Discreet luxury executed to perfection. Private architectural spaces optimized for understated comfort.
+              Illustrative examples of the homes we deliver. Real project stories with owner permission will appear here.
             </p>
           </div>
 
           <div>
             <span className="text-xs font-mono font-bold tracking-widest text-[#7A867F] uppercase bg-white px-4 py-2 rounded-full border border-[#DDD7C8]">
-              Active Commissions 2025
+              In Progress • Illustrative
             </span>
           </div>
         </div>
@@ -123,7 +123,7 @@ export const PortfolioResidences: React.FC<PortfolioResidencesProps> = ({ onOpen
 
               <div className="p-6 sm:p-8">
                 <span className="text-xs font-bold uppercase tracking-widest text-[#B3934B] block mb-1">
-                  Commission Case Blueprint
+                  Illustrative Residence
                 </span>
                 <h3 className="text-2xl font-serif font-bold text-[#14231C] mb-3">
                   {selectedResidence.title}
@@ -132,32 +132,11 @@ export const PortfolioResidences: React.FC<PortfolioResidencesProps> = ({ onOpen
                   {selectedResidence.description}
                 </p>
 
-                {/* Technical Specs Breakdown */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 bg-[#F5F2EB] rounded-2xl border border-[#E2DDD0] mb-6 text-xs">
-                  <div>
-                    <span className="text-[#858E87] block text-[11px]">Circuits</span>
-                    <span className="font-bold text-[#14231C] font-mono">
-                      {selectedResidence.specs.circuits} DALI/KNX
-                    </span>
-                  </div>
-                  <div>
-                    <span className="text-[#858E87] block text-[11px]">Control Nodes</span>
-                    <span className="font-bold text-[#14231C] font-mono">
-                      {selectedResidence.specs.controlPoints} Points
-                    </span>
-                  </div>
-                  <div>
-                    <span className="text-[#858E87] block text-[11px]">Protocol</span>
-                    <span className="font-bold text-[#14231C]">
-                      {selectedResidence.specs.protocol}
-                    </span>
-                  </div>
-                  <div>
-                    <span className="text-[#858E87] block text-[11px]">Timeline</span>
-                    <span className="font-bold text-[#14231C]">
-                      {selectedResidence.specs.completion}
-                    </span>
-                  </div>
+                {/* Illustrative-project note (no specs per TRUTH RULES) */}
+                <div className="p-4 bg-[#F5F2EB] rounded-2xl border border-[#E2DDD0] mb-6 text-xs text-[#5C6660] leading-relaxed">
+                  Illustrative example — the final scope of every home depends
+                  on its site survey and system design. Detailed project
+                  stories will appear here once real commissions complete.
                 </div>
 
                 <div className="flex flex-col sm:flex-row items-center gap-3">

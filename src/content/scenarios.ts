@@ -1,6 +1,9 @@
 import type { Scenario } from '../types';
 
-/** Daily routine scenarios — moved verbatim from src/data/mockData.ts (Phase 1). */
+/**
+ * Daily routine scenarios — qualitative only (TRUTH RULES).
+ * No temperatures, timers, counts or brand-specific steps.
+ */
 export const SCENARIOS: Scenario[] = [
   {
     id: 'arriving_home',
@@ -8,12 +11,12 @@ export const SCENARIOS: Scenario[] = [
     title: 'Arriving Home',
     iconName: 'home',
     description:
-      'Lights illuminate pathways smoothly, climate shifts to preferred comfort, and exterior perimeter gates disarm upon authorized arrival.',
+      'The house notices your arrival and gets ready: paths light up, the entrance opens for you, and everything settles to comfort.',
     automationSequence: [
-      'Perimeter vehicle transponder recognized',
-      'Exterior driveway lanterns ramp to 60%',
-      'HVAC transitions from eco (26°C) to comfort (22°C)',
-      'Security deadbolts unlock with local audit stamp',
+      'Your arrival is recognized at the gate',
+      'Driveway and entrance lights come on',
+      'The door unlocks for you',
+      'The home settles into its welcome scene',
     ],
   },
   {
@@ -22,12 +25,12 @@ export const SCENARIOS: Scenario[] = [
     title: 'Good Night',
     iconName: 'moon',
     description:
-      'Single tap beside the master bed locks all perimeter deadbolts, arms lower-level motion sensors, and gently turns off all interior luminaires.',
+      'One tap beside the bed settles the whole home: lights fade out, doors lock, and the ground floor keeps a quiet watch.',
     automationSequence: [
-      'Master bedside keypad triggered',
-      'Interior luminaires smoothly fade to 0% over 8s',
-      'All 8 perimeter exterior doors double-deadbolted',
-      'Ground floor mmWave sensors armed for sentry patrol',
+      'Master bedside button pressed',
+      'Interior lights fade out gently',
+      'Doors lock for the night',
+      'Ground-floor sensors keep a quiet watch',
     ],
   },
   {
@@ -36,12 +39,12 @@ export const SCENARIOS: Scenario[] = [
     title: 'Away Mode',
     iconName: 'plane',
     description:
-      'Simulates natural presence with random soft lighting patterns, lowers AC power consumption to eco-mode, and triggers instant alerts upon unexpected motion.',
+      'Leaving for a trip? The home looks lived-in, stays efficient, and lets you check in securely from anywhere.',
     automationSequence: [
-      'Master key fob exit confirmed',
-      'HVAC setpoint shifted to high-efficiency 27°C',
-      'Natural occupancy simulation algorithm engaged',
-      'Main domestic water supply solenoid safely closed',
+      'Away mode confirmed as you leave',
+      'Lights follow a lived-in pattern',
+      'Water supply closes for safety',
+      'Check in anytime over secure remote access',
     ],
   },
   {
@@ -50,12 +53,12 @@ export const SCENARIOS: Scenario[] = [
     title: 'Movie Time',
     iconName: 'film',
     description:
-      'Curtains glide shut, chandeliers dim to 10%, screen backlights transition to soft amber, and architectural acoustic profiles balance perfectly.',
+      'One scene dims the room, closes the curtains, and sets the sound — the cinema comes to you.',
     automationSequence: [
-      'Private cinema room switch pressed',
-      'Motorized velvet acoustic drapes glide 100% closed',
-      'Architectural downlights dim to warm 10% candlelight',
-      'Subwoofers power on and AVR zone switches to Cinema EQ',
+      'Movie scene started',
+      'Curtains glide closed',
+      'Lights dim to a soft glow',
+      'Sound switches to cinema mode',
     ],
   },
 ];

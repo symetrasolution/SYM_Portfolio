@@ -4,9 +4,9 @@ import riyadhPenthouseImg from '../assets/images/riyadh_dq_penthouse_17914888926
 import sahelResidenceImg from '../assets/images/sahel_coastal_residence_1791488904285.jpg';
 
 /**
- * Mock residence portfolio — moved verbatim from src/data/mockData.ts (Phase 1).
- * Phase 2 will label these "In progress", drop unverified specs, and make
- * entries trivially replaceable with real projects.
+ * Illustrative portfolio placeholders (TRUTH RULES). All three entries are
+ * MOCK: labelled "In progress", no specs, easy to replace with real
+ * projects. See CONTENT_TODO.md.
  */
 export const RESIDENCE_PROJECTS: ResidenceProject[] = [
   {
@@ -14,47 +14,29 @@ export const RESIDENCE_PROJECTS: ResidenceProject[] = [
     title: 'Private Villa, New Cairo',
     location: 'New Cairo, Egypt',
     country: 'Egypt',
-    status: 'IN PROGRESS',
+    status: 'In progress',
     image: cairoVillaImg,
     description:
-      'Full residential automation, 64 lighting circuits, motorized facade shading, and local climate integration.',
-    specs: {
-      circuits: 64,
-      protocol: 'KNX + DALI-2 Local Mesh',
-      controlPoints: 128,
-      completion: 'Q3 2025',
-    },
+      'Whole-home lighting scenes, motorized shading and presence-based automation across living spaces.',
   },
   {
     id: 'riyadh_dq',
     title: 'Penthouse Suite, Riyadh DQ',
     location: 'Diplomatic Quarter, Riyadh',
     country: 'Saudi Arabia',
-    status: 'IN PROGRESS',
+    status: 'In progress',
     image: riyadhPenthouseImg,
     description:
-      'Bespoke scene integration, architectural multi-zone sound distribution, and discrete mmWave presence detection.',
-    specs: {
-      circuits: 48,
-      protocol: 'Local Neural Brain + DALI-2',
-      controlPoints: 96,
-      completion: 'Q4 2025',
-    },
+      'Scene control, multi-room ambience and discreet presence detection for apartment living.',
   },
   {
     id: 'sahel_coastal',
     title: 'Coastal Residence, Sahel',
     location: 'North Coast (Sahel), Egypt',
     country: 'Egypt',
-    status: 'IN PROGRESS',
+    status: 'In progress',
     image: sahelResidenceImg,
     description:
-      'Year-round encrypted remote climate monitoring, storm shutter automation, and intelligent security lockouts.',
-    specs: {
-      circuits: 82,
-      protocol: 'Hybrid KNX / Local Gateway',
-      controlPoints: 164,
-      completion: 'Summer 2025',
-    },
+      'Secure remote check-in, shutter automation and leak protection for a second home.',
   },
 ];

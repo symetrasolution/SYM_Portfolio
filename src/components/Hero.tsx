@@ -40,7 +40,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
             className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#B3934B] mb-4"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-[#B3934B]"></span>
-            <span>Architectural Calm • On-Premises Compute</span>
+            <span>Turnkey Smart Homes • Egypt &amp; Saudi Arabia</span>
           </motion.div>
 
           <motion.h1
@@ -60,7 +60,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-lg sm:text-xl text-[#4A554E] leading-relaxed max-w-2xl mb-8"
           >
-            Intelligent living engineered for complete privacy and local reliability in Egypt &amp; Saudi Arabia.
+            Turnkey smart homes built on Home Assistant. Everything runs locally inside your home, so it works without internet.
           </motion.p>
 
           <motion.div
@@ -114,10 +114,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
               </span>
               <div>
                 <span className="text-xs font-bold tracking-wide block">
-                  100% In-Villa Local Compute
+                  Runs locally in your home
                 </span>
                 <span className="text-[10px] text-[#A8B2AC]">
-                  Zero Cloud Dependence • Direct Neural Bus
+                  Works without internet • Built on Home Assistant
                 </span>
               </div>
             </div>
@@ -125,11 +125,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
             <div className="hidden sm:flex items-center gap-3">
               <div className="bg-[#14231C]/80 backdrop-blur-md border border-white/10 px-3.5 py-2 rounded-xl text-white text-xs flex items-center gap-2">
                 <Cpu className="w-3.5 h-3.5 text-[#E2BE76]" />
-                <span>Response Latency: &lt;10ms</span>
+                <span>Works without internet</span>
               </div>
               <div className="bg-[#14231C]/80 backdrop-blur-md border border-white/10 px-3.5 py-2 rounded-xl text-white text-xs flex items-center gap-2">
                 <Shield className="w-3.5 h-3.5 text-[#22C55E]" />
-                <span>Encrypted P2P Tunnel</span>
+                <span>Secure remote access (VPN)</span>
               </div>
             </div>
           </div>

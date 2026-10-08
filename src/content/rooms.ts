@@ -1,9 +1,10 @@
 import type { RoomZone } from '../types';
 
 /**
- * Room zones — moved verbatim from src/data/mockData.ts (Phase 1).
- * Phase 2 will remove unverified numbers (latency, circuits, areas,
- * temperatures) per TRUTH RULES and track them in CONTENT_TODO.md.
+ * Room zones — qualitative capability descriptions only (TRUTH RULES).
+ * No areas, latencies, circuit counts, temperatures or brand claims.
+ * Covers offered devices: lighting, curtains/blinds, sensors, cameras,
+ * locks/access, switches/sockets over Zigbee / Tuya (local key).
  */
 export const ROOM_ZONES: RoomZone[] = [
   {
@@ -11,252 +12,201 @@ export const ROOM_ZONES: RoomZone[] = [
     name: 'Living Salon',
     tabLabel: 'LIVING ROOM',
     nodeNumber: 1,
-    area: '58m²',
     category: 'Living Quarters',
     title: 'Living Room Automation',
     hardwareNodes: [
       {
         icon: 'lightbulb',
-        title: 'Adaptive Recessed Lighting',
-        description: 'Circadian rhythm tuning',
+        title: 'Scene Lighting',
+        description: 'One tap sets the mood for evening, guests or quiet time',
       },
       {
         icon: 'blinds',
-        title: 'Automated Sheer & Blackout Drapes',
-        description: 'Somfy ultra-silent motorized tracks',
+        title: 'Motorized Curtains',
+        description: 'Sheer and blackout layers glide open or closed',
       },
       {
         icon: 'radar',
-        title: 'Multi-sensor',
-        description: 'Presence, Lux, Ambient Temp',
+        title: 'Presence & Light Sensors',
+        description: 'The room notices you and adjusts gently',
       },
       {
-        icon: 'volume-2',
-        title: 'High-Fidelity Multi-Room Audio Node',
-        description: 'Architectural flush-mount acoustic pairing',
+        icon: 'sliders',
+        title: 'Wall Switches & Sockets',
+        description: 'Familiar switches that always work, with or without internet',
       },
     ],
     activeScene: {
-      name: 'Evening Welcome Scene',
+      name: 'Evening Welcome',
       description:
-        'At sunset, soft warm accent lights gently fade to 40%, motorized sheer blinds glide closed, and the air temperature adjusts to a comfortable 22°C.',
-      temperature: '22°C',
-      dimming: '40%',
-      curtainState: 'Sheer closed (100%)',
+        'As evening sets in, the lights soften to a warm glow, sheer curtains glide closed, and the salon settles into a calm welcome.',
     },
     scenes: [
       {
         id: 'evening',
-        name: 'Evening Welcome Scene',
+        name: 'Evening Welcome',
         description:
-          'At sunset, soft warm accent lights gently fade to 40%, motorized sheer blinds glide closed, and the air temperature adjusts to a comfortable 22°C.',
-        temperature: '22°C',
-        dimming: '40%',
-        curtainState: 'Sheer closed',
+          'As evening sets in, the lights soften to a warm glow, sheer curtains glide closed, and the salon settles into a calm welcome.',
       },
       {
         id: 'daylight',
-        name: 'Natural Daylight Circadian',
+        name: 'Daylight Mode',
         description:
-          'Full 5000K daylight-balanced illumination tracks the sun. Drapes automatically open to frame desert garden views while reducing HVAC load.',
-        temperature: '23°C',
-        dimming: '85%',
-        curtainState: 'Open (100%)',
+          'Curtains open to daylight and the view while the lights step back — the room follows the day on its own.',
       },
       {
         id: 'soiree',
-        name: 'Private Soirée & Lounge',
+        name: 'Guests & Gathering',
         description:
-          'Ambient cove lights glow at 2200K golden amber. Multi-room high-fidelity lossless audio syncs discreetly throughout the salon.',
-        temperature: '21°C',
-        dimming: '25%',
-        curtainState: 'Dual layer drawn',
+          'Low warm light and closed curtains turn the salon into an intimate space for family and guests.',
       },
     ],
-    latency: '<10ms (Local)',
-    circuits: 24,
   },
   {
     id: 'master_bedroom',
     name: 'Master Suite',
     tabLabel: 'MASTER BEDROOM',
     nodeNumber: 2,
-    area: '42m²',
     category: 'Private Sanctuaries',
     title: 'Master Suite Automation',
     hardwareNodes: [
       {
         icon: 'moon',
-        title: 'Circadian Bedside Luminaires',
-        description: '0.1% micro-dimming warm glow',
+        title: 'Gentle Bedside Lighting',
+        description: 'Soft light for reading that fades out at bedtime',
       },
       {
         icon: 'blinds',
-        title: 'Dual-Layer Motorized Blackout',
-        description: 'Zero light-leak architectural pockets',
+        title: 'Blackout Curtains',
+        description: 'Close fully for sleep, open softly with the morning',
       },
       {
         icon: 'radar',
-        title: 'Sub-Perception mmWave Radar',
-        description: 'Sleep respiration & motion tracking',
+        title: 'Night Presence Sensor',
+        description: 'A dim path of light if you get up at night',
       },
       {
-        icon: 'thermometer',
-        title: 'Independent Climate Micro-Zone',
-        description: 'Ultra-silent chilled water VRF coil',
+        icon: 'sliders',
+        title: 'Bedside Switches',
+        description: 'One button by the bed settles the whole home for the night',
       },
     ],
     activeScene: {
-      name: 'Deep Sleep Sanctuary',
+      name: 'Good Night',
       description:
-        'At 23:00, blackout draperies seal completely, ambient room temperature drops to 20.5°C, and all tactile switches enter zero-LED night mode.',
-      temperature: '20.5°C',
-      dimming: '0%',
-      curtainState: 'Blackout 100%',
+        'One tap by the bed: curtains close, lights fade out across the suite, and the home locks up for the night.',
     },
     scenes: [
       {
         id: 'sleep',
-        name: 'Deep Sleep Sanctuary',
+        name: 'Good Night',
         description:
-          'At 23:00, blackout draperies seal completely, ambient room temperature drops to 20.5°C, and all tactile switches enter zero-LED night mode.',
-        temperature: '20.5°C',
-        dimming: '0%',
-        curtainState: 'Blackout 100%',
+          'One tap by the bed: curtains close, lights fade out across the suite, and the home locks up for the night.',
       },
       {
         id: 'wake',
-        name: 'Gentle Dawn Awakening',
+        name: 'Gentle Morning',
         description:
-          'Simulates sunrise over 20 minutes with golden cove illumination while motorized sheers whisper open silently.',
-        temperature: '22°C',
-        dimming: '65%',
-        curtainState: 'Sheers open 70%',
+          'Light rises gradually and curtains open softly, so waking up feels unhurried.',
       },
     ],
-    latency: '<8ms (Local)',
-    circuits: 16,
   },
   {
     id: 'kitchen',
     name: 'Gourmet Kitchen',
     tabLabel: 'GOURMET KITCHEN',
     nodeNumber: 3,
-    area: '26m²',
     category: 'Culinary Workshop',
     title: 'Gourmet Kitchen Automation',
     hardwareNodes: [
       {
         icon: 'sparkles',
-        title: 'High-CRI 98+ Task Lighting',
-        description: 'Shadow-free marble island illumination',
+        title: 'Bright Task Lighting',
+        description: 'Clear light over counters when you cook',
       },
       {
         icon: 'wind',
-        title: 'Air Quality & Extract Integration',
-        description: 'VOC, PM2.5 & moisture sensor triggers',
+        title: 'Smoke & Leak Sensors',
+        description: 'Early warning with automatic water shutoff for leaks',
       },
       {
-        icon: 'shield-alert',
-        title: 'Motorized Gas & Water Auto-Shutoff',
-        description: 'Sub-second leak isolation valves',
+        icon: 'blinds',
+        title: 'Blind Control',
+        description: 'Adjust daylight over the working areas',
       },
       {
         icon: 'sliders',
-        title: 'Tactile Brass Push Keypad',
-        description: 'Direct low-voltage DIN-rail trigger',
+        title: 'Splash-Proof Keypad',
+        description: 'Wipeable wall control for scenes and lights',
       },
     ],
     activeScene: {
-      name: 'Culinary Master Scene',
+      name: 'Cooking Mode',
       description:
-        'Prep counters illuminate at 4000K crisp white with 100% lumen delivery, extractor ventilation adjusts to acoustic silent mode.',
-      temperature: '21.5°C',
-      dimming: '95%',
-      curtainState: 'Louver blinds 45°',
+        'Counters light up bright and clear for preparation; when dinner is served, the island settles into a warm low glow.',
     },
     scenes: [
       {
         id: 'culinary',
-        name: 'Culinary Master Scene',
+        name: 'Cooking Mode',
         description:
-          'Prep counters illuminate at 4000K crisp white with 100% lumen delivery, extractor ventilation adjusts to acoustic silent mode.',
-        temperature: '21.5°C',
-        dimming: '95%',
-        curtainState: 'Louver blinds 45°',
+          'Counters light up bright and clear for preparation; when dinner is served, the island settles into a warm low glow.',
       },
       {
-        id: 'cocktail',
-        name: 'Evening Island Bar Scene',
+        id: 'evening',
+        name: 'Evening Kitchen',
         description:
-          'Island under-counter LED ribbons wash stone cabinetry in warm amber while ambient perimeter lights dim to 20%.',
-        temperature: '22°C',
-        dimming: '20%',
-        curtainState: 'Louver blinds closed',
+          'A soft perimeter glow keeps the kitchen usable and calm after the meal, without harsh overhead light.',
       },
     ],
-    latency: '<10ms (Local)',
-    circuits: 18,
   },
   {
     id: 'foyer',
     name: 'Grand Foyer & Gallery',
     tabLabel: 'GRAND ENTRANCE',
     nodeNumber: 4,
-    area: '34m²',
     category: 'Reception & Gallery',
     title: 'Grand Entrance Automation',
     hardwareNodes: [
       {
         icon: 'key',
-        title: 'Biometric Pivot Door Access',
-        description: 'Sub-300ms encrypted biometric scan',
+        title: 'Smart Lock & Keypad',
+        description: 'Fingerprint or code entry, with a regular key as backup',
       },
       {
         icon: 'eye',
-        title: 'Presence Radar Welcoming',
-        description: 'Gentle lighting ramp upon footstep detection',
+        title: 'Arrival Lighting',
+        description: 'The entrance lights up as you step in',
       },
       {
-        icon: 'frame',
-        title: 'Art Artwork Spot Framing',
-        description: 'Bespoke optical contour museum projectors',
+        icon: 'camera',
+        title: 'Door Camera',
+        description: 'See visitors and recordings stay inside your home',
       },
       {
         icon: 'bell',
-        title: 'Encrypted Video Intercom',
-        description: 'Direct local SIP streaming to flush tablets',
+        title: 'Video Intercom',
+        description: 'Answer the door from the wall panel or your phone',
       },
     ],
     activeScene: {
-      name: 'Arrival Ceremony',
+      name: 'Welcome Home',
       description:
-        'Upon motorized pivot door unlock, architectural gallery spots softly illuminate key sculpture artwork and hall ambient light fades up smoothly.',
-      temperature: '22°C',
-      dimming: '60%',
-      curtainState: 'Perimeter glass unshaded',
+        'Unlocking the door brings the entrance to life: gallery spots highlight the artwork and the hall warms up behind you.',
     },
     scenes: [
       {
         id: 'arrival',
-        name: 'Arrival Ceremony',
+        name: 'Welcome Home',
         description:
-          'Upon motorized pivot door unlock, architectural gallery spots softly illuminate key sculpture artwork and hall ambient light fades up smoothly.',
-        temperature: '22°C',
-        dimming: '60%',
-        curtainState: 'Perimeter glass unshaded',
+          'Unlocking the door brings the entrance to life: gallery spots highlight the artwork and the hall warms up behind you.',
       },
       {
-        id: 'night_sentry',
-        name: 'Night Sentry Mode',
+        id: 'night',
+        name: 'Night Watch',
         description:
-          'Low-level floor baseboard wash lights (5%) guide pathways with zero harsh glare if footsteps are detected between 01:00 and 06:00.',
-        temperature: '22°C',
-        dimming: '5%',
-        curtainState: 'Perimeter glass shielded',
+          'Overnight, only a faint floor-level glow remains, rising gently if footsteps are detected.',
       },
     ],
-    latency: '<6ms (Local)',
-    circuits: 14,
   },
 ];

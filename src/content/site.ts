@@ -11,7 +11,7 @@ export const SITE_META: SiteMeta = {
 };
 
 export const NAV_LINKS: NavLink[] = [
-  { name: 'How It Works', href: '#architecture' },
+  { name: 'How It Works', href: '#how-it-works' },
   { name: 'The Architecture', href: '#architecture' },
   { name: 'Living Spaces', href: '#living-spaces' },
   { name: 'Philosophy', href: '#philosophy' },

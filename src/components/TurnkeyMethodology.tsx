@@ -56,11 +56,24 @@ export const TurnkeyMethodology: React.FC = () => {
           </div>
         </div>
 
-        {/* Conecta Strategic Partnership Banner (Exact match from screenshot) */}
+        {/* Systems Partnership Banner: Symetra Solution × Conecta */}
         <div className="bg-white rounded-2xl p-6 sm:p-7 border border-[#E8E4DA] shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-xl bg-[#14231C] text-[#E2BE76] flex items-center justify-center shrink-0 shadow-sm">
-              <Award className="w-6 h-6" />
+            <div className="flex items-center gap-2 shrink-0">
+              <div
+                className="w-12 h-12 rounded-xl bg-[#14231C] text-[#E2BE76] flex items-center justify-center font-bold text-sm shadow-sm"
+                aria-label="Symetra Solution logo"
+              >
+                S
+              </div>
+              <span className="text-[#B3934B] font-bold">×</span>
+              <div
+                className="w-12 h-12 rounded-xl border-2 border-dashed border-[#C9C2B2] bg-[#F7F5EE] text-[#858E87] flex items-center justify-center"
+                aria-label="Conecta logo (to be supplied)"
+                title="Conecta logo — see CONTENT_TODO.md"
+              >
+                <Award className="w-6 h-6" />
+              </div>
             </div>
             <div>
               <span className="text-[10px] uppercase font-bold tracking-widest text-[#858E87] block">
