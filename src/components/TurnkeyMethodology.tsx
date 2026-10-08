@@ -1,35 +1,10 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { ShieldCheck, ArrowRight, Award } from 'lucide-react';
+import { METHODOLOGY_STEPS, PARTNERSHIP } from '../content/methodology';
 
 export const TurnkeyMethodology: React.FC = () => {
-  const steps = [
-    {
-      number: '01',
-      title: 'Site Visit',
-      description: 'Architectural review and personalized homeowner lifestyle consultation on-site.',
-    },
-    {
-      number: '02',
-      title: 'System Design',
-      description: 'Low-voltage schematics, load calculations, and comprehensive conduit blueprints.',
-    },
-    {
-      number: '03',
-      title: 'Installation',
-      description: 'Structured cabling, DIN-rail automation cabinet assembly, and sensor fitting.',
-    },
-    {
-      number: '04',
-      title: 'Programming',
-      description: 'Custom automation logic, fine-tuned scene dimming, and personalized UI tailoring.',
-    },
-    {
-      number: '05',
-      title: 'Handover',
-      description: 'Stress testing, concierge VIP walkthrough, schematic handover, and 24/7 priority desk.',
-    },
-  ];
+  const steps = METHODOLOGY_STEPS;
 
   return (
     <section id="turnkey" className="py-20 lg:py-28 bg-[#FAF8F2] relative">
@@ -89,26 +64,25 @@ export const TurnkeyMethodology: React.FC = () => {
             </div>
             <div>
               <span className="text-[10px] uppercase font-bold tracking-widest text-[#858E87] block">
-                Certified Engineering Alliance
+                {PARTNERSHIP.eyebrow}
               </span>
               <h4 className="text-sm sm:text-base font-bold text-[#14231C]">
-                In partnership with Conecta, installation and programming.
+                {PARTNERSHIP.headline}
               </h4>
             </div>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center sm:items-end gap-3 text-right">
             <span className="text-xs font-semibold text-[#14231C]">
-              Symetra Solution × Conecta Engineering
+              {PARTNERSHIP.allianceName}
             </span>
             <div className="flex items-center gap-2 text-xs text-[#6B756E]">
-              <span>Cairo</span>
-              <span>•</span>
-              <span>Alexandria</span>
-              <span>•</span>
-              <span>Riyadh</span>
-              <span>•</span>
-              <span>Jeddah</span>
+              {PARTNERSHIP.cities.map((city, i) => (
+                <span key={city} className="flex items-center gap-2">
+                  {i > 0 && <span>•</span>}
+                  <span>{city}</span>
+                </span>
+              ))}
             </div>
           </div>
         </div>

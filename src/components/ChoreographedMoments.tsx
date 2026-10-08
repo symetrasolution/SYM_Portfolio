@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Home, Moon, Plane, Film, Play, CheckCircle2, Sparkles, ChevronRight } from 'lucide-react';
-import { SCENARIOS } from '../data/mockData';
+import { SCENARIOS } from '../content/scenarios';
 
 export const ChoreographedMoments: React.FC = () => {
   const [activeScenarioId, setActiveScenarioId] = useState<string>('arriving_home');

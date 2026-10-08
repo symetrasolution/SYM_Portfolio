@@ -10,7 +10,7 @@ import {
   CheckCircle,
   Radio,
 } from 'lucide-react';
-import { HARDWARE_CATEGORIES } from '../data/mockData';
+import { HARDWARE_CATEGORIES } from '../content/hardware';
 
 export const HardwareCompatibility: React.FC = () => {
   const getCategoryIcon = (iconName: string) => {

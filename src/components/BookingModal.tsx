@@ -17,6 +17,11 @@ import {
   Download,
 } from 'lucide-react';
 import { UserRole, ExperienceFormat, DemoWindow, BookingFormData } from '../types';
+import {
+  BOOKING_CITIES,
+  BOOKING_DEFAULT_CITY,
+  CONTACT_INFO,
+} from '../content/contact';
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -29,9 +34,9 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
     format: 'showroom',
     fullName: '',
     email: '',
-    countryCode: '+966',
+    countryCode: CONTACT_INFO.countryCodes[0].code,
     phone: '',
-    city: 'Riyadh (Diplomatic Quarter / Al Malqa)',
+    city: BOOKING_DEFAULT_CITY,
     window: 'afternoon',
   });
 
@@ -401,10 +406,11 @@ END:VCALENDAR`;
                         }
                         className="px-2.5 py-2 bg-[#F3EFE7] border border-r-0 border-[#DDD7C8] rounded-l-xl text-xs font-medium text-[#14231C] focus:outline-none"
                       >
-                        <option value="+966">🇸🇦 +966</option>
-                        <option value="+20">🇪🇬 +20</option>
-                        <option value="+971">🇦🇪 +971</option>
-                        <option value="+965">🇰🇼 +965</option>
+                        {CONTACT_INFO.countryCodes.map((cc) => (
+                          <option key={cc.code} value={cc.code}>
+                            {cc.flag} {cc.code}
+                          </option>
+                        ))}
                       </select>
                       <input
                         type="tel"
@@ -430,24 +436,11 @@ END:VCALENDAR`;
                       }
                       className="w-full px-3 py-2 bg-white border border-[#DDD7C8] rounded-xl text-xs text-[#14231C] focus:outline-none focus:ring-1 focus:ring-[#B3934B] focus:border-[#B3934B]"
                     >
-                      <option value="Riyadh (Diplomatic Quarter / Al Malqa)">
-                        Riyadh (Diplomatic Quarter / Al Malqa)
-                      </option>
-                      <option value="Riyadh (Diriyah / Hittin / Sedra)">
-                        Riyadh (Diriyah / Hittin / Sedra)
-                      </option>
-                      <option value="Cairo (New Cairo / 5th Settlement)">
-                        Cairo (New Cairo / 5th Settlement)
-                      </option>
-                      <option value="Cairo (Palm Hills / Sheikh Zayed)">
-                        Cairo (Palm Hills / Sheikh Zayed)
-                      </option>
-                      <option value="North Coast (Sahel / Hacienda / Marassi)">
-                        North Coast (Sahel / Hacienda / Marassi)
-                      </option>
-                      <option value="Jeddah (Al Shati / Obhur Al Shamaliyah)">
-                        Jeddah (Al Shati / Obhur Al Shamaliyah)
-                      </option>
+                      {BOOKING_CITIES.map((city) => (
+                        <option key={city} value={city}>
+                          {city}
+                        </option>
+                      ))}
                     </select>
                   </div>
                 </div>
@@ -459,44 +452,21 @@ END:VCALENDAR`;
                   4. Preferred Demonstration Window
                 </label>
                 <div className="grid grid-cols-3 gap-2.5">
-                  <button
-                    type="button"
-                    onClick={() => handleWindowChange('morning')}
-                    className={`py-2 px-2 text-center rounded-xl border text-xs transition-all ${
-                      formData.window === 'morning'
-                        ? 'bg-[#F7F4EB] border-[#B3934B] text-[#14231C] font-semibold ring-1 ring-[#B3934B]'
-                        : 'bg-white border-[#E2DDD0] text-[#4A554E] hover:border-[#C8BFAD]'
-                    }`}
-                  >
-                    <div className="font-medium text-xs">Morning</div>
-                    <div className="text-[10px] text-[#858E87]">10:00 - 13:00</div>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => handleWindowChange('afternoon')}
-                    className={`py-2 px-2 text-center rounded-xl border text-xs transition-all ${
-                      formData.window === 'afternoon'
-                        ? 'bg-[#F7F4EB] border-[#B3934B] text-[#14231C] font-semibold ring-1 ring-[#B3934B]'
-                        : 'bg-white border-[#E2DDD0] text-[#4A554E] hover:border-[#C8BFAD]'
-                    }`}
-                  >
-                    <div className="font-medium text-xs">Afternoon</div>
-                    <div className="text-[10px] text-[#858E87]">14:00 - 18:00</div>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => handleWindowChange('evening')}
-                    className={`py-2 px-2 text-center rounded-xl border text-xs transition-all ${
-                      formData.window === 'evening'
-                        ? 'bg-[#F7F4EB] border-[#B3934B] text-[#14231C] font-semibold ring-1 ring-[#B3934B]'
-                        : 'bg-white border-[#E2DDD0] text-[#4A554E] hover:border-[#C8BFAD]'
-                    }`}
-                  >
-                    <div className="font-medium text-xs">Evening</div>
-                    <div className="text-[10px] text-[#858E87]">19:00 - 21:00</div>
-                  </button>
+                  {CONTACT_INFO.demoWindows.map((win) => (
+                    <button
+                      key={win.id}
+                      type="button"
+                      onClick={() => handleWindowChange(win.id)}
+                      className={`py-2 px-2 text-center rounded-xl border text-xs transition-all ${
+                        formData.window === win.id
+                          ? 'bg-[#F7F4EB] border-[#B3934B] text-[#14231C] font-semibold ring-1 ring-[#B3934B]'
+                          : 'bg-white border-[#E2DDD0] text-[#4A554E] hover:border-[#C8BFAD]'
+                      }`}
+                    >
+                      <div className="font-medium text-xs">{win.label}</div>
+                      <div className="text-[10px] text-[#858E87]">{win.hours}</div>
+                    </button>
+                  ))}
                 </div>
               </div>
 

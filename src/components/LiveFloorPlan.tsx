@@ -18,7 +18,7 @@ import {
   Bell,
   Cpu,
 } from 'lucide-react';
-import { ROOM_ZONES } from '../data/mockData';
+import { ROOM_ZONES } from '../content/rooms';
 import { RoomZone } from '../types';
 import { SpecsCustomizerModal } from './SpecsCustomizerModal';
 

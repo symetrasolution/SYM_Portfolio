@@ -10,7 +10,7 @@ import {
   Sparkles,
   ChevronDown,
 } from 'lucide-react';
-import { HERO_IMAGE } from '../data/mockData';
+import { HERO_IMAGE } from '../content/site';
 
 interface HeroProps {
   onOpenBooking: () => void;

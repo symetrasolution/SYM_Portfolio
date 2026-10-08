@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X, ArrowUpRight, ShieldCheck, PhoneCall } from 'lucide-react';
+import { NAV_LINKS } from '../content/site';
+import { CONTACT_INFO } from '../content/contact';
 
 interface NavbarProps {
   onOpenBooking: () => void;
@@ -18,14 +20,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: 'How It Works', href: '#architecture' },
-    { name: 'The Architecture', href: '#architecture' },
-    { name: 'Living Spaces', href: '#living-spaces' },
-    { name: 'Philosophy', href: '#philosophy' },
-    { name: 'Turnkey', href: '#turnkey' },
-    { name: 'Residences', href: '#residences' },
-  ];
+  const navLinks = NAV_LINKS;
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -77,12 +72,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
           {/* Zone 3: Primary Actions */}
           <div className="flex items-center gap-3">
             <a
-              href="tel:+966118204000"
+              href={CONTACT_INFO.engineerHotlineHref}
               className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-[#4A554E] hover:text-[#14231C] px-3 py-2 rounded-lg transition-colors border border-transparent hover:border-[#E2DDD0]"
               title="Direct Engineer Hotline"
             >
               <PhoneCall className="w-3.5 h-3.5 text-[#B3934B]" />
-              <span className="hidden xl:inline">Riyadh & Cairo Desk</span>
+              <span className="hidden xl:inline">{CONTACT_INFO.engineerHotlineLabel}</span>
             </a>
 
             <button

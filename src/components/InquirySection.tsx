@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Phone, CheckCircle2, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
+import { CONTACT_INFO } from '../content/contact';
 
 interface InquirySectionProps {
   onOpenBooking: () => void;
@@ -9,7 +10,7 @@ interface InquirySectionProps {
 export const InquirySection: React.FC<InquirySectionProps> = ({ onOpenBooking }) => {
   const [fullName, setFullName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [projectCity, setProjectCity] = useState('Riyadh, KSA');
+  const [projectCity, setProjectCity] = useState(CONTACT_INFO.projectCities[0]);
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -51,7 +52,7 @@ export const InquirySection: React.FC<InquirySectionProps> = ({ onOpenBooking })
                 </button>
 
                 <a
-                  href="tel:+966118204000"
+                  href={CONTACT_INFO.engineerHotlineHref}
                   className="px-6 py-3.5 bg-white hover:bg-[#F7F4EB] text-[#14231C] border border-[#DDD7C8] text-xs font-bold uppercase tracking-wider rounded-xl transition-colors flex items-center justify-center gap-2"
                 >
                   <Phone className="w-3.5 h-3.5 text-[#B3934B]" />
@@ -61,39 +62,24 @@ export const InquirySection: React.FC<InquirySectionProps> = ({ onOpenBooking })
 
               {/* Studio Direct Contacts */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6 border-t border-[#EAE6DC]">
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-[#F4F1EA] border border-[#E2DDD0] flex items-center justify-center">
-                    <Phone className="w-4 h-4 text-[#8B7340]" />
+                {CONTACT_INFO.studios.map((studio) => (
+                  <div key={studio.label} className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-xl bg-[#F4F1EA] border border-[#E2DDD0] flex items-center justify-center">
+                      <Phone className="w-4 h-4 text-[#8B7340]" />
+                    </div>
+                    <div>
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-[#858E87] block">
+                        {studio.label}
+                      </span>
+                      <a
+                        href={studio.phoneHref}
+                        className="text-sm font-semibold text-[#14231C] hover:text-[#8B7340] font-mono"
+                      >
+                        {studio.phoneDisplay}
+                      </a>
+                    </div>
                   </div>
-                  <div>
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#858E87] block">
-                      Cairo Studio
-                    </span>
-                    <a
-                      href="tel:+201000000000"
-                      className="text-sm font-semibold text-[#14231C] hover:text-[#8B7340] font-mono"
-                    >
-                      +20 100 000 0000
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-[#F4F1EA] border border-[#E2DDD0] flex items-center justify-center">
-                    <Phone className="w-4 h-4 text-[#8B7340]" />
-                  </div>
-                  <div>
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#858E87] block">
-                      Riyadh Studio
-                    </span>
-                    <a
-                      href="tel:+966500000000"
-                      className="text-sm font-semibold text-[#14231C] hover:text-[#8B7340] font-mono"
-                    >
-                      +966 50 000 0000
-                    </a>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
 
@@ -162,13 +148,11 @@ export const InquirySection: React.FC<InquirySectionProps> = ({ onOpenBooking })
                           onChange={(e) => setProjectCity(e.target.value)}
                           className="w-full px-3.5 py-2.5 bg-white border border-[#DDD7C8] rounded-xl text-xs text-[#14231C] focus:outline-none focus:ring-1 focus:ring-[#B3934B] focus:border-[#B3934B]"
                         >
-                          <option value="Riyadh, KSA">Riyadh, KSA</option>
-                          <option value="Jeddah, KSA">Jeddah, KSA</option>
-                          <option value="Cairo, Egypt">Cairo, Egypt</option>
-                          <option value="North Coast (Sahel), Egypt">
-                            North Coast (Sahel), Egypt
-                          </option>
-                          <option value="Dubai / Abu Dhabi, UAE">Dubai / Abu Dhabi, UAE</option>
+                          {CONTACT_INFO.projectCities.map((city) => (
+                            <option key={city} value={city}>
+                              {city}
+                            </option>
+                          ))}
                         </select>
                       </div>
                     </div>

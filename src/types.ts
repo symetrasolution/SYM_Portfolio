@@ -71,3 +71,55 @@ export interface Scenario {
   description: string;
   automationSequence: string[];
 }
+
+export type HardwareStatus = 'current' | 'roadmap';
+
+export interface HardwareCategory {
+  title: string;
+  description: string;
+  icon: string;
+  protocols: string[];
+  status: HardwareStatus;
+}
+
+export interface MethodologyStep {
+  number: string;
+  title: string;
+  description: string;
+}
+
+export interface PartnershipInfo {
+  eyebrow: string;
+  headline: string;
+  allianceName: string;
+  cities: string[];
+}
+
+export interface StudioContact {
+  city: string;
+  label: string;
+  phoneDisplay: string;
+  phoneHref: string;
+}
+
+export interface ContactInfo {
+  engineerHotlineHref: string;
+  engineerHotlineLabel: string;
+  engineerHotlineDisplay: string;
+  emails: { label: string; href: string }[];
+  studios: StudioContact[];
+  projectCities: string[];
+  countryCodes: { code: string; flag: string; label: string }[];
+  demoWindows: { id: DemoWindow; label: string; hours: string }[];
+}
+
+export interface NavLink {
+  name: string;
+  href: string;
+}
+
+export interface SiteMeta {
+  name: string;
+  tagline: string;
+  description: string;
+}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { RESIDENCE_PROJECTS } from '../data/mockData';
+import { RESIDENCE_PROJECTS } from '../content/projects';
 import { ResidenceProject } from '../types';
 import { X, ArrowRight, ShieldCheck, Cpu, Sliders, Check } from 'lucide-react';
 

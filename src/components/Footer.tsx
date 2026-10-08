@@ -1,5 +1,7 @@
 import React from 'react';
 import { ArrowUpRight, ShieldCheck, Mail, Phone } from 'lucide-react';
+import { SITE_META } from '../content/site';
+import { CONTACT_INFO, REGIONAL_STUDIOS } from '../content/contact';
 
 export const Footer: React.FC = () => {
   return (
@@ -18,11 +20,11 @@ export const Footer: React.FC = () => {
             </div>
 
             <p className="text-xs sm:text-sm text-[#A6B4AD] leading-relaxed mb-6 max-w-sm">
-              Intelligent living engineered for complete privacy and local reliability in Egypt &amp; Saudi Arabia.
+              {SITE_META.description}
             </p>
 
             <span className="text-[11px] font-mono tracking-widest uppercase text-[#E2BE76] font-semibold block">
-              Architectural Calm • Local Compute
+              {SITE_META.tagline}
             </span>
           </div>
 
@@ -66,18 +68,12 @@ export const Footer: React.FC = () => {
               Regional Studios
             </span>
             <div className="space-y-4 text-xs text-[#A6B4AD]">
-              <div>
-                <span className="font-semibold text-white block">Riyadh</span>
-                <span className="text-[11px]">Al Malqa District, KSA</span>
-              </div>
-              <div>
-                <span className="font-semibold text-white block">Jeddah</span>
-                <span className="text-[11px]">Al Shati District, KSA</span>
-              </div>
-              <div>
-                <span className="font-semibold text-white block">Cairo</span>
-                <span className="text-[11px]">Fifth Settlement, New Cairo, EG</span>
-              </div>
+              {REGIONAL_STUDIOS.map((studio) => (
+                <div key={studio.city}>
+                  <span className="font-semibold text-white block">{studio.city}</span>
+                  <span className="text-[11px]">{studio.district}</span>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -87,30 +83,30 @@ export const Footer: React.FC = () => {
               Direct Desk
             </span>
             <div className="space-y-2.5 text-xs text-[#A6B4AD] mb-6">
+              {CONTACT_INFO.emails.map((email) => (
+                <a
+                  key={email.href}
+                  href={email.href}
+                  className="hover:text-white transition-colors block font-mono"
+                >
+                  {email.label}
+                </a>
+              ))}
               <a
-                href="mailto:concierge@symetra.com"
+                href={CONTACT_INFO.engineerHotlineHref}
                 className="hover:text-white transition-colors block font-mono"
               >
-                concierge@symetra.com
+                {CONTACT_INFO.engineerHotlineDisplay}
               </a>
-              <a
-                href="mailto:support.ksa@symetra.com"
-                className="hover:text-white transition-colors block font-mono"
-              >
-                support.ksa@symetra.com
-              </a>
-              <a
-                href="tel:+966118204000"
-                className="hover:text-white transition-colors block font-mono"
-              >
-                +966 11 820 4000
-              </a>
-              <a
-                href="tel:+20228105000"
-                className="hover:text-white transition-colors block font-mono"
-              >
-                +20 2 2810 5000
-              </a>
+              {CONTACT_INFO.studios.map((studio) => (
+                <a
+                  key={studio.phoneHref}
+                  href={studio.phoneHref}
+                  className="hover:text-white transition-colors block font-mono"
+                >
+                  {studio.phoneDisplay}
+                </a>
+              ))}
             </div>
 
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#14261E] border border-[#244234] text-[11px] font-mono text-[#E2BE76]">
