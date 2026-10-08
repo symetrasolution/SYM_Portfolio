@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Home, Moon, Plane, Film, Play, CheckCircle2, Sparkles, ChevronRight } from 'lucide-react';
-import { SCENARIOS } from '../content/scenarios';
+import { useContent } from '../i18n/useContent';
 
 export const ChoreographedMoments: React.FC = () => {
+  const content = useContent();
+  const moments = content.moments;
+  const SCENARIOS = moments.scenarios;
   const [activeScenarioId, setActiveScenarioId] = useState<string>('arriving_home');
   const [simulating, setSimulating] = useState<boolean>(false);
   const [simulatedStep, setSimulatedStep] = useState<number>(0);
@@ -48,16 +51,16 @@ export const ChoreographedMoments: React.FC = () => {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-xs font-bold uppercase tracking-widest text-[#B3934B] block mb-2">
-            Choreographed Moments
+            {moments.eyebrow}
           </span>
           <h2
             className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#14231C] tracking-tight mb-4"
             style={{ textWrap: 'balance' }}
           >
-            Seamless Daily Living
+            {moments.title}
           </h2>
           <p className="text-sm sm:text-base text-[#4A554E] leading-relaxed max-w-2xl mx-auto">
-            Effortless routines crafted for peace of mind. Experience intuitive living where your home responds in real time.
+            {moments.sub}
           </p>
         </div>
 
@@ -99,12 +102,12 @@ export const ChoreographedMoments: React.FC = () => {
                     }}
                     className="text-[11px] font-semibold text-[#8B7340] hover:text-[#14231C] flex items-center gap-1.5 transition-colors"
                   >
-                    <Play className="w-3 h-3 fill-[#8B7340]" />
-                    <span>Test Routine</span>
+                    <Play className="w-3 h-3 fill-[#8B7340] rtl:-scale-x-100" />
+                    <span>{moments.testRoutine}</span>
                   </button>
                   <ChevronRight
-                    className={`w-4 h-4 transition-transform ${
-                      isSelected ? 'text-[#B3934B] translate-x-1' : 'text-[#CCC5B5]'
+                    className={`w-4 h-4 rtl:-scale-x-100 transition-transform ${
+                      isSelected ? 'text-[#B3934B] translate-x-1 rtl:-translate-x-1' : 'text-[#CCC5B5]'
                     }`}
                   />
                 </div>
@@ -118,10 +121,10 @@ export const ChoreographedMoments: React.FC = () => {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#EAE6DC] mb-6">
             <div>
               <span className="text-xs font-semibold text-[#8B7340] uppercase tracking-wider block">
-                Local Routine Sequence Simulator
+                {moments.simEyebrow}
               </span>
               <h4 className="text-xl font-serif font-bold text-[#14231C]">
-                {activeScenario.title} Automation Chain
+                {activeScenario.title} {moments.simTitleSuffix}
               </h4>
             </div>
             <button
@@ -129,8 +132,8 @@ export const ChoreographedMoments: React.FC = () => {
               disabled={simulating}
               className="px-5 py-2.5 bg-[#14231C] hover:bg-[#1E332A] disabled:opacity-50 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all flex items-center gap-2 self-start sm:self-auto"
             >
-              <Play className="w-3.5 h-3.5 fill-current" />
-              <span>{simulating ? 'Executing Chain...' : 'Trigger Simulation'}</span>
+              <Play className="w-3.5 h-3.5 fill-current rtl:-scale-x-100" />
+              <span>{simulating ? moments.executing : moments.trigger}</span>
             </button>
           </div>
 

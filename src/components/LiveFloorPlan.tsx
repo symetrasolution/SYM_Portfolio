@@ -15,8 +15,8 @@ import {
   Bell,
   Wifi,
 } from 'lucide-react';
-import { ROOM_ZONES } from '../content/rooms';
 import { RoomZone } from '../types';
+import { useContent } from '../i18n/useContent';
 import { SpecsCustomizerModal } from './SpecsCustomizerModal';
 
 interface LiveFloorPlanProps {
@@ -24,6 +24,9 @@ interface LiveFloorPlanProps {
 }
 
 export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) => {
+  const content = useContent();
+  const floor = content.floor;
+  const ROOM_ZONES: RoomZone[] = floor.rooms;
   const [selectedRoomId, setSelectedRoomId] = useState<string>('living_room');
   const [activeSceneIndex, setActiveSceneIndex] = useState<number>(0);
   const [customizerOpen, setCustomizerOpen] = useState<boolean>(false);
@@ -37,6 +40,9 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
     setSelectedRoomId(roomId);
     setActiveSceneIndex(0);
   };
+
+  const mapLabel = (roomId: string) =>
+    (ROOM_ZONES.find((r) => r.id === roomId) ?? ROOM_ZONES[0]).mapLabel;
 
   const getHardwareIcon = (iconName: string) => {
     switch (iconName) {
@@ -73,16 +79,16 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-10">
           <span className="text-xs font-bold uppercase tracking-widest text-[#B3934B] block mb-2">
-            Live Floor Plan
+            {floor.eyebrow}
           </span>
           <h2
             className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#14231C] tracking-tight mb-4"
             style={{ textWrap: 'balance' }}
           >
-            Explore by Living Space
+            {floor.title}
           </h2>
           <p className="text-sm sm:text-base text-[#4A554E] leading-relaxed max-w-2xl mx-auto">
-            Select any room to preview active automation sequences, hardware nodes, and responsive ambient behaviors.
+            {floor.sub}
           </p>
         </div>
 
@@ -113,14 +119,14 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
             {/* Blueprint Header */}
             <div className="flex items-center justify-between pb-4 border-b border-[#EAE6DC] mb-6">
               <span className="text-[11px] font-mono uppercase tracking-wider text-[#6B756E] font-medium">
-                ARCHITECTURAL SCHEMATIC PLAN — LEVEL 01
+                {floor.schematic}
               </span>
               <div className="flex items-center gap-2">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#22C55E] opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-[#22C55E]"></span>
                 </span>
-                <span className="text-[11px] text-[#4A554E] font-medium">Live Node Mapping</span>
+                <span className="text-[11px] text-[#4A554E] font-medium">{floor.liveMapping}</span>
               </div>
             </div>
 
@@ -177,7 +183,7 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
                     fontFamily="monospace"
                     fontWeight="600"
                   >
-                    LIVING SALON
+                    {mapLabel('living_room')}
                   </text>
                   {/* Node Pin 1 */}
                   <circle
@@ -235,7 +241,7 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
                     fontFamily="monospace"
                     fontWeight="600"
                   >
-                    MASTER SUITE
+                    {mapLabel('master_bedroom')}
                   </text>
                   {/* Node Pin 2 */}
                   <circle
@@ -293,7 +299,7 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
                     fontFamily="monospace"
                     fontWeight="600"
                   >
-                    GOURMET KITCHEN
+                    {mapLabel('kitchen')}
                   </text>
                   {/* Node Pin 3 */}
                   <circle
@@ -351,7 +357,7 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
                     fontFamily="monospace"
                     fontWeight="600"
                   >
-                    GRAND FOYER & GALLERY
+                    {mapLabel('foyer')}
                   </text>
                   {/* Node Pin 4 */}
                   <circle
@@ -402,8 +408,8 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
 
             {/* Blueprint Footer */}
             <div className="flex items-center justify-between pt-4 border-t border-[#EAE6DC] text-[11px] text-[#7A867F]">
-              <span className="font-mono">Illustrative layout — not to scale</span>
-              <span>Runs locally in your home</span>
+              <span className="font-mono">{floor.scaleNote}</span>
+              <span>{floor.localNote}</span>
             </div>
           </div>
 
@@ -413,7 +419,7 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
               {/* Header */}
               <div className="mb-4">
                 <span className="text-xs font-semibold text-[#8B7340] uppercase tracking-wider block mb-1">
-                  Active Space Profile / {currentRoom.category}
+                  {floor.profileOf} {currentRoom.category}
                 </span>
                 <h3 className="text-2xl font-serif font-bold text-[#14231C]">
                   {currentRoom.title}
@@ -423,7 +429,7 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
               {/* Installed Hardware Nodes List */}
               <div className="mb-6">
                 <span className="text-[11px] font-bold uppercase tracking-wider text-[#7A867F] block mb-3">
-                  Installed Hardware Nodes
+                  {floor.nodesTitle}
                 </span>
                 <div className="space-y-3">
                   {currentRoom.hardwareNodes.map((node, i) => (
@@ -464,7 +470,7 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
                       }
                       className="text-[10px] text-[#8B7340] hover:text-[#14231C] font-semibold underline"
                     >
-                      Switch Scene
+                      {floor.switchScene}
                     </button>
                   )}
                 </div>
@@ -479,14 +485,14 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
             <div className="pt-4 border-t border-[#EAE6DC] flex items-center justify-between text-xs">
               <div className="flex items-center gap-2 text-[#4A554E]">
                 <Wifi className="w-4 h-4 text-[#2E7D32]" />
-                <span>Runs locally — works without internet</span>
+                <span>{floor.runsLocally}</span>
               </div>
               <button
                 onClick={() => setCustomizerOpen(true)}
                 className="font-bold text-[#14231C] hover:text-[#8B7340] flex items-center gap-1.5 transition-colors group"
               >
-                <span>Customize Specs</span>
-                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                <span>{floor.customize}</span>
+                <ArrowRight className="w-3.5 h-3.5 rtl:-scale-x-100 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />
               </button>
             </div>
           </div>

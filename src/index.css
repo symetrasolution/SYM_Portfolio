@@ -6,6 +6,7 @@
     --font-heading: 'Cabinet Grotesk', 'Plus Jakarta Sans', sans-serif;
     --font-serif: 'Cinzel', Georgia, serif;
     --font-mono: 'JetBrains Mono', monospace;
+    --font-arabic: 'Cairo', 'Plus Jakarta Sans', system-ui, sans-serif;
   }
 
   html {
@@ -17,6 +18,22 @@
     background-color: #FAF8F2;
     color: #19221D;
     overflow-x: hidden;
+  }
+
+  /* Arabic locale: Cairo carries both Arabic and Latin glyphs. */
+  html[dir='rtl'] body {
+    font-family: var(--font-arabic);
+  }
+  html[dir='rtl'] .font-serif {
+    font-family: 'Cairo', Georgia, serif;
+  }
+  html[dir='rtl'] .font-mono {
+    font-family: 'Cairo', 'JetBrains Mono', monospace;
+  }
+  /* Letter-spacing breaks Arabic script joining — neutralize it in RTL. */
+  html[dir='rtl'] .tracking-widest,
+  html[dir='rtl'] .tracking-wider {
+    letter-spacing: 0;
   }
 }
 

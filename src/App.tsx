@@ -3,8 +3,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'motion/react';
+import { useTranslation } from 'react-i18next';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { HowItWorks } from './components/HowItWorks';
@@ -69,6 +70,21 @@ function ArchitecturalScrollSection({
 
 export default function App() {
   const [bookingModalOpen, setBookingModalOpen] = useState(false);
+  const { i18n } = useTranslation();
+
+  // Keep <html> lang/dir in sync with the active locale (EN/AR + RTL).
+  useEffect(() => {
+    const apply = (lng: string) => {
+      const rtl = lng.toLowerCase().startsWith('ar');
+      document.documentElement.lang = rtl ? 'ar' : 'en';
+      document.documentElement.dir = rtl ? 'rtl' : 'ltr';
+    };
+    apply(i18n.resolvedLanguage ?? i18n.language ?? 'en');
+    i18n.on('languageChanged', apply);
+    return () => {
+      i18n.off('languageChanged', apply);
+    };
+  }, [i18n]);
 
   // Global page scroll progress for subtle champagne gold indicator
   const { scrollYProgress } = useScroll();
@@ -83,7 +99,7 @@ export default function App() {
       {/* Subtle Formal Portfolio Architectural Progress Line */}
       <motion.div
         style={{ scaleX }}
-        className="fixed top-20 left-0 right-0 h-[2px] bg-gradient-to-r from-[#B3934B] via-[#E2BE76] to-[#B3934B] origin-left z-40 pointer-events-none"
+        className="fixed top-20 left-0 right-0 h-[2px] bg-gradient-to-r from-[#B3934B] via-[#E2BE76] to-[#B3934B] origin-left rtl:origin-right z-40 pointer-events-none"
       />
 
       {/* Top Fixed Navigation */}

@@ -12,9 +12,12 @@ import {
   Wind,
   Radio,
 } from 'lucide-react';
-import { HARDWARE_CATEGORIES } from '../content/hardware';
+import { useContent } from '../i18n/useContent';
 
 export const HardwareCompatibility: React.FC = () => {
+  const content = useContent();
+  const hw = content.hardware;
+  const HARDWARE_CATEGORIES = hw.categories;
   const getCategoryIcon = (iconName: string) => {
     switch (iconName) {
       case 'lightbulb':
@@ -47,28 +50,28 @@ export const HardwareCompatibility: React.FC = () => {
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16">
           <div className="max-w-2xl">
             <span className="text-xs font-bold uppercase tracking-widest text-[#B3934B] block mb-2">
-              Broad Compatibility
+              {hw.eyebrow}
             </span>
             <h2
               className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#14231C] tracking-tight mb-4"
               style={{ textWrap: 'balance' }}
             >
-              Comprehensive Hardware Compatibility
+              {hw.title}
             </h2>
             <p className="text-sm sm:text-base text-[#4A554E] leading-relaxed">
-              Everyday devices — lighting, curtains, sensors, cameras, locks and switches — joined into one system that runs locally in your home.
+              {hw.sub}
             </p>
           </div>
 
           <div className="flex flex-wrap lg:flex-col items-start lg:items-end gap-2.5">
             <span className="px-3.5 py-1.5 rounded-full bg-[#14231C] border border-[#14231C] text-[11px] font-semibold text-white flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#22C55E]"></span>
-              <span>Built on Home Assistant</span>
+              <span>{hw.builtOn}</span>
             </span>
 
             <span className="px-3.5 py-1.5 rounded-full bg-[#EAE5D8] border border-[#DDD7C8] text-[11px] font-semibold text-[#4A554E] flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#B3934B]"></span>
-              <span>Zigbee2MQTT • Node-RED • Local Tuya</span>
+              <span>{hw.addons}</span>
             </span>
           </div>
         </div>
@@ -94,7 +97,7 @@ export const HardwareCompatibility: React.FC = () => {
                     </div>
                     {isRoadmap && (
                       <span className="text-[10px] uppercase font-bold tracking-wider text-[#8B7340] bg-[#EDE7D6] border border-[#DDD2B8] px-2 py-1 rounded-md">
-                        Roadmap • Coming soon
+                        {hw.roadmapBadge}
                       </span>
                     )}
                   </div>

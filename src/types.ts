@@ -24,6 +24,8 @@ export interface RoomZone {
   id: string;
   name: string;
   tabLabel: string;
+  /** Short label drawn inside the floor-plan SVG schematic. */
+  mapLabel: string;
   nodeNumber: number;
   category: string;
   title: string;

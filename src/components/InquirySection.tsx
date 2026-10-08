@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { Phone, CheckCircle2, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
-import { CONTACT_INFO } from '../content/contact';
+import { Phone, ArrowRight, Sparkles } from 'lucide-react';
+import { useContent } from '../i18n/useContent';
 
 interface InquirySectionProps {
   onOpenBooking: () => void;
 }
 
 export const InquirySection: React.FC<InquirySectionProps> = ({ onOpenBooking }) => {
+  const content = useContent();
+  const inq = content.inquiry;
+  const contact = content.contact;
   const [fullName, setFullName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [projectCity, setProjectCity] = useState(CONTACT_INFO.projectCities[0]);
+  const [projectCity, setProjectCity] = useState(contact.projectCities[0]);
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -29,16 +32,16 @@ export const InquirySection: React.FC<InquirySectionProps> = ({ onOpenBooking })
             {/* Left Column: Private Demonstration Copy (lg:col-span-7) */}
             <div className="lg:col-span-7">
               <span className="text-xs font-bold uppercase tracking-widest text-[#B3934B] block mb-3">
-                Private Demonstration
+                {inq.eyebrow}
               </span>
               <h2
                 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#14231C] tracking-tight mb-5"
                 style={{ textWrap: 'balance' }}
               >
-                Ready to Experience Effortless Living?
+                {inq.title}
               </h2>
               <p className="text-sm sm:text-base text-[#4A554E] leading-relaxed max-w-xl mb-8">
-                Schedule a private consultation or demo in Cairo or Riyadh. Speak directly with our systems team about your home.
+                {inq.sub}
               </p>
 
               {/* Action Buttons */}
@@ -47,22 +50,22 @@ export const InquirySection: React.FC<InquirySectionProps> = ({ onOpenBooking })
                   onClick={onOpenBooking}
                   className="px-6 py-3.5 bg-[#E2BE76] hover:bg-[#D4AF63] active:scale-[0.99] text-[#14231C] text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md flex items-center justify-center gap-2 group"
                 >
-                  <span>Request Showroom Demo</span>
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                  <span>{inq.demoCta}</span>
+                  <ArrowRight className="w-4 h-4 rtl:-scale-x-100 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />
                 </button>
 
                 <a
-                  href={CONTACT_INFO.engineerHotlineHref}
+                  href={contact.hotlineHref}
                   className="px-6 py-3.5 bg-white hover:bg-[#F7F4EB] text-[#14231C] border border-[#DDD7C8] text-xs font-bold uppercase tracking-wider rounded-xl transition-colors flex items-center justify-center gap-2"
                 >
                   <Phone className="w-3.5 h-3.5 text-[#B3934B]" />
-                  <span>Call An Engineer Directly</span>
+                  <span>{inq.callCta}</span>
                 </a>
               </div>
 
               {/* Studio Direct Contacts */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6 border-t border-[#EAE6DC]">
-                {CONTACT_INFO.studios.map((studio) => (
+                {contact.studios.map((studio) => (
                   <div key={studio.label} className="flex items-center gap-3">
                     <div className="w-9 h-9 rounded-xl bg-[#F4F1EA] border border-[#E2DDD0] flex items-center justify-center">
                       <Phone className="w-4 h-4 text-[#8B7340]" />
@@ -74,6 +77,7 @@ export const InquirySection: React.FC<InquirySectionProps> = ({ onOpenBooking })
                       <a
                         href={studio.phoneHref}
                         className="text-sm font-semibold text-[#14231C] hover:text-[#8B7340] font-mono"
+                        dir="ltr"
                       >
                         {studio.phoneDisplay}
                       </a>
@@ -92,63 +96,64 @@ export const InquirySection: React.FC<InquirySectionProps> = ({ onOpenBooking })
                       <Sparkles className="w-6 h-6 text-[#8B7340]" />
                     </div>
                     <h3 className="text-lg font-serif font-bold text-[#14231C] mb-2">
-                      Inquiry Received
+                      {inq.successTitle}
                     </h3>
                     <p className="text-xs text-[#5C6660] mb-4">
-                      Our team will contact you about your inquiry for {projectCity}.
+                      {inq.successBody.replace('{city}', projectCity)}
                     </p>
                     <button
                       onClick={() => setSubmitted(false)}
                       className="text-xs text-[#8B7340] font-semibold underline"
                     >
-                      Submit another inquiry
+                      {inq.again}
                     </button>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit}>
                     <h3 className="text-sm font-serif font-bold text-[#14231C] uppercase tracking-wider mb-5">
-                      Direct Project Inquiry
+                      {inq.formTitle}
                     </h3>
 
                     <div className="space-y-4 mb-5">
                       <div>
                         <label className="block text-[11px] font-bold uppercase tracking-wider text-[#7A867F] mb-1.5">
-                          Full Name
+                          {inq.nameLabel}
                         </label>
                         <input
                           type="text"
                           required
                           value={fullName}
                           onChange={(e) => setFullName(e.target.value)}
-                          placeholder="e.g. Tariq Al-Mansoor"
+                          placeholder={inq.namePh}
                           className="w-full px-3.5 py-2.5 bg-white border border-[#DDD7C8] rounded-xl text-xs text-[#14231C] placeholder-[#A8B2AC] focus:outline-none focus:ring-1 focus:ring-[#B3934B] focus:border-[#B3934B]"
                         />
                       </div>
 
                       <div>
                         <label className="block text-[11px] font-bold uppercase tracking-wider text-[#7A867F] mb-1.5">
-                          Phone Number
+                          {inq.phoneLabel}
                         </label>
                         <input
                           type="tel"
                           required
                           value={phoneNumber}
                           onChange={(e) => setPhoneNumber(e.target.value)}
-                          placeholder="+966 or +20..."
-                          className="w-full px-3.5 py-2.5 bg-white border border-[#DDD7C8] rounded-xl text-xs text-[#14231C] placeholder-[#A8B2AC] focus:outline-none focus:ring-1 focus:ring-[#B3934B] focus:border-[#B3934B]"
+                          placeholder={inq.phonePh}
+                          dir="ltr"
+                          className="w-full px-3.5 py-2.5 bg-white border border-[#DDD7C8] rounded-xl text-xs text-[#14231C] placeholder-[#A8B2AC] focus:outline-none focus:ring-1 focus:ring-[#B3934B] focus:border-[#B3934B] text-start"
                         />
                       </div>
 
                       <div>
                         <label className="block text-[11px] font-bold uppercase tracking-wider text-[#7A867F] mb-1.5">
-                          Project City
+                          {inq.cityLabel}
                         </label>
                         <select
                           value={projectCity}
                           onChange={(e) => setProjectCity(e.target.value)}
                           className="w-full px-3.5 py-2.5 bg-white border border-[#DDD7C8] rounded-xl text-xs text-[#14231C] focus:outline-none focus:ring-1 focus:ring-[#B3934B] focus:border-[#B3934B]"
                         >
-                          {CONTACT_INFO.projectCities.map((city) => (
+                          {contact.projectCities.map((city) => (
                             <option key={city} value={city}>
                               {city}
                             </option>
@@ -161,7 +166,7 @@ export const InquirySection: React.FC<InquirySectionProps> = ({ onOpenBooking })
                       type="submit"
                       className="w-full py-3 px-5 bg-[#14231C] hover:bg-[#1E332A] active:scale-[0.99] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md"
                     >
-                      Submit Consultation Request
+                      {inq.submit}
                     </button>
                   </form>
                 )}

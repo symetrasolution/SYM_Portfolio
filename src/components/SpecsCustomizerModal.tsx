@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Check, ClipboardList } from 'lucide-react';
 import { RoomZone } from '../types';
+import { useContent } from '../i18n/useContent';
 
 interface SpecsCustomizerModalProps {
   room: RoomZone;
@@ -21,6 +22,8 @@ export const SpecsCustomizerModal: React.FC<SpecsCustomizerModalProps> = ({
   onClose,
   onOpenBooking,
 }) => {
+  const content = useContent();
+  const specs = content.specs;
   const allInterests = room.hardwareNodes.map((n) => n.title);
   const [interests, setInterests] = useState<string[]>(allInterests);
   const [saved, setSaved] = useState<boolean>(false);
@@ -70,10 +73,10 @@ export const SpecsCustomizerModal: React.FC<SpecsCustomizerModalProps> = ({
           <div className="flex items-center justify-between pb-4 border-b border-[#E8E4DA] mb-6">
             <div>
               <span className="text-xs font-bold uppercase tracking-wider text-[#B3934B]">
-                Room Preference List
+                {specs.eyebrow}
               </span>
               <h3 className="text-xl font-serif font-bold text-[#14231C] mt-0.5">
-                What should {room.name} do?
+                {specs.titleBefore} {room.name} {specs.titleAfter}
               </h3>
             </div>
             <button
@@ -93,7 +96,7 @@ export const SpecsCustomizerModal: React.FC<SpecsCustomizerModalProps> = ({
                   key={node.title}
                   type="button"
                   onClick={() => toggleInterest(node.title)}
-                  className={`w-full flex items-start gap-3 p-3 rounded-xl border text-left transition-all ${
+                  className={`w-full flex items-start gap-3 p-3 rounded-xl border text-start transition-all ${
                     checked
                       ? 'bg-[#F7F4EB] border-[#B3934B]'
                       : 'bg-white border-[#E2DDD0] hover:border-[#C8BFAD]'
@@ -125,9 +128,7 @@ export const SpecsCustomizerModal: React.FC<SpecsCustomizerModalProps> = ({
           <div className="p-3.5 bg-[#F4F1EA] rounded-xl border border-[#E2DDD0] mb-6 flex items-start gap-2.5">
             <ClipboardList className="w-4 h-4 text-[#8B7340] shrink-0 mt-0.5" />
             <p className="text-[11px] text-[#556059] leading-relaxed">
-              This list is a starting point for the conversation. The final
-              specification is prepared by our engineers after a site visit —
-              nothing here is a quote.
+              {specs.note}
             </p>
           </div>
 
@@ -140,10 +141,10 @@ export const SpecsCustomizerModal: React.FC<SpecsCustomizerModalProps> = ({
               {saved ? (
                 <>
                   <Check className="w-4 h-4 text-[#22C55E]" />
-                  <span>Preferences Saved</span>
+                  <span>{specs.saved}</span>
                 </>
               ) : (
-                <span>Save Preferences</span>
+                <span>{specs.save}</span>
               )}
             </button>
             <button
@@ -153,7 +154,7 @@ export const SpecsCustomizerModal: React.FC<SpecsCustomizerModalProps> = ({
               }}
               className="w-full sm:w-auto py-3 px-5 bg-[#E2BE76] hover:bg-[#D4AF63] text-[#14231C] text-xs font-bold uppercase tracking-wider rounded-xl transition-all whitespace-nowrap"
             >
-              Request Engineering Review
+              {specs.review}
             </button>
           </div>
         </motion.div>

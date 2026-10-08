@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X, ArrowUpRight, ShieldCheck, PhoneCall } from 'lucide-react';
-import { NAV_LINKS } from '../content/site';
-import { CONTACT_INFO } from '../content/contact';
+import { useContent } from '../i18n/useContent';
+import { LanguageToggle } from '../i18n/LanguageToggle';
 
 interface NavbarProps {
   onOpenBooking: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
+  const content = useContent();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -20,7 +21,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = NAV_LINKS;
+  const navLinks = content.nav.links;
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -45,13 +46,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
           <a
             href="#"
             className="group flex items-center gap-2.5 text-slate-900 focus:outline-none"
-            aria-label="Symetra Solution Home"
+            aria-label={content.site.homeLabel}
           >
             <div className="w-8 h-8 rounded-lg bg-[#14231C] text-[#E2BE76] flex items-center justify-center font-bold text-sm tracking-wider shadow-sm transition-transform duration-200 group-hover:scale-105">
               S
             </div>
             <span className="text-xl font-bold tracking-tight text-[#14231C] font-serif">
-              Symetra Solution
+              {content.site.name}
             </span>
           </a>
 
@@ -62,7 +63,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className="text-sm font-medium text-[#4A554E] hover:text-[#14231C] transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-[#14231C] hover:after:w-full after:transition-all after:duration-200"
+                className="text-sm font-medium text-[#4A554E] hover:text-[#14231C] transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:start-0 after:w-0 after:h-[1.5px] after:bg-[#14231C] hover:after:w-full after:transition-all after:duration-200"
               >
                 {link.name}
               </a>
@@ -70,14 +71,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
           </nav>
 
           {/* Zone 3: Primary Actions */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <LanguageToggle />
+
             <a
-              href={CONTACT_INFO.engineerHotlineHref}
+              href={content.contact.hotlineHref}
               className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-[#4A554E] hover:text-[#14231C] px-3 py-2 rounded-lg transition-colors border border-transparent hover:border-[#E2DDD0]"
-              title="Direct Engineer Hotline"
+              title={content.nav.hotlineTitle}
             >
               <PhoneCall className="w-3.5 h-3.5 text-[#B3934B]" />
-              <span className="hidden xl:inline">{CONTACT_INFO.engineerHotlineLabel}</span>
+              <span className="hidden xl:inline">{content.contact.hotlineLabel}</span>
             </a>
 
             <button
@@ -85,15 +88,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
               className="px-4 sm:px-5 py-2.5 text-xs font-semibold tracking-wide text-white bg-[#14231C] hover:bg-[#1C3228] active:scale-[0.98] rounded-xl transition-all shadow-sm hover:shadow-md flex items-center gap-2 group whitespace-nowrap"
             >
               <span className="w-2 h-2 rounded-full bg-[#E2BE76] animate-pulse"></span>
-              <span>Private Demonstration</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-[#E2BE76] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <span>{content.nav.cta}</span>
+              <ArrowUpRight className="w-3.5 h-3.5 text-[#E2BE76] rtl:-scale-x-100 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </button>
 
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="lg:hidden p-2 rounded-lg text-[#14231C] hover:bg-[#EFECE3] transition-colors focus:outline-none"
-              aria-label="Toggle Navigation"
+              aria-label={content.nav.menuToggle}
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -112,10 +115,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
             className="fixed inset-x-0 top-20 z-30 bg-[#FAF8F2] border-b border-[#E8E4DA] shadow-xl p-6 lg:hidden"
           >
             <div className="flex flex-col gap-4">
-              <div className="pb-3 border-b border-[#EFECE3]">
+              <div className="pb-3 border-b border-[#EFECE3] flex items-center justify-between gap-3">
                 <p className="text-xs uppercase tracking-wider text-[#858E87] font-semibold">
-                  Architectural Calm • On-Premises Compute
+                  {content.nav.drawerTagline}
                 </p>
+                <LanguageToggle />
               </div>
               {navLinks.map((link) => (
                 <a
@@ -135,12 +139,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
                   }}
                   className="w-full py-3 text-center text-sm font-semibold text-white bg-[#14231C] rounded-xl flex items-center justify-center gap-2"
                 >
-                  <span>Book Private Demonstration</span>
-                  <ArrowUpRight className="w-4 h-4 text-[#E2BE76]" />
+                  <span>{content.nav.drawerCta}</span>
+                  <ArrowUpRight className="w-4 h-4 text-[#E2BE76] rtl:-scale-x-100" />
                 </button>
                 <div className="flex items-center justify-center gap-2 text-xs text-[#6B756E]">
                   <ShieldCheck className="w-4 h-4 text-[#2E7D32]" />
-                  <span>Runs locally • Works without internet</span>
+                  <span>{content.nav.drawerNote}</span>
                 </div>
               </div>
             </div>

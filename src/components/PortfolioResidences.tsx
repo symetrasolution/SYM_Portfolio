@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { RESIDENCE_PROJECTS } from '../content/projects';
 import { ResidenceProject } from '../types';
-import { X, ArrowRight, ShieldCheck, Cpu, Sliders, Check } from 'lucide-react';
+import { useContent } from '../i18n/useContent';
+import { X, ArrowRight } from 'lucide-react';
 
 interface PortfolioResidencesProps {
   onOpenBooking: () => void;
 }
 
 export const PortfolioResidences: React.FC<PortfolioResidencesProps> = ({ onOpenBooking }) => {
+  const content = useContent();
+  const pf = content.projects;
+  const RESIDENCE_PROJECTS: ResidenceProject[] = pf.items;
   const [selectedResidence, setSelectedResidence] = useState<ResidenceProject | null>(null);
 
   return (
@@ -18,22 +21,22 @@ export const PortfolioResidences: React.FC<PortfolioResidencesProps> = ({ onOpen
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-14">
           <div className="max-w-2xl">
             <span className="text-xs font-bold uppercase tracking-widest text-[#B3934B] block mb-2">
-              Portfolio Highlights
+              {pf.eyebrow}
             </span>
             <h2
               className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#14231C] tracking-tight mb-4"
               style={{ textWrap: 'balance' }}
             >
-              Selected Residences
+              {pf.title}
             </h2>
             <p className="text-sm sm:text-base text-[#4A554E] leading-relaxed">
-              Illustrative examples of the homes we deliver. Real project stories with owner permission will appear here.
+              {pf.sub}
             </p>
           </div>
 
           <div>
             <span className="text-xs font-mono font-bold tracking-widest text-[#7A867F] uppercase bg-white px-4 py-2 rounded-full border border-[#DDD7C8]">
-              In Progress • Illustrative
+              {pf.pill}
             </span>
           </div>
         </div>
@@ -55,7 +58,7 @@ export const PortfolioResidences: React.FC<PortfolioResidencesProps> = ({ onOpen
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   referrerPolicy="no-referrer"
                 />
-                <div className="absolute top-4 right-4">
+                <div className="absolute top-4 end-4">
                   <span className="px-3 py-1 rounded-md bg-[#B3934B] text-white font-mono text-[10px] font-bold tracking-wider uppercase shadow-sm">
                     {residence.status}
                   </span>
@@ -77,8 +80,8 @@ export const PortfolioResidences: React.FC<PortfolioResidencesProps> = ({ onOpen
                 </div>
 
                 <div className="pt-4 border-t border-[#F2EFE8] flex items-center justify-between text-xs text-[#8B7340] font-semibold">
-                  <span>View Project Schematics</span>
-                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                  <span>{pf.cardCta}</span>
+                  <ArrowRight className="w-3.5 h-3.5 rtl:-scale-x-100 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />
                 </div>
               </div>
             </motion.div>
@@ -112,18 +115,19 @@ export const PortfolioResidences: React.FC<PortfolioResidencesProps> = ({ onOpen
                 />
                 <button
                   onClick={() => setSelectedResidence(null)}
-                  className="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center transition-colors"
+                  aria-label={pf.closeDialog}
+                  className="absolute top-4 end-4 w-9 h-9 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center transition-colors"
                 >
                   <X className="w-4 h-4" />
                 </button>
-                <div className="absolute bottom-4 left-4 bg-black/75 backdrop-blur-md px-3.5 py-1.5 rounded-lg text-white text-xs font-mono">
+                <div className="absolute bottom-4 start-4 bg-black/75 backdrop-blur-md px-3.5 py-1.5 rounded-lg text-white text-xs font-mono">
                   {selectedResidence.location}
                 </div>
               </div>
 
               <div className="p-6 sm:p-8">
                 <span className="text-xs font-bold uppercase tracking-widest text-[#B3934B] block mb-1">
-                  Illustrative Residence
+                  {pf.modalEyebrow}
                 </span>
                 <h3 className="text-2xl font-serif font-bold text-[#14231C] mb-3">
                   {selectedResidence.title}
@@ -134,9 +138,7 @@ export const PortfolioResidences: React.FC<PortfolioResidencesProps> = ({ onOpen
 
                 {/* Illustrative-project note (no specs per TRUTH RULES) */}
                 <div className="p-4 bg-[#F5F2EB] rounded-2xl border border-[#E2DDD0] mb-6 text-xs text-[#5C6660] leading-relaxed">
-                  Illustrative example — the final scope of every home depends
-                  on its site survey and system design. Detailed project
-                  stories will appear here once real commissions complete.
+                  {pf.modalNote}
                 </div>
 
                 <div className="flex flex-col sm:flex-row items-center gap-3">
@@ -147,14 +149,14 @@ export const PortfolioResidences: React.FC<PortfolioResidencesProps> = ({ onOpen
                     }}
                     className="w-full sm:flex-1 py-3 px-5 bg-[#14231C] hover:bg-[#1E332A] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-sm flex items-center justify-center gap-2"
                   >
-                    <span>Request Similar Villa Schematic</span>
-                    <ArrowRight className="w-4 h-4 text-[#E2BE76]" />
+                    <span>{pf.modalCta}</span>
+                    <ArrowRight className="w-4 h-4 text-[#E2BE76] rtl:-scale-x-100" />
                   </button>
                   <button
                     onClick={() => setSelectedResidence(null)}
                     className="w-full sm:w-auto py-3 px-5 text-xs font-semibold text-[#6B756E] hover:text-[#14231C] transition-colors"
                   >
-                    Close
+                    {pf.close}
                   </button>
                 </div>
               </div>

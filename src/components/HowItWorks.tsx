@@ -8,7 +8,7 @@ import {
   ArrowRight,
   Radio,
 } from 'lucide-react';
-import { HOW_IT_WORKS_STEPS, TECHNICAL_APPENDIX } from '../content/howItWorks';
+import { useContent } from '../i18n/useContent';
 
 const getStepIcon = (iconName: string) => {
   switch (iconName) {
@@ -33,6 +33,8 @@ interface HowItWorksProps {
  * the portfolio (cards, badges, motion).
  */
 export const HowItWorks: React.FC<HowItWorksProps> = ({ onOpenBooking }) => {
+  const content = useContent();
+  const how = content.how;
   const [appendixOpen, setAppendixOpen] = useState(false);
 
   return (
@@ -41,23 +43,22 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({ onOpenBooking }) => {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-xs font-bold uppercase tracking-widest text-[#B3934B] block mb-2">
-            How It Works
+            {how.eyebrow}
           </span>
           <h2
             className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#14231C] tracking-tight mb-4"
             style={{ textWrap: 'balance' }}
           >
-            Simple on the surface, serious underneath.
+            {how.title}
           </h2>
           <p className="text-sm sm:text-base text-[#4A554E] leading-relaxed max-w-2xl mx-auto">
-            You don&apos;t need to understand the technology — but if
-            you&apos;re an engineer, it&apos;s all there to inspect.
+            {how.sub}
           </p>
         </div>
 
         {/* 3 Steps */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch mb-10">
-          {HOW_IT_WORKS_STEPS.map((step, idx) => {
+          {how.steps.map((step, idx) => {
             const isDark = idx === 1;
             return (
               <motion.div
@@ -70,7 +71,7 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({ onOpenBooking }) => {
                 }`}
               >
                 {isDark && (
-                  <div className="absolute top-0 right-0 -mr-16 -mt-16 w-48 h-48 rounded-full bg-[#E2BE76]/10 blur-3xl pointer-events-none" />
+                  <div className="absolute top-0 end-0 -me-16 -mt-16 w-48 h-48 rounded-full bg-[#E2BE76]/10 blur-3xl pointer-events-none" />
                 )}
                 <div>
                   <div
@@ -104,9 +105,9 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({ onOpenBooking }) => {
                     {step.description}
                   </p>
                 </div>
-                {idx < HOW_IT_WORKS_STEPS.length - 1 && (
-                  <div className="hidden lg:flex absolute -right-5 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-[#E2BE76] border-4 border-[#FAF8F2] items-center justify-center shadow-md">
-                    <ArrowRight className="w-4 h-4 text-[#14231C]" />
+                {idx < how.steps.length - 1 && (
+                  <div className="hidden lg:flex absolute -end-5 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-[#E2BE76] border-4 border-[#FAF8F2] items-center justify-center shadow-md">
+                    <ArrowRight className="w-4 h-4 text-[#14231C] rtl:-scale-x-100" />
                   </div>
                 )}
               </motion.div>
@@ -119,14 +120,14 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({ onOpenBooking }) => {
           <button
             onClick={() => setAppendixOpen(!appendixOpen)}
             aria-expanded={appendixOpen}
-            className="w-full flex items-center justify-between gap-4 p-6 sm:p-7 text-left hover:bg-[#F7F4EB]/60 transition-colors"
+            className="w-full flex items-center justify-between gap-4 p-6 sm:p-7 text-start hover:bg-[#F7F4EB]/60 transition-colors"
           >
             <div>
               <span className="text-xs font-semibold text-[#8B7340] uppercase tracking-wider block">
-                For Engineers
+                {how.appendixEyebrow}
               </span>
               <span className="text-lg font-serif font-bold text-[#14231C]">
-                Technical appendix: what&apos;s inside the hub
+                {how.appendixTitle}
               </span>
             </div>
             <span
@@ -152,7 +153,7 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({ onOpenBooking }) => {
                 className="overflow-hidden"
               >
                 <div className="px-6 sm:px-7 pb-7 pt-1 grid grid-cols-1 sm:grid-cols-2 gap-3 border-t border-[#EAE6DC]">
-                  {TECHNICAL_APPENDIX.map((item) => (
+                  {how.appendix.map((item) => (
                     <div
                       key={item.title}
                       className="p-4 rounded-xl bg-[#F7F5EE] border border-[#EAE6DC] mt-3"
@@ -170,8 +171,8 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({ onOpenBooking }) => {
                       onClick={onOpenBooking}
                       className="text-[11px] font-semibold text-[#8B7340] hover:text-[#14231C] flex items-center gap-1.5 transition-colors"
                     >
-                      <span>Discuss your project with our systems team</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
+                      <span>{how.appendixCta}</span>
+                      <ArrowRight className="w-3.5 h-3.5 rtl:-scale-x-100" />
                     </button>
                   </div>
                 </div>
