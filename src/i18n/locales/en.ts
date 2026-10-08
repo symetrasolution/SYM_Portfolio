@@ -687,6 +687,10 @@ export const enBundle = {
     phonePh: '+966 or +20...',
     cityLabel: 'Project City',
     submit: 'Submit Consultation Request',
+    sending: 'Sending…',
+    failed: 'Could not send your inquiry. Please try again.',
+    consent: 'I agree to be contacted about my inquiry.',
+    privacy: 'We use your details only to respond to your inquiry.',
     successTitle: 'Inquiry Received',
     successBody: 'Our team will contact you about your inquiry for {city}.',
     again: 'Submit another inquiry',
@@ -735,6 +739,9 @@ export const enBundle = {
     privacyBody:
       'We use your details only to arrange your demonstration and never share them with third parties.',
     submit: 'Confirm Private Demonstration',
+    sending: 'Sending…',
+    failed: 'Could not send your request. Please check your connection and try again.',
+    consent: 'I agree to be contacted about my inquiry.',
     cancel: 'CANCEL',
   },
 

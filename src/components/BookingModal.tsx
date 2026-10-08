@@ -17,6 +17,7 @@ import {
 import { UserRole, ExperienceFormat, DemoWindow, BookingFormData } from '../types';
 import { useContent } from '../i18n/useContent';
 import { COUNTRY_CODES } from '../i18n/shared';
+import { submitInquiry } from '../lib/api';
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -39,8 +40,12 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
     window: 'afternoon',
   });
 
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [confirmedCode, setConfirmedCode] = useState('');
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  /** Server-issued reference — shown only when the API returns one. */
+  const [refId, setRefId] = useState<string | null>(null);
+  const [consent, setConsent] = useState(false);
+  /** Honeypot: must stay empty (bots fill it). */
+  const [website, setWebsite] = useState('');
 
   const handleRoleChange = (role: UserRole) => {
     setFormData((prev) => ({ ...prev, role }));
@@ -54,11 +59,29 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
     setFormData((prev) => ({ ...prev, window: demoWindow }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const code = `SYM-${Math.floor(100000 + Math.random() * 900000)}`;
-    setConfirmedCode(code);
-    setIsSubmitted(true);
+    if (status === 'sending') return;
+    setStatus('sending');
+    try {
+      const result = await submitInquiry({
+        kind: 'booking',
+        role: formData.role,
+        format: formData.format,
+        fullName: formData.fullName,
+        email: formData.email,
+        countryCode: formData.countryCode,
+        phone: formData.phone,
+        city: formData.city,
+        window: formData.window,
+        consent,
+        website,
+      });
+      setRefId(result.id ?? null);
+      setStatus('success');
+    } catch {
+      setStatus('error');
+    }
   };
 
   const formatLabel =
@@ -72,14 +95,15 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
     contact.windows.find((w) => w.id === formData.window)?.hours ?? '';
 
   const handleDownloadCalendar = () => {
+    const code = refId ?? 'pending';
     const calendarContent = `BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//Symetra Solution//Sanctuary Demo//EN
 BEGIN:VEVENT
-UID:${confirmedCode}@symetra.com
+UID:${code}@symetra.com
 DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').split('.')[0]}Z
 SUMMARY:Symetra Private Sanctuary Demonstration (${formData.format.toUpperCase()})
-DESCRIPTION:VIP Architectural Automation Consultation. Reservation Code: ${confirmedCode}. Location: ${formData.city}. Format: ${formData.format}.
+DESCRIPTION:VIP Architectural Automation Consultation. Reservation Code: ${code}. Location: ${formData.city}. Format: ${formData.format}.
 STATUS:CONFIRMED
 END:VEVENT
 END:VCALENDAR`;
@@ -88,14 +112,15 @@ END:VCALENDAR`;
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', `Symetra_Demonstration_${confirmedCode}.ics`);
+    link.setAttribute('download', `Symetra_Demonstration_${code}.ics`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
 
   const resetModal = () => {
-    setIsSubmitted(false);
+    setStatus('idle');
+    setRefId(null);
     onClose();
   };
 
@@ -138,7 +163,7 @@ END:VCALENDAR`;
           transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
           className="relative w-full max-w-2xl bg-[#FCFBF8] rounded-2xl shadow-2xl border border-[#E8E2D5] overflow-hidden my-6 z-10"
         >
-          {isSubmitted ? (
+          {status === 'success' ? (
             /* Success State Confirmation Card */
             <div className="p-8 sm:p-10 text-center">
               <div className="w-16 h-16 rounded-full bg-[#E2BE76]/20 border border-[#E2BE76] flex items-center justify-center mx-auto mb-6">
@@ -159,9 +184,11 @@ END:VCALENDAR`;
               <div className="bg-[#F5F2EB] rounded-xl border border-[#E2DDD0] p-5 text-start mb-6 max-w-md mx-auto">
                 <div className="flex justify-between items-center pb-3 border-b border-[#E2DDD0]">
                   <span className="text-xs text-[#6B756E] uppercase font-semibold">{bk.passTitle}</span>
-                  <span className="font-mono text-xs font-bold text-[#14231C] bg-white px-2.5 py-1 rounded border border-[#DDD7C8]">
-                    {confirmedCode}
-                  </span>
+                  {refId && (
+                    <span className="font-mono text-xs font-bold text-[#14231C] bg-white px-2.5 py-1 rounded border border-[#DDD7C8]" dir="ltr">
+                      {refId}
+                    </span>
+                  )}
                 </div>
                 <div className="grid grid-cols-2 gap-4 pt-3 text-xs">
                   <div>
@@ -418,6 +445,31 @@ END:VCALENDAR`;
                 </div>
               </div>
 
+              {/* Honeypot (bots fill it, humans never see it) */}
+              <div className="absolute -start-[9999px] top-0" aria-hidden="true">
+                <input
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={website}
+                  onChange={(e) => setWebsite(e.target.value)}
+                />
+              </div>
+
+              {/* Consent */}
+              <label className="mb-4 flex items-start gap-2.5 cursor-pointer">
+                <input
+                  type="checkbox"
+                  required
+                  checked={consent}
+                  onChange={(e) => setConsent(e.target.checked)}
+                  className="mt-0.5 w-4 h-4 accent-[#14231C] shrink-0"
+                />
+                <span className="text-[11px] text-[#556059] leading-relaxed">
+                  {bk.consent}
+                </span>
+              </label>
+
               {/* Privacy Note Box */}
               <div className="mb-6 p-3 rounded-xl bg-[#F4F1EA] border border-[#E4DEC9] flex items-start gap-2.5">
                 <ShieldCheck className="w-4 h-4 text-[#2E7D32] shrink-0 mt-0.5" />
@@ -429,13 +481,20 @@ END:VCALENDAR`;
                 </p>
               </div>
 
+              {status === 'error' && (
+                <div className="mb-4 p-3 rounded-xl bg-[#FBEBE9] border border-[#E7B8B2] text-[11px] text-[#8C2F26] leading-relaxed" role="alert">
+                  {bk.failed}
+                </div>
+              )}
+
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row items-center gap-3">
                 <button
                   type="submit"
-                  className="w-full sm:flex-1 py-3 px-5 bg-[#E2BE76] hover:bg-[#D4AF63] active:scale-[0.99] text-[#14231C] text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md flex items-center justify-center gap-2 group"
+                  disabled={status === 'sending'}
+                  className="w-full sm:flex-1 py-3 px-5 bg-[#E2BE76] hover:bg-[#D4AF63] active:scale-[0.99] disabled:opacity-60 text-[#14231C] text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md flex items-center justify-center gap-2 group"
                 >
-                  <span>{bk.submit}</span>
+                  <span>{status === 'sending' ? bk.sending : bk.submit}</span>
                   <ArrowRight className="w-4 h-4 rtl:-scale-x-100 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />
                 </button>
                 <button

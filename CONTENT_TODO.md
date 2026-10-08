@@ -50,6 +50,14 @@ the site. Check the box when real data is supplied and the content file updated.
 - [ ] Tagline + meta description (currently "Architectural Calm • Local Compute" + privacy/local-reliability line)
 - [ ] Nav link labels (final IA incl. new "How it works" section — now live)
 
+## Phase 4 additions (backend config — real values needed)
+
+- [ ] SMTP credentials (`SMTP_HOST/PORT/USER/PASS`) + sender (`INQUIRY_FROM`)
+- [ ] Inquiry mailbox (`INQUIRY_TO`) — where notification emails land
+- [ ] Production `ALLOWED_ORIGIN` (public site URL for strict CORS)
+- [ ] WhatsApp provider for `WHATSAPP_WEBHOOK_URL` (currently log-only stub)
+- [ ] Consent + privacy-note wording reviewed (EN/AR on both forms)
+
 ## Phase 2 additions (new placeholders to confirm)
 
 - [ ] Conecta logo file (`src/assets/logos/conecta.svg`) + Symetra logo file (`src/assets/logos/symetra.svg`)

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Phone, ArrowRight, Sparkles } from 'lucide-react';
 import { useContent } from '../i18n/useContent';
+import { submitInquiry } from '../lib/api';
 
 interface InquirySectionProps {
   onOpenBooking: () => void;
@@ -14,11 +15,28 @@ export const InquirySection: React.FC<InquirySectionProps> = ({ onOpenBooking })
   const [fullName, setFullName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [projectCity, setProjectCity] = useState(contact.projectCities[0]);
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [consent, setConsent] = useState(false);
+  /** Honeypot: must stay empty (bots fill it). */
+  const [website, setWebsite] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    if (status === 'sending') return;
+    setStatus('sending');
+    try {
+      await submitInquiry({
+        kind: 'quick',
+        fullName,
+        phone: phoneNumber,
+        city: projectCity,
+        consent,
+        website,
+      });
+      setStatus('success');
+    } catch {
+      setStatus('error');
+    }
   };
 
   return (
@@ -90,7 +108,7 @@ export const InquirySection: React.FC<InquirySectionProps> = ({ onOpenBooking })
             {/* Right Column: Direct Project Inquiry Card (lg:col-span-5) */}
             <div className="lg:col-span-5">
               <div className="bg-[#FAF7F0] rounded-2xl p-6 sm:p-8 border border-[#E4DEC9] shadow-inner">
-                {submitted ? (
+                {status === 'success' ? (
                   <div className="text-center py-6">
                     <div className="w-12 h-12 rounded-full bg-[#E2BE76]/20 border border-[#E2BE76] flex items-center justify-center mx-auto mb-4">
                       <Sparkles className="w-6 h-6 text-[#8B7340]" />
@@ -102,7 +120,7 @@ export const InquirySection: React.FC<InquirySectionProps> = ({ onOpenBooking })
                       {inq.successBody.replace('{city}', projectCity)}
                     </p>
                     <button
-                      onClick={() => setSubmitted(false)}
+                      onClick={() => setStatus('idle')}
                       className="text-xs text-[#8B7340] font-semibold underline"
                     >
                       {inq.again}
@@ -162,11 +180,47 @@ export const InquirySection: React.FC<InquirySectionProps> = ({ onOpenBooking })
                       </div>
                     </div>
 
+                    {/* Honeypot (bots fill it, humans never see it) */}
+                    <div className="absolute -start-[9999px] top-0" aria-hidden="true">
+                      <input
+                        type="text"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        value={website}
+                        onChange={(e) => setWebsite(e.target.value)}
+                      />
+                    </div>
+
+                    {/* Consent */}
+                    <label className="mb-4 flex items-start gap-2.5 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        required
+                        checked={consent}
+                        onChange={(e) => setConsent(e.target.checked)}
+                        className="mt-0.5 w-4 h-4 accent-[#14231C] shrink-0"
+                      />
+                      <span className="text-[11px] text-[#556059] leading-relaxed">
+                        {inq.consent}
+                      </span>
+                    </label>
+
+                    <p className="text-[11px] text-[#858E87] leading-relaxed mb-4">
+                      {inq.privacy}
+                    </p>
+
+                    {status === 'error' && (
+                      <div className="mb-4 p-3 rounded-xl bg-[#FBEBE9] border border-[#E7B8B2] text-[11px] text-[#8C2F26] leading-relaxed" role="alert">
+                        {inq.failed}
+                      </div>
+                    )}
+
                     <button
                       type="submit"
-                      className="w-full py-3 px-5 bg-[#14231C] hover:bg-[#1E332A] active:scale-[0.99] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md"
+                      disabled={status === 'sending'}
+                      className="w-full py-3 px-5 bg-[#14231C] hover:bg-[#1E332A] active:scale-[0.99] disabled:opacity-60 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md"
                     >
-                      {inq.submit}
+                      {status === 'sending' ? inq.sending : inq.submit}
                     </button>
                   </form>
                 )}
