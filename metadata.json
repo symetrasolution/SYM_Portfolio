@@ -1,0 +1,6 @@
+{
+  "name": "Symetra Solution",
+  "description": "Intelligent living engineered for complete privacy and local reliability in Egypt & Saudi Arabia.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
