@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   X,
@@ -46,6 +46,15 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose }) =
   const [consent, setConsent] = useState(false);
   /** Honeypot: must stay empty (bots fill it). */
   const [website, setWebsite] = useState('');
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [isOpen, onClose]);
 
   const handleRoleChange = (role: UserRole) => {
     setFormData((prev) => ({ ...prev, role }));
@@ -162,6 +171,9 @@ END:VCALENDAR`;
           exit={{ opacity: 0, scale: 0.96, y: 16 }}
           transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
           className="relative w-full max-w-2xl bg-[#FCFBF8] rounded-2xl shadow-2xl border border-[#E8E2D5] overflow-hidden my-6 z-10"
+          role="dialog"
+          aria-modal="true"
+          aria-label={bk.title}
         >
           {status === 'success' ? (
             /* Success State Confirmation Card */
@@ -192,19 +204,19 @@ END:VCALENDAR`;
                 </div>
                 <div className="grid grid-cols-2 gap-4 pt-3 text-xs">
                   <div>
-                    <span className="text-[#858E87] block">{bk.formatLabel}</span>
+                    <span className="text-[#5F6B64] block">{bk.formatLabel}</span>
                     <span className="font-medium text-[#14231C] capitalize">
                       {formatLabel}
                     </span>
                   </div>
                   <div>
-                    <span className="text-[#858E87] block">{bk.windowLabel}</span>
+                    <span className="text-[#5F6B64] block">{bk.windowLabel}</span>
                     <span className="font-medium text-[#14231C] capitalize">
                       {formData.window} ({windowHours})
                     </span>
                   </div>
                   <div className="col-span-2">
-                    <span className="text-[#858E87] block">{bk.locationLabel}</span>
+                    <span className="text-[#5F6B64] block">{bk.locationLabel}</span>
                     <span className="font-medium text-[#14231C]">{formData.city}</span>
                   </div>
                 </div>
@@ -234,7 +246,7 @@ END:VCALENDAR`;
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#14231C] text-[#E5E9E7] text-xs font-medium">
                   <span className="w-2 h-2 rounded-full bg-[#22C55E]"></span>
                   <span className="tracking-wide">{bk.badge}</span>
-                  <span className="text-[#858E87]">·</span>
+                  <span className="text-[#5F6B64]">·</span>
                   <span className="text-[#CFC9BA]">{bk.badgeCities}</span>
                 </div>
                 <button
@@ -330,10 +342,11 @@ END:VCALENDAR`;
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
                   <div>
-                    <label className="block text-[11px] font-medium text-[#6B756E] mb-1">
+                    <label htmlFor="bk-name" className="block text-[11px] font-medium text-[#6B756E] mb-1">
                       {bk.nameLabel}
                     </label>
                     <input
+                      id="bk-name"
                       type="text"
                       required
                       value={formData.fullName}
@@ -345,10 +358,11 @@ END:VCALENDAR`;
                     />
                   </div>
                   <div>
-                    <label className="block text-[11px] font-medium text-[#6B756E] mb-1">
+                    <label htmlFor="bk-email" className="block text-[11px] font-medium text-[#6B756E] mb-1">
                       {bk.emailLabel}
                     </label>
                     <input
+                      id="bk-email"
                       type="email"
                       required
                       value={formData.email}
@@ -364,7 +378,7 @@ END:VCALENDAR`;
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-[11px] font-medium text-[#6B756E] mb-1">
+                    <label htmlFor="bk-phone" className="block text-[11px] font-medium text-[#6B756E] mb-1">
                       {bk.phoneLabel}
                     </label>
                     <div className="flex">
@@ -387,6 +401,7 @@ END:VCALENDAR`;
                         ))}
                       </select>
                       <input
+                        id="bk-phone"
                         type="tel"
                         required
                         value={formData.phone}
@@ -401,10 +416,11 @@ END:VCALENDAR`;
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-medium text-[#6B756E] mb-1">
+                    <label htmlFor="bk-city" className="block text-[11px] font-medium text-[#6B756E] mb-1">
                       {bk.cityLabel}
                     </label>
                     <select
+                      id="bk-city"
                       value={formData.city}
                       onChange={(e) =>
                         setFormData({ ...formData, city: e.target.value })
@@ -439,7 +455,7 @@ END:VCALENDAR`;
                       }`}
                     >
                       <div className="font-medium text-xs">{win.label}</div>
-                      <div className="text-[10px] text-[#858E87]" dir="ltr">{win.hours}</div>
+                      <div className="text-[10px] text-[#5F6B64]" dir="ltr">{win.hours}</div>
                     </button>
                   ))}
                 </div>
@@ -457,8 +473,9 @@ END:VCALENDAR`;
               </div>
 
               {/* Consent */}
-              <label className="mb-4 flex items-start gap-2.5 cursor-pointer">
+              <label htmlFor="bk-consent" className="mb-4 flex items-start gap-2.5 cursor-pointer">
                 <input
+                  id="bk-consent"
                   type="checkbox"
                   required
                   checked={consent}

@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'motion/react';
+import { motion, useScroll, useTransform, useSpring, useReducedMotion } from 'motion/react';
 
 interface ParallaxSectionProps {
   children: React.ReactNode;
@@ -32,15 +32,20 @@ export const ParallaxSection: React.FC<ParallaxSectionProps> = ({
 
   const y = useTransform(smoothProgress, [0, 0.4, 0.9, 1], [yOffset, 0, 0, -yOffset * 0.5]);
   const opacity = useTransform(smoothProgress, [0, 0.25, 0.85, 1], [0.35, 1, 1, 0.75]);
+  const reduceMotion = useReducedMotion();
 
   return (
     <div ref={containerRef} id={id} className={`relative ${className}`}>
       <motion.div
-        style={{
-          y,
-          opacity,
-          willChange: 'transform, opacity',
-        }}
+        style={
+          reduceMotion
+            ? undefined
+            : {
+                y,
+                opacity,
+                willChange: 'transform, opacity',
+              }
+        }
         className="w-full"
       >
         {children}

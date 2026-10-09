@@ -36,6 +36,15 @@ export const SpecsCustomizerModal: React.FC<SpecsCustomizerModalProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen, room.id]);
 
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   const toggleInterest = (title: string) => {
@@ -68,6 +77,9 @@ export const SpecsCustomizerModal: React.FC<SpecsCustomizerModalProps> = ({
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 16 }}
           className="relative w-full max-w-xl bg-[#FCFBF8] rounded-2xl shadow-2xl border border-[#E8E2D5] overflow-hidden my-6 z-10 p-6 sm:p-8"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${specs.eyebrow} — ${room.name}`}
         >
           {/* Header */}
           <div className="flex items-center justify-between pb-4 border-b border-[#E8E4DA] mb-6">

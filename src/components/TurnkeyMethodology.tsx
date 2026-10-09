@@ -71,7 +71,7 @@ export const TurnkeyMethodology: React.FC = () => {
               </div>
               <span className="text-[#B3934B] font-bold">×</span>
               <div
-                className="w-12 h-12 rounded-xl border-2 border-dashed border-[#C9C2B2] bg-[#F7F5EE] text-[#858E87] flex items-center justify-center"
+                className="w-12 h-12 rounded-xl border-2 border-dashed border-[#C9C2B2] bg-[#F7F5EE] text-[#5F6B64] flex items-center justify-center"
                 aria-label={PARTNERSHIP.conectaLogoLabel}
                 title={PARTNERSHIP.conectaLogoTitle}
               >
@@ -79,7 +79,7 @@ export const TurnkeyMethodology: React.FC = () => {
               </div>
             </div>
             <div>
-              <span className="text-[10px] uppercase font-bold tracking-widest text-[#858E87] block">
+              <span className="text-[10px] uppercase font-bold tracking-widest text-[#5F6B64] block">
                 {PARTNERSHIP.eyebrow}
               </span>
               <h4 className="text-sm sm:text-base font-bold text-[#14231C]">

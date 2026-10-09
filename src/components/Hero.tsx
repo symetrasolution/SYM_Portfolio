@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'motion/react';
+import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react';
 import {
   ArrowRight,
   Shield,
@@ -29,12 +29,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
   const imageY = useTransform(scrollYProgress, [0, 1], [0, 50]);
   const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.04]);
   const contentY = useTransform(scrollYProgress, [0, 1], [0, -25]);
+  const reduceMotion = useReducedMotion();
 
   return (
     <section ref={heroRef} className="relative pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Editorial Eyebrow & Hero Copy */}
-        <motion.div style={{ y: contentY }} className="max-w-3xl mb-12 lg:mb-16">
+        <motion.div style={reduceMotion ? undefined : { y: contentY }} className="max-w-3xl mb-12 lg:mb-16">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -96,13 +97,24 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
           transition={{ duration: 0.6, delay: 0.25 }}
           className="relative rounded-3xl overflow-hidden shadow-2xl border border-[#E2DDD0] mb-16 aspect-[16/9] max-h-[560px] group"
         >
-          <motion.img
-            src={content.site.heroImage}
-            alt={hero.imgAlt}
-            style={{ y: imageY, scale: imageScale }}
-            className="w-full h-full object-cover transition-transform duration-700 will-change-transform"
-            referrerPolicy="no-referrer"
-          />
+          <motion.picture
+            style={reduceMotion ? undefined : { y: imageY, scale: imageScale }}
+            className="block w-full h-full will-change-transform"
+          >
+            <source
+              type="image/webp"
+              srcSet={`${content.site.heroImageWebp.small} 640w, ${content.site.heroImageWebp.large} 1280w`}
+              sizes="100vw"
+            />
+            <img
+              src={content.site.heroImage}
+              alt={hero.imgAlt}
+              fetchPriority="high"
+              decoding="async"
+              className="w-full h-full object-cover transition-transform duration-700"
+              referrerPolicy="no-referrer"
+            />
+          </motion.picture>
 
           {/* Measured Ambient Contrast Scrim */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#0C1612]/70 via-transparent to-transparent pointer-events-none" />
@@ -159,7 +171,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
                   {card.body}
                 </p>
               </div>
-              <div className="pt-4 border-t border-[#F2EFE8] flex items-center justify-between text-[11px] font-semibold text-[#8C958E]">
+              <div className="pt-4 border-t border-[#F2EFE8] flex items-center justify-between text-[11px] font-semibold text-[#5F6B64]">
                 <span className="tracking-wider uppercase">{card.tag}</span>
                 <span className="text-[#C53030]" aria-hidden="true">✕</span>
               </div>

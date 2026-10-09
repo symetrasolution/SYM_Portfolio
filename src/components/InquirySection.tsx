@@ -89,7 +89,7 @@ export const InquirySection: React.FC<InquirySectionProps> = ({ onOpenBooking })
                       <Phone className="w-4 h-4 text-[#8B7340]" />
                     </div>
                     <div>
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-[#858E87] block">
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-[#5F6B64] block">
                         {studio.label}
                       </span>
                       <a
@@ -134,10 +134,11 @@ export const InquirySection: React.FC<InquirySectionProps> = ({ onOpenBooking })
 
                     <div className="space-y-4 mb-5">
                       <div>
-                        <label className="block text-[11px] font-bold uppercase tracking-wider text-[#7A867F] mb-1.5">
+                        <label htmlFor="inq-name" className="block text-[11px] font-bold uppercase tracking-wider text-[#5F6B64] mb-1.5">
                           {inq.nameLabel}
                         </label>
                         <input
+                          id="inq-name"
                           type="text"
                           required
                           value={fullName}
@@ -148,10 +149,11 @@ export const InquirySection: React.FC<InquirySectionProps> = ({ onOpenBooking })
                       </div>
 
                       <div>
-                        <label className="block text-[11px] font-bold uppercase tracking-wider text-[#7A867F] mb-1.5">
+                        <label htmlFor="inq-phone" className="block text-[11px] font-bold uppercase tracking-wider text-[#5F6B64] mb-1.5">
                           {inq.phoneLabel}
                         </label>
                         <input
+                          id="inq-phone"
                           type="tel"
                           required
                           value={phoneNumber}
@@ -163,10 +165,11 @@ export const InquirySection: React.FC<InquirySectionProps> = ({ onOpenBooking })
                       </div>
 
                       <div>
-                        <label className="block text-[11px] font-bold uppercase tracking-wider text-[#7A867F] mb-1.5">
+                        <label htmlFor="inq-city" className="block text-[11px] font-bold uppercase tracking-wider text-[#5F6B64] mb-1.5">
                           {inq.cityLabel}
                         </label>
                         <select
+                          id="inq-city"
                           value={projectCity}
                           onChange={(e) => setProjectCity(e.target.value)}
                           className="w-full px-3.5 py-2.5 bg-white border border-[#DDD7C8] rounded-xl text-xs text-[#14231C] focus:outline-none focus:ring-1 focus:ring-[#B3934B] focus:border-[#B3934B]"
@@ -192,8 +195,9 @@ export const InquirySection: React.FC<InquirySectionProps> = ({ onOpenBooking })
                     </div>
 
                     {/* Consent */}
-                    <label className="mb-4 flex items-start gap-2.5 cursor-pointer">
+                    <label htmlFor="inq-consent" className="mb-4 flex items-start gap-2.5 cursor-pointer">
                       <input
+                        id="inq-consent"
                         type="checkbox"
                         required
                         checked={consent}
@@ -205,7 +209,7 @@ export const InquirySection: React.FC<InquirySectionProps> = ({ onOpenBooking })
                       </span>
                     </label>
 
-                    <p className="text-[11px] text-[#858E87] leading-relaxed mb-4">
+                    <p className="text-[11px] text-[#5F6B64] leading-relaxed mb-4">
                       {inq.privacy}
                     </p>
 

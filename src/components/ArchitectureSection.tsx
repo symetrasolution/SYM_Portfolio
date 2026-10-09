@@ -94,7 +94,7 @@ export const ArchitectureSection: React.FC = () => {
                   <div className="w-12 h-12 rounded-2xl bg-[#F6F4EE] border border-[#E8E2D5] flex items-center justify-center text-[#14231C] mb-6">
                     {STAGE_ICONS[idx]}
                   </div>
-                  <span className="text-[11px] font-bold uppercase tracking-widest text-[#858E87] block mb-2">
+                  <span className="text-[11px] font-bold uppercase tracking-widest text-[#5F6B64] block mb-2">
                     {stage.label}
                   </span>
                   <h3 className="text-xl font-bold text-[#14231C] mb-3 font-serif">

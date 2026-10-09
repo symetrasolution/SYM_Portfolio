@@ -9,9 +9,17 @@ import type {
   TechnicalAppendixItem,
 } from '../../types';
 import heroVillaImg from '../../assets/images/hero_architectural_villa_1791488866425.jpg';
+import heroVilla640 from '../../assets/images/hero_architectural_villa_1791488866425-640.webp';
+import heroVilla1280 from '../../assets/images/hero_architectural_villa_1791488866425-1280.webp';
 import cairoVillaImg from '../../assets/images/cairo_luxury_villa_1791488882402.jpg';
+import cairoVilla640 from '../../assets/images/cairo_luxury_villa_1791488882402-640.webp';
+import cairoVilla1280 from '../../assets/images/cairo_luxury_villa_1791488882402-1280.webp';
 import riyadhPenthouseImg from '../../assets/images/riyadh_dq_penthouse_1791488892687.jpg';
+import riyadhPenthouse640 from '../../assets/images/riyadh_dq_penthouse_1791488892687-640.webp';
+import riyadhPenthouse1280 from '../../assets/images/riyadh_dq_penthouse_1791488892687-1280.webp';
 import sahelResidenceImg from '../../assets/images/sahel_coastal_residence_1791488904285.jpg';
+import sahelResidence640 from '../../assets/images/sahel_coastal_residence_1791488904285-640.webp';
+import sahelResidence1280 from '../../assets/images/sahel_coastal_residence_1791488904285-1280.webp';
 import { COUNTRY_CODES, HREFS } from '../shared';
 
 /**
@@ -27,6 +35,10 @@ export const enBundle = {
     description:
       'Intelligent living engineered for complete privacy and local reliability in Egypt & Saudi Arabia.',
     heroImage: heroVillaImg,
+    heroImageWebp: { small: heroVilla640, large: heroVilla1280 },
+    metaTitle: 'Symetra Solution — Turnkey Smart Homes in Egypt & Saudi Arabia',
+    metaDescription:
+      'Smart homes built on Home Assistant that run locally and work without internet. Turnkey design, installation and programming in Egypt & Saudi Arabia.',
   },
 
   lang: {
@@ -648,6 +660,7 @@ export const enBundle = {
         country: 'Egypt',
         status: 'In progress',
         image: cairoVillaImg,
+        imageWebp: { small: cairoVilla640, large: cairoVilla1280 },
         description:
           'Whole-home lighting scenes, motorized shading and presence-based automation across living spaces.',
       },
@@ -658,6 +671,7 @@ export const enBundle = {
         country: 'Saudi Arabia',
         status: 'In progress',
         image: riyadhPenthouseImg,
+        imageWebp: { small: riyadhPenthouse640, large: riyadhPenthouse1280 },
         description:
           'Scene control, multi-room ambience and discreet presence detection for apartment living.',
       },
@@ -668,6 +682,7 @@ export const enBundle = {
         country: 'Egypt',
         status: 'In progress',
         image: sahelResidenceImg,
+        imageWebp: { small: sahelResidence640, large: sahelResidence1280 },
         description:
           'Secure remote check-in, shutter automation and leak protection for a second home.',
       },

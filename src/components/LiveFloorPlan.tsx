@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   Lightbulb,
@@ -17,7 +17,13 @@ import {
 } from 'lucide-react';
 import { RoomZone } from '../types';
 import { useContent } from '../i18n/useContent';
-import { SpecsCustomizerModal } from './SpecsCustomizerModal';
+
+// On-demand modal: excluded from the initial chunk (Phase 6 code-splitting).
+const SpecsCustomizerModal = lazy(() =>
+  import('./SpecsCustomizerModal').then((m) => ({
+    default: m.SpecsCustomizerModal,
+  })),
+);
 
 interface LiveFloorPlanProps {
   onOpenBooking: () => void;
@@ -407,7 +413,7 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
             </div>
 
             {/* Blueprint Footer */}
-            <div className="flex items-center justify-between pt-4 border-t border-[#EAE6DC] text-[11px] text-[#7A867F]">
+            <div className="flex items-center justify-between pt-4 border-t border-[#EAE6DC] text-[11px] text-[#5F6B64]">
               <span className="font-mono">{floor.scaleNote}</span>
               <span>{floor.localNote}</span>
             </div>
@@ -428,7 +434,7 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
 
               {/* Installed Hardware Nodes List */}
               <div className="mb-6">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-[#7A867F] block mb-3">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#5F6B64] block mb-3">
                   {floor.nodesTitle}
                 </span>
                 <div className="space-y-3">
@@ -500,12 +506,14 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
       </div>
 
       {/* Specs Customizer Modal */}
-      <SpecsCustomizerModal
-        room={currentRoom}
-        isOpen={customizerOpen}
-        onClose={() => setCustomizerOpen(false)}
-        onOpenBooking={onOpenBooking}
-      />
+      <Suspense fallback={null}>
+        <SpecsCustomizerModal
+          room={currentRoom}
+          isOpen={customizerOpen}
+          onClose={() => setCustomizerOpen(false)}
+          onOpenBooking={onOpenBooking}
+        />
+      </Suspense>
     </section>
   );
 };

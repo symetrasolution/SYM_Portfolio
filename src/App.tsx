@@ -3,9 +3,12 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'motion/react';
+import React, { useState, useRef, useEffect, lazy, Suspense } from 'react';
+import { motion, useScroll, useTransform, useSpring, useReducedMotion } from 'motion/react';
 import { useTranslation } from 'react-i18next';
+import { enBundle } from './i18n/locales/en';
+import { arBundle } from './i18n/locales/ar';
+import { applySeo } from './lib/seo';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { HowItWorks } from './components/HowItWorks';
@@ -18,7 +21,11 @@ import { TurnkeyMethodology } from './components/TurnkeyMethodology';
 import { PortfolioResidences } from './components/PortfolioResidences';
 import { InquirySection } from './components/InquirySection';
 import { Footer } from './components/Footer';
-import { BookingModal } from './components/BookingModal';
+
+// On-demand modal: excluded from the initial chunk (Phase 6 code-splitting).
+const BookingModal = lazy(() =>
+  import('./components/BookingModal').then((m) => ({ default: m.BookingModal })),
+);
 
 interface ArchitecturalScrollSectionProps {
   children: React.ReactNode;
@@ -51,15 +58,20 @@ function ArchitecturalScrollSection({
   // Smooth, subtle vertical translation and opacity fade-in adhering to WCAG and design constitution
   const y = useTransform(smoothProgress, [0, 0.45, 0.9, 1], [yOffset, 0, 0, -yOffset * 0.4]);
   const opacity = useTransform(smoothProgress, [0, 0.25, 0.9, 1], [0.45, 1, 1, 0.85]);
+  const reduceMotion = useReducedMotion();
 
   return (
     <div ref={sectionRef} id={id} className="relative w-full">
       <motion.div
-        style={{
-          y,
-          opacity,
-          willChange: 'transform, opacity',
-        }}
+        style={
+          reduceMotion
+            ? undefined
+            : {
+                y,
+                opacity,
+                willChange: 'transform, opacity',
+              }
+        }
         className="w-full"
       >
         {children}
@@ -72,12 +84,13 @@ export default function App() {
   const [bookingModalOpen, setBookingModalOpen] = useState(false);
   const { i18n } = useTranslation();
 
-  // Keep <html> lang/dir in sync with the active locale (EN/AR + RTL).
+  // Keep <html> lang/dir + SEO tags in sync with the active locale.
   useEffect(() => {
     const apply = (lng: string) => {
       const rtl = lng.toLowerCase().startsWith('ar');
       document.documentElement.lang = rtl ? 'ar' : 'en';
       document.documentElement.dir = rtl ? 'rtl' : 'ltr';
+      applySeo(rtl ? arBundle : enBundle, lng);
     };
     apply(i18n.resolvedLanguage ?? i18n.language ?? 'en');
     i18n.on('languageChanged', apply);
@@ -150,10 +163,12 @@ export default function App() {
       <Footer />
 
       {/* Interactive Demonstration Booking Modal (Image 1.png) */}
-      <BookingModal
-        isOpen={bookingModalOpen}
-        onClose={() => setBookingModalOpen(false)}
-      />
+      <Suspense fallback={null}>
+        <BookingModal
+          isOpen={bookingModalOpen}
+          onClose={() => setBookingModalOpen(false)}
+        />
+      </Suspense>
     </div>
   );
 }

@@ -116,7 +116,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
           >
             <div className="flex flex-col gap-4">
               <div className="pb-3 border-b border-[#EFECE3] flex items-center justify-between gap-3">
-                <p className="text-xs uppercase tracking-wider text-[#858E87] font-semibold">
+                <p className="text-xs uppercase tracking-wider text-[#5F6B64] font-semibold">
                   {content.nav.drawerTagline}
                 </p>
                 <LanguageToggle />

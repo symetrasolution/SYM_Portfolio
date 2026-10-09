@@ -49,6 +49,11 @@ export interface RoomZone {
  * Portfolio entries are illustrative "In progress" placeholders with no
  * specs. Replace with real projects when available (see CONTENT_TODO.md).
  */
+export interface ResponsiveWebp {
+  small: string;
+  large: string;
+}
+
 export interface ResidenceProject {
   id: string;
   title: string;
@@ -56,6 +61,7 @@ export interface ResidenceProject {
   country: string;
   status: 'In progress';
   image: string;
+  imageWebp: ResponsiveWebp;
   description: string;
 }
 
@@ -130,4 +136,7 @@ export interface SiteMeta {
   name: string;
   tagline: string;
   description: string;
+  /** Per-language SEO/OG strings (Phase 6). */
+  metaTitle: string;
+  metaDescription: string;
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import {
   Network,
   Cpu,
@@ -35,6 +35,7 @@ interface HowItWorksProps {
 export const HowItWorks: React.FC<HowItWorksProps> = ({ onOpenBooking }) => {
   const content = useContent();
   const how = content.how;
+  const reduceMotion = useReducedMotion();
   const [appendixOpen, setAppendixOpen] = useState(false);
 
   return (
@@ -85,7 +86,7 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({ onOpenBooking }) => {
                   </div>
                   <span
                     className={`text-[11px] font-bold uppercase tracking-widest block mb-2 ${
-                      isDark ? 'text-[#E2BE76]' : 'text-[#858E87]'
+                      isDark ? 'text-[#E2BE76]' : 'text-[#5F6B64]'
                     }`}
                   >
                     Step {step.number}
@@ -149,7 +150,7 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({ onOpenBooking }) => {
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: 'auto', opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: reduceMotion ? 0 : 0.3, ease: [0.16, 1, 0.3, 1] }}
                 className="overflow-hidden"
               >
                 <div className="px-6 sm:px-7 pb-7 pt-1 grid grid-cols-1 sm:grid-cols-2 gap-3 border-t border-[#EAE6DC]">

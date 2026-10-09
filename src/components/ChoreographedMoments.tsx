@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { Home, Moon, Plane, Film, Play, CheckCircle2, Sparkles, ChevronRight } from 'lucide-react';
 import { useContent } from '../i18n/useContent';
 
@@ -10,6 +10,7 @@ export const ChoreographedMoments: React.FC = () => {
   const [activeScenarioId, setActiveScenarioId] = useState<string>('arriving_home');
   const [simulating, setSimulating] = useState<boolean>(false);
   const [simulatedStep, setSimulatedStep] = useState<number>(0);
+  const reduceMotion = useReducedMotion();
 
   const getScenarioIcon = (iconName: string) => {
     switch (iconName) {
@@ -28,6 +29,11 @@ export const ChoreographedMoments: React.FC = () => {
 
   const handleSimulate = (scenarioId: string) => {
     setActiveScenarioId(scenarioId);
+    // Reduced motion: show the full sequence at once, no stepped animation.
+    if (reduceMotion) {
+      setSimulatedStep(4);
+      return;
+    }
     setSimulating(true);
     setSimulatedStep(1);
 
@@ -83,7 +89,7 @@ export const ChoreographedMoments: React.FC = () => {
                   <div className="w-10 h-10 rounded-xl bg-[#F6F4EE] border border-[#E8E2D5] flex items-center justify-center mb-5">
                     {getScenarioIcon(scenario.iconName)}
                   </div>
-                  <span className="text-[11px] font-bold uppercase tracking-widest text-[#858E87] block mb-1">
+                  <span className="text-[11px] font-bold uppercase tracking-widest text-[#5F6B64] block mb-1">
                     {scenario.number}
                   </span>
                   <h3 className="text-lg font-bold text-[#14231C] mb-2 font-serif">
@@ -155,7 +161,7 @@ export const ChoreographedMoments: React.FC = () => {
                   }`}
                 >
                   <div className="flex items-center justify-between mb-2">
-                    <span className="font-mono text-[10px] font-bold text-[#858E87]">
+                    <span className="font-mono text-[10px] font-bold text-[#5F6B64]">
                       0{stepNum}
                     </span>
                     {isPassed ? (

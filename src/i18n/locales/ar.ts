@@ -1,7 +1,15 @@
 import heroVillaImg from '../../assets/images/hero_architectural_villa_1791488866425.jpg';
+import heroVilla640 from '../../assets/images/hero_architectural_villa_1791488866425-640.webp';
+import heroVilla1280 from '../../assets/images/hero_architectural_villa_1791488866425-1280.webp';
 import cairoVillaImg from '../../assets/images/cairo_luxury_villa_1791488882402.jpg';
+import cairoVilla640 from '../../assets/images/cairo_luxury_villa_1791488882402-640.webp';
+import cairoVilla1280 from '../../assets/images/cairo_luxury_villa_1791488882402-1280.webp';
 import riyadhPenthouseImg from '../../assets/images/riyadh_dq_penthouse_1791488892687.jpg';
+import riyadhPenthouse640 from '../../assets/images/riyadh_dq_penthouse_1791488892687-640.webp';
+import riyadhPenthouse1280 from '../../assets/images/riyadh_dq_penthouse_1791488892687-1280.webp';
 import sahelResidenceImg from '../../assets/images/sahel_coastal_residence_1791488904285.jpg';
+import sahelResidence640 from '../../assets/images/sahel_coastal_residence_1791488904285-640.webp';
+import sahelResidence1280 from '../../assets/images/sahel_coastal_residence_1791488904285-1280.webp';
 import { HREFS } from '../shared';
 import type { Bundle } from './en';
 
@@ -18,6 +26,10 @@ export const arBundle: Bundle = {
     description:
       'حياة ذكية بخصوصية كاملة واعتمادية محلية في مصر والسعودية.',
     heroImage: heroVillaImg,
+    heroImageWebp: { small: heroVilla640, large: heroVilla1280 },
+    metaTitle: 'سيميترا سوليوشن — بيوت ذكية متكاملة في مصر والسعودية',
+    metaDescription:
+      'بيوت ذكية مبنية على Home Assistant تعمل محليًا بدون إنترنت. تصميم وتركيب وبرمجة متكاملة في مصر والسعودية.',
   },
 
   lang: {
@@ -630,6 +642,7 @@ export const arBundle: Bundle = {
         country: 'مصر',
         status: 'In progress',
         image: cairoVillaImg,
+        imageWebp: { small: cairoVilla640, large: cairoVilla1280 },
         description:
           'مشاهد إضاءة لكل البيت، وتظليل آلي، وأتمتة بالحساسات عبر مساحات المعيشة.',
       },
@@ -640,6 +653,7 @@ export const arBundle: Bundle = {
         country: 'السعودية',
         status: 'In progress',
         image: riyadhPenthouseImg,
+        imageWebp: { small: riyadhPenthouse640, large: riyadhPenthouse1280 },
         description:
           'تحكم بالمشاهد وأجواء متعددة وحساسات حضور خفية لحياة الشقق.',
       },
@@ -650,6 +664,7 @@ export const arBundle: Bundle = {
         country: 'مصر',
         status: 'In progress',
         image: sahelResidenceImg,
+        imageWebp: { small: sahelResidence640, large: sahelResidence1280 },
         description:
           'اطمئنان آمن عن بُعد، وأتمتة للستائر، وحماية من التسرب لبيت ثانٍ.',
       },

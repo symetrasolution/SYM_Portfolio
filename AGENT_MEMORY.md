@@ -97,8 +97,11 @@
 - **Phase 5 PARKED** — Gemini assistant (server-side `@google/genai`, key in
   `.env`, `POST /api/assistant` answering only from content files, chat
   widget, disabled by default). Awaiting owner discussion.
-- **Phase 6 TODO** — images (WebP/sizes/lazy), `prefers-reduced-motion`,
-  a11y pass, SEO/OG per language, Vitest suite, README.
+- **Phase 6** `chore(polish)` — WebP (-640/-1280, ~90% smaller) with JPG
+  fallback + lazy (hero eager/fetchpriority-high); lazy-split modals;
+  global + JS `prefers-reduced-motion` guards; a11y (label pairing, dialog
+  roles, Esc, focus-visible, `#5F6B64` micro-text); per-language SEO/OG;
+  Vitest (13 tests: parity, truth guards, zod, todo format); README.
 - **Phase 7 TODO** — single Node process (`dist/` + `/api`, SPA fallback),
   `GET /api/health`, `npm start`/`build:all`, Dockerfile + `.dockerignore`,
   DEPLOY.md (env, `data/` volume + ephemeral-disk warning, Nginx/Caddy HTTPS).

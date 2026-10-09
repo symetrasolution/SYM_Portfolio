@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ResidenceProject } from '../types';
 import { useContent } from '../i18n/useContent';
+import { ResponsiveImage } from './ResponsiveImage';
 import { X, ArrowRight } from 'lucide-react';
 
 interface PortfolioResidencesProps {
@@ -13,6 +14,15 @@ export const PortfolioResidences: React.FC<PortfolioResidencesProps> = ({ onOpen
   const pf = content.projects;
   const RESIDENCE_PROJECTS: ResidenceProject[] = pf.items;
   const [selectedResidence, setSelectedResidence] = useState<ResidenceProject | null>(null);
+
+  useEffect(() => {
+    if (!selectedResidence) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setSelectedResidence(null);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [selectedResidence]);
 
   return (
     <section id="residences" className="py-20 lg:py-28 bg-[#FAF8F2] relative">
@@ -35,7 +45,7 @@ export const PortfolioResidences: React.FC<PortfolioResidencesProps> = ({ onOpen
           </div>
 
           <div>
-            <span className="text-xs font-mono font-bold tracking-widest text-[#7A867F] uppercase bg-white px-4 py-2 rounded-full border border-[#DDD7C8]">
+            <span className="text-xs font-mono font-bold tracking-widest text-[#5F6B64] uppercase bg-white px-4 py-2 rounded-full border border-[#DDD7C8]">
               {pf.pill}
             </span>
           </div>
@@ -52,11 +62,12 @@ export const PortfolioResidences: React.FC<PortfolioResidencesProps> = ({ onOpen
             >
               {/* Image with IN PROGRESS Badge */}
               <div className="relative aspect-[16/10] overflow-hidden bg-[#EFECE3]">
-                <img
-                  src={residence.image}
+                <ResponsiveImage
+                  webp={residence.imageWebp}
+                  fallback={residence.image}
                   alt={residence.title}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  referrerPolicy="no-referrer"
                 />
                 <div className="absolute top-4 end-4">
                   <span className="px-3 py-1 rounded-md bg-[#B3934B] text-white font-mono text-[10px] font-bold tracking-wider uppercase shadow-sm">
@@ -68,7 +79,7 @@ export const PortfolioResidences: React.FC<PortfolioResidencesProps> = ({ onOpen
               {/* Residence Content */}
               <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between">
                 <div>
-                  <span className="text-[11px] font-bold uppercase tracking-widest text-[#858E87] block mb-1">
+                  <span className="text-[11px] font-bold uppercase tracking-widest text-[#5F6B64] block mb-1">
                     {residence.location}
                   </span>
                   <h3 className="text-xl font-bold text-[#14231C] mb-3 font-serif group-hover:text-[#8B7340] transition-colors">
@@ -106,11 +117,17 @@ export const PortfolioResidences: React.FC<PortfolioResidencesProps> = ({ onOpen
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 16 }}
               className="relative w-full max-w-2xl bg-[#FCFBF8] rounded-3xl shadow-2xl border border-[#E8E2D5] overflow-hidden my-6 z-10"
+              role="dialog"
+              aria-modal="true"
+              aria-label={selectedResidence.title}
             >
               <div className="relative aspect-[16/9] w-full bg-[#EFECE3]">
-                <img
-                  src={selectedResidence.image}
+                <ResponsiveImage
+                  webp={selectedResidence.imageWebp}
+                  fallback={selectedResidence.image}
                   alt={selectedResidence.title}
+                  sizes="(max-width: 768px) 100vw, 672px"
+                  loading="eager"
                   className="w-full h-full object-cover"
                 />
                 <button
