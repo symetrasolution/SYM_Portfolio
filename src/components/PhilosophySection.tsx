@@ -4,9 +4,9 @@ import { ShieldCheck, Lock, HardDrive, Wifi, CheckCircle2 } from 'lucide-react';
 import { useContent } from '../i18n/useContent';
 
 const CARD_ICONS = [
-  <Wifi key="wifi" className="w-6 h-6 text-[#E2BE76]" />,
-  <Lock key="lock" className="w-6 h-6 text-[#E2BE76]" />,
-  <HardDrive key="drive" className="w-6 h-6 text-[#E2BE76]" />,
+  <Wifi key="wifi" className="w-6 h-6 text-[#c7aa79]" />,
+  <Lock key="lock" className="w-6 h-6 text-[#c7aa79]" />,
+  <HardDrive key="drive" className="w-6 h-6 text-[#c7aa79]" />,
 ];
 
 export const PhilosophySection: React.FC = () => {
@@ -14,14 +14,14 @@ export const PhilosophySection: React.FC = () => {
   const ph = content.philosophy;
 
   return (
-    <section id="philosophy" className="py-24 lg:py-32 bg-[#0C1813] text-white relative overflow-hidden">
+    <section id="philosophy" className="py-24 lg:py-32 bg-[#062b24] text-white relative overflow-hidden">
       {/* Subtle architectural ambient background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-[#E2BE76]/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-[#F4F1EB]/5 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-20">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#E2BE76] block mb-3">
+          <span className="text-xs font-bold uppercase tracking-widest text-[#c7aa79] block mb-3">
             {ph.eyebrow}
           </span>
           <h2
@@ -30,7 +30,7 @@ export const PhilosophySection: React.FC = () => {
           >
             {ph.title}
           </h2>
-          <p className="text-sm sm:text-base text-[#A6B4AD] leading-relaxed max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-[#aabdb5] leading-relaxed max-w-2xl mx-auto">
             {ph.sub}
           </p>
         </div>
@@ -41,23 +41,23 @@ export const PhilosophySection: React.FC = () => {
             <motion.div
               key={i}
               whileHover={{ y: -4 }}
-              className="bg-[#11231C]/90 rounded-3xl p-8 border border-[#1E362C] hover:border-[#2C4D3F] transition-all flex flex-col justify-between"
+              className="bg-[#0a3930]/90 rounded-3xl p-8 border border-[#F4F1EB]/15 hover:border-[#9dd7c2]/40 transition-all flex flex-col justify-between"
             >
               <div>
-                <div className="w-12 h-12 rounded-2xl bg-[#172E24] border border-[#274B3B] flex items-center justify-center text-[#E2BE76] mb-6">
-                  {CARD_ICONS[i] ?? <ShieldCheck className="w-6 h-6 text-[#E2BE76]" />}
+                <div className="w-12 h-12 rounded-2xl bg-[#0d4436] border border-[#F4F1EB]/15 flex items-center justify-center text-[#c7aa79] mb-6">
+                  {CARD_ICONS[i] ?? <ShieldCheck className="w-6 h-6 text-[#c7aa79]" />}
                 </div>
                 <h3 className="text-xl font-bold text-white mb-3 font-serif">
                   {card.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-[#A6B4AD] leading-relaxed mb-8">
+                <p className="text-xs sm:text-sm text-[#aabdb5] leading-relaxed mb-8">
                   {card.body}
                 </p>
               </div>
 
-              <div className="pt-6 border-t border-[#1C362B]">
-                <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#E2BE76]">
-                  <CheckCircle2 className="w-4 h-4 text-[#22C55E]" />
+              <div className="pt-6 border-t border-[#F4F1EB]/15">
+                <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#c7aa79]">
+                  <CheckCircle2 className="w-4 h-4 text-[#9dd7c2]" />
                   <span className="uppercase tracking-wider">{card.badge}</span>
                 </div>
               </div>

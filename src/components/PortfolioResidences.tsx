@@ -25,27 +25,27 @@ export const PortfolioResidences: React.FC<PortfolioResidencesProps> = ({ onOpen
   }, [selectedResidence]);
 
   return (
-    <section id="residences" className="py-20 lg:py-28 bg-[#FAF8F2] relative">
+    <section id="residences" className="py-20 lg:py-28 bg-[#062b24] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-14">
           <div className="max-w-2xl">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#B3934B] block mb-2">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#c7aa79] block mb-2">
               {pf.eyebrow}
             </span>
             <h2
-              className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#14231C] tracking-tight mb-4"
+              className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#F4F1EB] tracking-tight mb-4"
               style={{ textWrap: 'balance' }}
             >
               {pf.title}
             </h2>
-            <p className="text-sm sm:text-base text-[#4A554E] leading-relaxed">
+            <p className="text-sm sm:text-base text-[#d5e0da] leading-relaxed">
               {pf.sub}
             </p>
           </div>
 
           <div>
-            <span className="text-xs font-mono font-bold tracking-widest text-[#5F6B64] uppercase bg-white px-4 py-2 rounded-full border border-[#DDD7C8]">
+            <span className="text-xs font-mono font-bold tracking-widest text-[#aabdb5] uppercase bg-[#0a3930] px-4 py-2 rounded-full border border-[#F4F1EB]/20">
               {pf.pill}
             </span>
           </div>
@@ -58,10 +58,10 @@ export const PortfolioResidences: React.FC<PortfolioResidencesProps> = ({ onOpen
               key={residence.id}
               whileHover={{ y: -6 }}
               onClick={() => setSelectedResidence(residence)}
-              className="bg-white rounded-3xl overflow-hidden border border-[#E8E4DA] shadow-sm hover:shadow-xl transition-all cursor-pointer flex flex-col justify-between group"
+              className="bg-[#0a3930] rounded-3xl overflow-hidden border border-[#F4F1EB]/15 shadow-sm hover:shadow-xl transition-all cursor-pointer flex flex-col justify-between group"
             >
               {/* Image with IN PROGRESS Badge */}
-              <div className="relative aspect-[16/10] overflow-hidden bg-[#EFECE3]">
+              <div className="relative aspect-[16/10] overflow-hidden bg-[#0e4a3a]">
                 <ResponsiveImage
                   webp={residence.imageWebp}
                   fallback={residence.image}
@@ -70,7 +70,7 @@ export const PortfolioResidences: React.FC<PortfolioResidencesProps> = ({ onOpen
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute top-4 end-4">
-                  <span className="px-3 py-1 rounded-md bg-[#B3934B] text-white font-mono text-[10px] font-bold tracking-wider uppercase shadow-sm">
+                  <span className="px-3 py-1 rounded-md bg-[#c7aa79] text-white font-mono text-[10px] font-bold tracking-wider uppercase shadow-sm">
                     {residence.status}
                   </span>
                 </div>
@@ -79,18 +79,18 @@ export const PortfolioResidences: React.FC<PortfolioResidencesProps> = ({ onOpen
               {/* Residence Content */}
               <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between">
                 <div>
-                  <span className="text-[11px] font-bold uppercase tracking-widest text-[#5F6B64] block mb-1">
+                  <span className="text-[11px] font-bold uppercase tracking-widest text-[#aabdb5] block mb-1">
                     {residence.location}
                   </span>
-                  <h3 className="text-xl font-bold text-[#14231C] mb-3 font-serif group-hover:text-[#8B7340] transition-colors">
+                  <h3 className="text-xl font-bold text-[#F4F1EB] mb-3 font-serif group-hover:text-[#c7aa79] transition-colors">
                     {residence.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#5C6660] leading-relaxed mb-6">
+                  <p className="text-xs sm:text-sm text-[#aabdb5] leading-relaxed mb-6">
                     {residence.description}
                   </p>
                 </div>
 
-                <div className="pt-4 border-t border-[#F2EFE8] flex items-center justify-between text-xs text-[#8B7340] font-semibold">
+                <div className="pt-4 border-t border-[#F4F1EB]/15 flex items-center justify-between text-xs text-[#c7aa79] font-semibold">
                   <span>{pf.cardCta}</span>
                   <ArrowRight className="w-3.5 h-3.5 rtl:-scale-x-100 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />
                 </div>
@@ -109,19 +109,19 @@ export const PortfolioResidences: React.FC<PortfolioResidencesProps> = ({ onOpen
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedResidence(null)}
-              className="fixed inset-0 bg-[#0C1612]/75 backdrop-blur-md"
+              className="fixed inset-0 bg-[#062b24]/75 backdrop-blur-md"
             />
 
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 16 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 16 }}
-              className="relative w-full max-w-2xl bg-[#FCFBF8] rounded-3xl shadow-2xl border border-[#E8E2D5] overflow-hidden my-6 z-10"
+              className="relative w-full max-w-2xl bg-[#0a3930] rounded-3xl shadow-2xl border border-[#F4F1EB]/15 overflow-hidden my-6 z-10"
               role="dialog"
               aria-modal="true"
               aria-label={selectedResidence.title}
             >
-              <div className="relative aspect-[16/9] w-full bg-[#EFECE3]">
+              <div className="relative aspect-[16/9] w-full bg-[#0e4a3a]">
                 <ResponsiveImage
                   webp={selectedResidence.imageWebp}
                   fallback={selectedResidence.image}
@@ -143,18 +143,18 @@ export const PortfolioResidences: React.FC<PortfolioResidencesProps> = ({ onOpen
               </div>
 
               <div className="p-6 sm:p-8">
-                <span className="text-xs font-bold uppercase tracking-widest text-[#B3934B] block mb-1">
+                <span className="text-xs font-bold uppercase tracking-widest text-[#c7aa79] block mb-1">
                   {pf.modalEyebrow}
                 </span>
-                <h3 className="text-2xl font-serif font-bold text-[#14231C] mb-3">
+                <h3 className="text-2xl font-serif font-bold text-[#F4F1EB] mb-3">
                   {selectedResidence.title}
                 </h3>
-                <p className="text-sm text-[#5C6660] leading-relaxed mb-6">
+                <p className="text-sm text-[#aabdb5] leading-relaxed mb-6">
                   {selectedResidence.description}
                 </p>
 
                 {/* Illustrative-project note (no specs per TRUTH RULES) */}
-                <div className="p-4 bg-[#F5F2EB] rounded-2xl border border-[#E2DDD0] mb-6 text-xs text-[#5C6660] leading-relaxed">
+                <div className="p-4 bg-[#0a3930] rounded-2xl border border-[#F4F1EB]/15 mb-6 text-xs text-[#aabdb5] leading-relaxed">
                   {pf.modalNote}
                 </div>
 
@@ -164,14 +164,14 @@ export const PortfolioResidences: React.FC<PortfolioResidencesProps> = ({ onOpen
                       setSelectedResidence(null);
                       onOpenBooking();
                     }}
-                    className="w-full sm:flex-1 py-3 px-5 bg-[#14231C] hover:bg-[#1E332A] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-sm flex items-center justify-center gap-2"
+                    className="w-full sm:flex-1 py-3 px-5 bg-[#0f4f3e] hover:bg-[#156047] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-sm flex items-center justify-center gap-2"
                   >
                     <span>{pf.modalCta}</span>
-                    <ArrowRight className="w-4 h-4 text-[#E2BE76] rtl:-scale-x-100" />
+                    <ArrowRight className="w-4 h-4 text-[#c7aa79] rtl:-scale-x-100" />
                   </button>
                   <button
                     onClick={() => setSelectedResidence(null)}
-                    className="w-full sm:w-auto py-3 px-5 text-xs font-semibold text-[#6B756E] hover:text-[#14231C] transition-colors"
+                    className="w-full sm:w-auto py-3 px-5 text-xs font-semibold text-[#8db5a2] hover:text-[#F4F1EB] transition-colors"
                   >
                     {pf.close}
                   </button>

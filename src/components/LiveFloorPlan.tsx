@@ -53,47 +53,47 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
   const getHardwareIcon = (iconName: string) => {
     switch (iconName) {
       case 'lightbulb':
-        return <Lightbulb className="w-4 h-4 text-[#8B7340]" />;
+        return <Lightbulb className="w-4 h-4 text-[#c7aa79]" />;
       case 'blinds':
-        return <Blinds className="w-4 h-4 text-[#8B7340]" />;
+        return <Blinds className="w-4 h-4 text-[#c7aa79]" />;
       case 'radar':
-        return <Radar className="w-4 h-4 text-[#8B7340]" />;
+        return <Radar className="w-4 h-4 text-[#c7aa79]" />;
       case 'moon':
-        return <Moon className="w-4 h-4 text-[#8B7340]" />;
+        return <Moon className="w-4 h-4 text-[#c7aa79]" />;
       case 'sparkles':
-        return <Sparkles className="w-4 h-4 text-[#8B7340]" />;
+        return <Sparkles className="w-4 h-4 text-[#c7aa79]" />;
       case 'wind':
-        return <Wind className="w-4 h-4 text-[#8B7340]" />;
+        return <Wind className="w-4 h-4 text-[#c7aa79]" />;
       case 'sliders':
-        return <Sliders className="w-4 h-4 text-[#8B7340]" />;
+        return <Sliders className="w-4 h-4 text-[#c7aa79]" />;
       case 'key':
-        return <Key className="w-4 h-4 text-[#8B7340]" />;
+        return <Key className="w-4 h-4 text-[#c7aa79]" />;
       case 'eye':
-        return <Eye className="w-4 h-4 text-[#8B7340]" />;
+        return <Eye className="w-4 h-4 text-[#c7aa79]" />;
       case 'camera':
-        return <Camera className="w-4 h-4 text-[#8B7340]" />;
+        return <Camera className="w-4 h-4 text-[#c7aa79]" />;
       case 'bell':
-        return <Bell className="w-4 h-4 text-[#8B7340]" />;
+        return <Bell className="w-4 h-4 text-[#c7aa79]" />;
       default:
-        return <Lightbulb className="w-4 h-4 text-[#8B7340]" />;
+        return <Lightbulb className="w-4 h-4 text-[#c7aa79]" />;
     }
   };
 
   return (
-    <section id="living-spaces" className="py-20 lg:py-28 bg-[#F5F2EB] relative">
+    <section id="living-spaces" className="py-20 lg:py-28 bg-[#0a3930] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-10">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#B3934B] block mb-2">
+          <span className="text-xs font-bold uppercase tracking-widest text-[#c7aa79] block mb-2">
             {floor.eyebrow}
           </span>
           <h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#14231C] tracking-tight mb-4"
+            className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#F4F1EB] tracking-tight mb-4"
             style={{ textWrap: 'balance' }}
           >
             {floor.title}
           </h2>
-          <p className="text-sm sm:text-base text-[#4A554E] leading-relaxed max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-[#d5e0da] leading-relaxed max-w-2xl mx-auto">
             {floor.sub}
           </p>
         </div>
@@ -108,8 +108,8 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
                 onClick={() => handleSelectRoom(room.id)}
                 className={`px-5 py-2.5 rounded-full text-xs font-bold tracking-wider transition-all uppercase ${
                   isActive
-                    ? 'bg-[#14231C] text-white shadow-md'
-                    : 'bg-white text-[#5C6660] hover:text-[#14231C] border border-[#DDD7C8] hover:border-[#B3934B]'
+                    ? 'bg-[#0f4f3e] text-white shadow-md'
+                    : 'bg-[#0a3930] text-[#aabdb5] hover:text-[#F4F1EB] border border-[#F4F1EB]/20 hover:border-[#c7aa79]'
                 }`}
               >
                 {room.tabLabel}
@@ -121,23 +121,23 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
         {/* Interactive Dual-Panel Display */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* Left Panel: Architectural Schematic Blueprint View (lg:col-span-7) */}
-          <div className="lg:col-span-7 bg-[#FCFBF8] rounded-3xl p-6 sm:p-8 border border-[#E2DDD0] shadow-sm flex flex-col justify-between">
+          <div className="lg:col-span-7 bg-[#0a3930] rounded-3xl p-6 sm:p-8 border border-[#F4F1EB]/15 shadow-sm flex flex-col justify-between">
             {/* Blueprint Header */}
-            <div className="flex items-center justify-between pb-4 border-b border-[#EAE6DC] mb-6">
-              <span className="text-[11px] font-mono uppercase tracking-wider text-[#6B756E] font-medium">
+            <div className="flex items-center justify-between pb-4 border-b border-[#F4F1EB]/15 mb-6">
+              <span className="text-[11px] font-mono uppercase tracking-wider text-[#8db5a2] font-medium">
                 {floor.schematic}
               </span>
               <div className="flex items-center gap-2">
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#22C55E] opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#22C55E]"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#9dd7c2] opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#9dd7c2]"></span>
                 </span>
-                <span className="text-[11px] text-[#4A554E] font-medium">{floor.liveMapping}</span>
+                <span className="text-[11px] text-[#d5e0da] font-medium">{floor.liveMapping}</span>
               </div>
             </div>
 
             {/* Architectural Blueprint Vector Area */}
-            <div className="relative w-full aspect-[4/3] bg-[#F7F5EE] rounded-2xl border-2 border-[#D8D2C2] p-4 overflow-hidden select-none bg-blueprint-grid">
+            <div className="relative w-full aspect-[4/3] bg-[#0d4436] rounded-2xl border-2 border-[#F4F1EB]/20 p-4 overflow-hidden select-none bg-blueprint-grid">
               <svg
                 viewBox="0 0 600 450"
                 className="w-full h-full"
@@ -150,18 +150,18 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
                   y="20"
                   width="560"
                   height="410"
-                  stroke="#2C3B32"
+                  stroke="#D9D2BE"
                   strokeWidth="5"
                   strokeLinejoin="round"
                 />
 
                 {/* Interior Partition Walls */}
                 {/* Horizontal Divider */}
-                <line x1="20" y1="230" x2="580" y2="230" stroke="#4A5A50" strokeWidth="3" />
+                <line x1="20" y1="230" x2="580" y2="230" stroke="#5A6B5E" strokeWidth="3" />
                 {/* Vertical Divider for Top Floor (Living Salon vs Master Suite) */}
-                <line x1="330" y1="20" x2="330" y2="230" stroke="#4A5A50" strokeWidth="3" />
+                <line x1="330" y1="20" x2="330" y2="230" stroke="#5A6B5E" strokeWidth="3" />
                 {/* Vertical Divider for Bottom Floor (Kitchen vs Grand Foyer) */}
-                <line x1="260" y1="230" x2="260" y2="430" stroke="#4A5A50" strokeWidth="3" />
+                <line x1="260" y1="230" x2="260" y2="430" stroke="#5A6B5E" strokeWidth="3" />
 
                 {/* ZONE 1: LIVING SALON (x: 20-330, y: 20-230) */}
                 <g
@@ -176,7 +176,7 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
                     fill={
                       selectedRoomId === 'living_room'
                         ? 'rgba(226, 190, 118, 0.22)'
-                        : 'rgba(245, 243, 237, 0.6)'
+                        : 'rgba(255, 255, 255, 0.05)'
                     }
                     className="transition-colors duration-300 group-hover:fill-[rgba(226,190,118,0.15)]"
                   />
@@ -184,7 +184,7 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
                   <text
                     x="45"
                     y="60"
-                    fill="#3F4D44"
+                    fill="#aabdb5"
                     fontSize="11"
                     fontFamily="monospace"
                     fontWeight="600"
@@ -196,7 +196,7 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
                     cx="175"
                     cy="125"
                     r={selectedRoomId === 'living_room' ? '18' : '14'}
-                    fill={selectedRoomId === 'living_room' ? '#B3934B' : '#14231C'}
+                    fill={selectedRoomId === 'living_room' ? '#c7aa79' : '#3A4A40'}
                     className="transition-all duration-300"
                   />
                   <text
@@ -214,7 +214,7 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
                       cx="175"
                       cy="125"
                       r="26"
-                      stroke="#B3934B"
+                      stroke="#c7aa79"
                       strokeWidth="1.5"
                       strokeDasharray="3 3"
                       className="animate-spin"
@@ -235,14 +235,14 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
                     fill={
                       selectedRoomId === 'master_bedroom'
                         ? 'rgba(226, 190, 118, 0.22)'
-                        : 'rgba(245, 243, 237, 0.6)'
+                        : 'rgba(255, 255, 255, 0.05)'
                     }
                     className="transition-colors duration-300 group-hover:fill-[rgba(226,190,118,0.15)]"
                   />
                   <text
                     x="355"
                     y="60"
-                    fill="#3F4D44"
+                    fill="#aabdb5"
                     fontSize="11"
                     fontFamily="monospace"
                     fontWeight="600"
@@ -254,7 +254,7 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
                     cx="455"
                     cy="125"
                     r={selectedRoomId === 'master_bedroom' ? '18' : '14'}
-                    fill={selectedRoomId === 'master_bedroom' ? '#B3934B' : '#14231C'}
+                    fill={selectedRoomId === 'master_bedroom' ? '#c7aa79' : '#3A4A40'}
                     className="transition-all duration-300"
                   />
                   <text
@@ -272,7 +272,7 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
                       cx="455"
                       cy="125"
                       r="26"
-                      stroke="#B3934B"
+                      stroke="#c7aa79"
                       strokeWidth="1.5"
                       strokeDasharray="3 3"
                       className="animate-spin"
@@ -293,14 +293,14 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
                     fill={
                       selectedRoomId === 'kitchen'
                         ? 'rgba(226, 190, 118, 0.22)'
-                        : 'rgba(245, 243, 237, 0.6)'
+                        : 'rgba(255, 255, 255, 0.05)'
                     }
                     className="transition-colors duration-300 group-hover:fill-[rgba(226,190,118,0.15)]"
                   />
                   <text
                     x="45"
                     y="270"
-                    fill="#3F4D44"
+                    fill="#aabdb5"
                     fontSize="11"
                     fontFamily="monospace"
                     fontWeight="600"
@@ -312,7 +312,7 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
                     cx="140"
                     cy="330"
                     r={selectedRoomId === 'kitchen' ? '18' : '14'}
-                    fill={selectedRoomId === 'kitchen' ? '#B3934B' : '#14231C'}
+                    fill={selectedRoomId === 'kitchen' ? '#c7aa79' : '#3A4A40'}
                     className="transition-all duration-300"
                   />
                   <text
@@ -330,7 +330,7 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
                       cx="140"
                       cy="330"
                       r="26"
-                      stroke="#B3934B"
+                      stroke="#c7aa79"
                       strokeWidth="1.5"
                       strokeDasharray="3 3"
                       className="animate-spin"
@@ -351,14 +351,14 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
                     fill={
                       selectedRoomId === 'foyer'
                         ? 'rgba(226, 190, 118, 0.22)'
-                        : 'rgba(245, 243, 237, 0.6)'
+                        : 'rgba(255, 255, 255, 0.05)'
                     }
                     className="transition-colors duration-300 group-hover:fill-[rgba(226,190,118,0.15)]"
                   />
                   <text
                     x="285"
                     y="270"
-                    fill="#3F4D44"
+                    fill="#aabdb5"
                     fontSize="11"
                     fontFamily="monospace"
                     fontWeight="600"
@@ -370,7 +370,7 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
                     cx="420"
                     cy="330"
                     r={selectedRoomId === 'foyer' ? '18' : '14'}
-                    fill={selectedRoomId === 'foyer' ? '#B3934B' : '#14231C'}
+                    fill={selectedRoomId === 'foyer' ? '#c7aa79' : '#3A4A40'}
                     className="transition-all duration-300"
                   />
                   <text
@@ -388,7 +388,7 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
                       cx="420"
                       cy="330"
                       r="26"
-                      stroke="#B3934B"
+                      stroke="#c7aa79"
                       strokeWidth="1.5"
                       strokeDasharray="3 3"
                       className="animate-spin"
@@ -399,13 +399,13 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
                 {/* Architectural Door Arc indicators */}
                 <path
                   d="M 330 200 A 30 30 0 0 0 300 230"
-                  stroke="#7A867F"
+                  stroke="#5F6B64"
                   strokeWidth="1.2"
                   strokeDasharray="2 2"
                 />
                 <path
                   d="M 260 200 A 30 30 0 0 1 290 230"
-                  stroke="#7A867F"
+                  stroke="#5F6B64"
                   strokeWidth="1.2"
                   strokeDasharray="2 2"
                 />
@@ -413,42 +413,42 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
             </div>
 
             {/* Blueprint Footer */}
-            <div className="flex items-center justify-between pt-4 border-t border-[#EAE6DC] text-[11px] text-[#5F6B64]">
+            <div className="flex items-center justify-between pt-4 border-t border-[#F4F1EB]/15 text-[11px] text-[#aabdb5]">
               <span className="font-mono">{floor.scaleNote}</span>
               <span>{floor.localNote}</span>
             </div>
           </div>
 
           {/* Right Panel: Active Space Profile Card (lg:col-span-5) */}
-          <div className="lg:col-span-5 bg-[#FCFBF8] rounded-3xl p-6 sm:p-8 border border-[#E2DDD0] shadow-sm flex flex-col justify-between">
+          <div className="lg:col-span-5 bg-[#0a3930] rounded-3xl p-6 sm:p-8 border border-[#F4F1EB]/15 shadow-sm flex flex-col justify-between">
             <div>
               {/* Header */}
               <div className="mb-4">
-                <span className="text-xs font-semibold text-[#8B7340] uppercase tracking-wider block mb-1">
+                <span className="text-xs font-semibold text-[#c7aa79] uppercase tracking-wider block mb-1">
                   {floor.profileOf} {currentRoom.category}
                 </span>
-                <h3 className="text-2xl font-serif font-bold text-[#14231C]">
+                <h3 className="text-2xl font-serif font-bold text-[#F4F1EB]">
                   {currentRoom.title}
                 </h3>
               </div>
 
               {/* Installed Hardware Nodes List */}
               <div className="mb-6">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-[#5F6B64] block mb-3">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#aabdb5] block mb-3">
                   {floor.nodesTitle}
                 </span>
                 <div className="space-y-3">
                   {currentRoom.hardwareNodes.map((node, i) => (
                     <div
                       key={i}
-                      className="flex items-start gap-3 p-2.5 rounded-xl bg-[#F7F5EE] border border-[#EAE6DC]"
+                      className="flex items-start gap-3 p-2.5 rounded-xl bg-[#0d4436] border border-[#F4F1EB]/15"
                     >
-                      <div className="w-8 h-8 rounded-lg bg-white border border-[#DDD7C8] flex items-center justify-center shrink-0">
+                      <div className="w-8 h-8 rounded-lg bg-[#0a3930] border border-[#F4F1EB]/20 flex items-center justify-center shrink-0">
                         {getHardwareIcon(node.icon)}
                       </div>
                       <div>
-                        <h4 className="text-xs font-bold text-[#14231C]">{node.title}</h4>
-                        <p className="text-[11px] text-[#6B756E] leading-tight">
+                        <h4 className="text-xs font-bold text-[#F4F1EB]">{node.title}</h4>
+                        <p className="text-[11px] text-[#8db5a2] leading-tight">
                           {node.description}
                         </p>
                       </div>
@@ -458,11 +458,11 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
               </div>
 
               {/* Active Scene Simulation Card */}
-              <div className="bg-[#F7F4EB] rounded-2xl p-4 sm:p-5 border border-[#E2DDD0] mb-6">
+              <div className="bg-[#0d4436] rounded-2xl p-4 sm:p-5 border border-[#F4F1EB]/15 mb-6">
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-2">
-                    <Sparkles className="w-4 h-4 text-[#8B7340]" />
-                    <h4 className="text-xs font-bold text-[#14231C]">
+                    <Sparkles className="w-4 h-4 text-[#c7aa79]" />
+                    <h4 className="text-xs font-bold text-[#F4F1EB]">
                       {currentScene.name}
                     </h4>
                   </div>
@@ -474,28 +474,28 @@ export const LiveFloorPlan: React.FC<LiveFloorPlanProps> = ({ onOpenBooking }) =
                           (activeSceneIndex + 1) % currentRoom.scenes.length
                         )
                       }
-                      className="text-[10px] text-[#8B7340] hover:text-[#14231C] font-semibold underline"
+                      className="text-[10px] text-[#c7aa79] hover:text-[#F4F1EB] font-semibold underline"
                     >
                       {floor.switchScene}
                     </button>
                   )}
                 </div>
 
-                <p className="text-xs text-[#5C6660] leading-relaxed">
+                <p className="text-xs text-[#aabdb5] leading-relaxed">
                   {currentScene.description}
                 </p>
               </div>
             </div>
 
             {/* Profile Footer */}
-            <div className="pt-4 border-t border-[#EAE6DC] flex items-center justify-between text-xs">
-              <div className="flex items-center gap-2 text-[#4A554E]">
-                <Wifi className="w-4 h-4 text-[#2E7D32]" />
+            <div className="pt-4 border-t border-[#F4F1EB]/15 flex items-center justify-between text-xs">
+              <div className="flex items-center gap-2 text-[#d5e0da]">
+                <Wifi className="w-4 h-4 text-[#9dd7c2]" />
                 <span>{floor.runsLocally}</span>
               </div>
               <button
                 onClick={() => setCustomizerOpen(true)}
-                className="font-bold text-[#14231C] hover:text-[#8B7340] flex items-center gap-1.5 transition-colors group"
+                className="font-bold text-[#F4F1EB] hover:text-[#c7aa79] flex items-center gap-1.5 transition-colors group"
               >
                 <span>{floor.customize}</span>
                 <ArrowRight className="w-3.5 h-3.5 rtl:-scale-x-100 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />

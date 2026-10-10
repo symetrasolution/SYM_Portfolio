@@ -108,11 +108,11 @@ export default function App() {
   });
 
   return (
-    <div className="min-h-screen bg-[#FAF8F2] text-[#19221D] font-sans selection:bg-[#E2BE76]/30 selection:text-[#0C1713] relative">
+    <div className="min-h-screen bg-[#062b24] text-[#F4F1EB] font-sans selection:bg-[#F4F1EB]/30 selection:text-[#062b24] relative">
       {/* Subtle Formal Portfolio Architectural Progress Line */}
       <motion.div
         style={{ scaleX }}
-        className="fixed top-20 left-0 right-0 h-[2px] bg-gradient-to-r from-[#B3934B] via-[#E2BE76] to-[#B3934B] origin-left rtl:origin-right z-40 pointer-events-none"
+        className="fixed top-20 left-0 right-0 h-[2px] bg-gradient-to-r from-[#c7aa79] via-[#c7aa79] to-[#c7aa79] origin-left rtl:origin-right z-40 pointer-events-none"
       />
 
       {/* Top Fixed Navigation */}

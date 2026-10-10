@@ -2,11 +2,20 @@
 
 @layer base {
   :root {
-    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --font-heading: 'Cabinet Grotesk', 'Plus Jakarta Sans', sans-serif;
-    --font-serif: 'Cinzel', Georgia, serif;
+    --font-sans: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-heading: 'Manrope', 'DM Sans', sans-serif;
+    --font-serif: 'Manrope', Georgia, serif;
     --font-mono: 'JetBrains Mono', monospace;
-    --font-arabic: 'Cairo', 'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-arabic: 'Cairo', 'DM Sans', system-ui, sans-serif;
+    --sym-green: #0D4C3C;
+    --sym-deep: #062b24;
+    --sym-deep2: #0a3930;
+    --sym-cream: #F4F1EB;
+    --sym-cream2: #e9e4d9;
+    --sym-mint: #9dd7c2;
+    --sym-gold: #c7aa79;
+    --sym-ink: #142d28;
+    --sym-muted: #aabdb5;
   }
 
   html {
@@ -15,8 +24,8 @@
   }
 
   body {
-    background-color: #FAF8F2;
-    color: #19221D;
+    background-color: #062b24;
+    color: #F4F1EB;
     overflow-x: hidden;
   }
 
@@ -30,9 +39,11 @@
   html[dir='rtl'] .font-mono {
     font-family: 'Cairo', 'JetBrains Mono', monospace;
   }
-  /* Letter-spacing breaks Arabic script joining — neutralize it in RTL. */
+  /* Letter-spacing breaks Arabic script joining — neutralize it in RTL,
+     including arbitrary tracking-* utilities. */
   html[dir='rtl'] .tracking-widest,
-  html[dir='rtl'] .tracking-wider {
+  html[dir='rtl'] .tracking-wider,
+  html[dir='rtl'] [class*='tracking-'] {
     letter-spacing: 0;
   }
 }
@@ -43,19 +54,19 @@
   height: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #F4F1EA;
+  background: #062b24;
 }
 ::-webkit-scrollbar-thumb {
-  background: #CFC9BA;
+  background: #3d5a50;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #B3ABA0;
+  background: #c7aa79;
 }
 
 /* Visible keyboard focus everywhere (pairs with Tailwind focus: rings). */
 :focus-visible {
-  outline: 2px solid #8B7340;
+  outline: 2px solid #9dd7c2;
   outline-offset: 2px;
 }
 
@@ -75,10 +86,16 @@
 
 /* Blueprint grid pattern helper */
 .bg-blueprint-grid {
-  background-image: 
-    linear-gradient(to right, rgba(20, 35, 28, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(20, 35, 28, 0.04) 1px, transparent 1px);
+  background-image:
+    linear-gradient(to right, rgba(157, 215, 194, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(157, 215, 194, 0.07) 1px, transparent 1px);
   background-size: 24px 24px;
+}
+
+/* Hero glow: radial green ambience + faint grid, per reference. */
+.bg-hero-glow {
+  background:
+    radial-gradient(ellipse at 69% 52%, #155646 0%, #0a342b 37%, #06251f 75%);
 }
 
 .bg-blueprint-grid-dark {

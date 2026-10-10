@@ -66,6 +66,7 @@ the site. Check the box when real data is supplied and the content file updated.
 ## Phase 2 additions (new placeholders to confirm)
 
 - [ ] Conecta logo file (`src/assets/logos/conecta.svg`) + Symetra logo file (`src/assets/logos/symetra.svg`)
+- [ ] Conecta brand blue exact value (currently assumed `#60A5FA`, band only)
 - [ ] Conecta partnership wording approved by both sides
 - [ ] Showroom/experience-center locations (Riyadh DQ, Cairo 5th Settlement mentions in booking flow)
 - [ ] "How it works" + technical appendix wording reviewed (Zigbee2MQTT, Node-RED, Local Tuya, backups)

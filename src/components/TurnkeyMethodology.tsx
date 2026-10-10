@@ -10,20 +10,20 @@ export const TurnkeyMethodology: React.FC = () => {
   const PARTNERSHIP = method.partnership;
 
   return (
-    <section id="turnkey" className="py-20 lg:py-28 bg-[#FAF8F2] relative">
+    <section id="turnkey" className="py-20 lg:py-28 bg-[#F4F1EB] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#B3934B] block mb-2">
+          <span className="text-xs font-bold uppercase tracking-widest text-[#508876] block mb-2">
             {method.eyebrow}
           </span>
           <h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#14231C] tracking-tight mb-4"
+            className="text-3xl sm:text-4xl lg:text-5xl font-serif font-extrabold text-[#142d28] tracking-tight mb-4"
             style={{ textWrap: 'balance' }}
           >
             {method.title}
           </h2>
-          <p className="text-sm sm:text-base text-[#4A554E] leading-relaxed max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-[#476058] leading-relaxed max-w-2xl mx-auto">
             {method.sub}
           </p>
         </div>
@@ -31,7 +31,7 @@ export const TurnkeyMethodology: React.FC = () => {
         {/* 5 Steps Horizontal Timeline */}
         <div className="relative mb-16">
           {/* Connector Line behind steps (hidden on mobile) */}
-          <div className="hidden lg:block absolute top-7 start-12 end-12 h-0.5 bg-[#E2DDD0] -z-0" />
+          <div className="hidden lg:block absolute top-7 start-12 end-12 h-0.5 bg-[#142d28]/15 -z-0" />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 relative z-10">
             {steps.map((step, idx) => (
@@ -44,14 +44,14 @@ export const TurnkeyMethodology: React.FC = () => {
                 className="flex flex-col items-start lg:items-center text-start lg:text-center group"
               >
                 {/* Number Circle Badge */}
-                <div className="w-14 h-14 rounded-full bg-[#14231C] text-white flex items-center justify-center font-bold text-sm tracking-wide mb-5 shadow-md border-4 border-[#FAF8F2] transition-transform duration-300 group-hover:scale-110 group-hover:bg-[#8B7340]">
+                <div className="w-14 h-14 rounded-full bg-[#0D4C3C] text-[#F4F1EB] flex items-center justify-center font-bold text-sm tracking-wide mb-5 shadow-md border-4 border-[#F4F1EB] transition-transform duration-300 group-hover:scale-110 group-hover:bg-[#c7aa79] group-hover:text-[#062b24]">
                   {step.number}
                 </div>
 
-                <h3 className="text-base font-bold text-[#14231C] mb-2 font-serif">
+                <h3 className="text-base font-bold text-[#142d28] mb-2 font-serif">
                   {step.title}
                 </h3>
-                <p className="text-xs text-[#5C6660] leading-relaxed">
+                <p className="text-xs text-[#476058] leading-relaxed">
                   {step.description}
                 </p>
               </motion.div>
@@ -60,18 +60,18 @@ export const TurnkeyMethodology: React.FC = () => {
         </div>
 
         {/* Systems Partnership Banner: Symetra Solution × Conecta */}
-        <div className="bg-white rounded-2xl p-6 sm:p-7 border border-[#E8E4DA] shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="bg-white rounded-2xl p-6 sm:p-7 border border-[#142d28]/10 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2 shrink-0">
               <div
-                className="w-12 h-12 rounded-xl bg-[#14231C] text-[#E2BE76] flex items-center justify-center font-bold text-sm shadow-sm"
+                className="w-12 h-12 rounded-xl bg-[#0D4C3C] text-[#F4F1EB] flex items-center justify-center font-bold text-sm shadow-sm"
                 aria-label={PARTNERSHIP.symetraLogoLabel}
               >
                 S
               </div>
-              <span className="text-[#B3934B] font-bold">×</span>
+              <span className="text-[#60A5FA] font-bold">×</span>
               <div
-                className="w-12 h-12 rounded-xl border-2 border-dashed border-[#C9C2B2] bg-[#F7F5EE] text-[#5F6B64] flex items-center justify-center"
+                className="w-12 h-12 rounded-xl border-2 border-dashed border-[#60A5FA]/50 bg-[#60A5FA]/10 text-[#60A5FA] flex items-center justify-center"
                 aria-label={PARTNERSHIP.conectaLogoLabel}
                 title={PARTNERSHIP.conectaLogoTitle}
               >
@@ -79,20 +79,20 @@ export const TurnkeyMethodology: React.FC = () => {
               </div>
             </div>
             <div>
-              <span className="text-[10px] uppercase font-bold tracking-widest text-[#5F6B64] block">
+              <span className="text-[10px] uppercase font-bold tracking-widest text-[#8db5a2] block">
                 {PARTNERSHIP.eyebrow}
               </span>
-              <h4 className="text-sm sm:text-base font-bold text-[#14231C]">
+              <h4 className="text-sm sm:text-base font-bold text-[#142d28]">
                 {PARTNERSHIP.headline}
               </h4>
             </div>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center sm:items-end gap-3 text-end">
-            <span className="text-xs font-semibold text-[#14231C]">
+            <span className="text-xs font-semibold text-[#142d28]">
               {PARTNERSHIP.allianceName}
             </span>
-            <div className="flex items-center gap-2 text-xs text-[#6B756E]">
+            <div className="flex items-center gap-2 text-xs text-[#476058]">
               {PARTNERSHIP.cities.map((city, i) => (
                 <span key={city} className="flex items-center gap-2">
                   {i > 0 && <span>•</span>}

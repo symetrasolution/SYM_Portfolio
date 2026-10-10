@@ -69,31 +69,31 @@ export const SpecsCustomizerModal: React.FC<SpecsCustomizerModalProps> = ({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
-          className="fixed inset-0 bg-[#0C1612]/75 backdrop-blur-md"
+          className="fixed inset-0 bg-[#062b24]/75 backdrop-blur-md"
         />
 
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 16 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 16 }}
-          className="relative w-full max-w-xl bg-[#FCFBF8] rounded-2xl shadow-2xl border border-[#E8E2D5] overflow-hidden my-6 z-10 p-6 sm:p-8"
+          className="relative w-full max-w-xl bg-[#0a3930] rounded-2xl shadow-2xl border border-[#F4F1EB]/15 overflow-hidden my-6 z-10 p-6 sm:p-8"
           role="dialog"
           aria-modal="true"
           aria-label={`${specs.eyebrow} — ${room.name}`}
         >
           {/* Header */}
-          <div className="flex items-center justify-between pb-4 border-b border-[#E8E4DA] mb-6">
+          <div className="flex items-center justify-between pb-4 border-b border-[#F4F1EB]/15 mb-6">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-[#B3934B]">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#c7aa79]">
                 {specs.eyebrow}
               </span>
-              <h3 className="text-xl font-serif font-bold text-[#14231C] mt-0.5">
+              <h3 className="text-xl font-serif font-bold text-[#F4F1EB] mt-0.5">
                 {specs.titleBefore} {room.name} {specs.titleAfter}
               </h3>
             </div>
             <button
               onClick={onClose}
-              className="w-8 h-8 rounded-full bg-[#EFECE3] hover:bg-[#E5E1D5] flex items-center justify-center text-[#4A554E]"
+              className="w-8 h-8 rounded-full bg-[#0e4a3a] hover:bg-[#1E2C25] flex items-center justify-center text-[#d5e0da]"
             >
               <X className="w-4 h-4" />
             </button>
@@ -110,24 +110,24 @@ export const SpecsCustomizerModal: React.FC<SpecsCustomizerModalProps> = ({
                   onClick={() => toggleInterest(node.title)}
                   className={`w-full flex items-start gap-3 p-3 rounded-xl border text-start transition-all ${
                     checked
-                      ? 'bg-[#F7F4EB] border-[#B3934B]'
-                      : 'bg-white border-[#E2DDD0] hover:border-[#C8BFAD]'
+                      ? 'bg-[#0d4436] border-[#c7aa79]'
+                      : 'bg-[#0a3930] border-[#F4F1EB]/15 hover:border-[#F4F1EB]/30'
                   }`}
                 >
                   <span
                     className={`mt-0.5 w-5 h-5 rounded-md border flex items-center justify-center shrink-0 transition-colors ${
                       checked
-                        ? 'bg-[#14231C] border-[#14231C] text-[#E2BE76]'
-                        : 'bg-white border-[#CCC5B5] text-transparent'
+                        ? 'bg-[#0f4f3e] border-[#3A4A40] text-[#c7aa79]'
+                        : 'bg-[#0a3930] border-[#F4F1EB]/30 text-transparent'
                     }`}
                   >
                     <Check className="w-3.5 h-3.5" />
                   </span>
                   <span>
-                    <span className="text-xs font-bold text-[#14231C] block">
+                    <span className="text-xs font-bold text-[#F4F1EB] block">
                       {node.title}
                     </span>
-                    <span className="text-[11px] text-[#6B756E]">
+                    <span className="text-[11px] text-[#8db5a2]">
                       {node.description}
                     </span>
                   </span>
@@ -137,9 +137,9 @@ export const SpecsCustomizerModal: React.FC<SpecsCustomizerModalProps> = ({
           </div>
 
           {/* Honest-scope note */}
-          <div className="p-3.5 bg-[#F4F1EA] rounded-xl border border-[#E2DDD0] mb-6 flex items-start gap-2.5">
-            <ClipboardList className="w-4 h-4 text-[#8B7340] shrink-0 mt-0.5" />
-            <p className="text-[11px] text-[#556059] leading-relaxed">
+          <div className="p-3.5 bg-[#0d4436] rounded-xl border border-[#F4F1EB]/15 mb-6 flex items-start gap-2.5">
+            <ClipboardList className="w-4 h-4 text-[#c7aa79] shrink-0 mt-0.5" />
+            <p className="text-[11px] text-[#aabdb5] leading-relaxed">
               {specs.note}
             </p>
           </div>
@@ -148,11 +148,11 @@ export const SpecsCustomizerModal: React.FC<SpecsCustomizerModalProps> = ({
           <div className="flex flex-col sm:flex-row items-center gap-3">
             <button
               onClick={handleApply}
-              className="w-full sm:flex-1 py-3 px-5 bg-[#14231C] hover:bg-[#1E332A] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-2"
+              className="w-full sm:flex-1 py-3 px-5 bg-[#0f4f3e] hover:bg-[#156047] text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-2"
             >
               {saved ? (
                 <>
-                  <Check className="w-4 h-4 text-[#22C55E]" />
+                  <Check className="w-4 h-4 text-[#9dd7c2]" />
                   <span>{specs.saved}</span>
                 </>
               ) : (
@@ -164,7 +164,7 @@ export const SpecsCustomizerModal: React.FC<SpecsCustomizerModalProps> = ({
                 onClose();
                 onOpenBooking();
               }}
-              className="w-full sm:w-auto py-3 px-5 bg-[#E2BE76] hover:bg-[#D4AF63] text-[#14231C] text-xs font-bold uppercase tracking-wider rounded-xl transition-all whitespace-nowrap"
+              className="w-full sm:w-auto py-3 px-5 bg-[#F4F1EB] hover:bg-white text-[#062b24] text-xs font-bold uppercase tracking-wider rounded-xl transition-all whitespace-nowrap"
             >
               {specs.review}
             </button>

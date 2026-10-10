@@ -105,6 +105,15 @@
 - **Phase 7 TODO** — single Node process (`dist/` + `/api`, SPA fallback),
   `GET /api/health`, `npm start`/`build:all`, Dockerfile + `.dockerignore`,
   DEPLOY.md (env, `data/` volume + ephemeral-disk warning, Nginx/Caddy HTTPS).
+- **Redesign (new checkpoints)** — art direction pivoted to owner's `new.html`
+  reference (deep green `#062b24`/cream `#F4F1EB`/mint `#9dd7c2`/bronze
+  `#c7aa79`, Manrope + DM Sans, Cairo for AR). `new.html` is reference-only,
+  deleted before final commit. Maquette: vanilla three (no r3f/drei),
+  4 room hotspots bound to bundles, Evening/Daylight + roof-lift + device
+  toggles, keyboard room buttons, LiveFloorPlan kept as no-WebGL fallback.
+  - **Checkpoint 1 DONE** `redesign(theme)` — token migration, cinematic hero,
+    transparent navbar, 3 cream light sections, rotated brand mark, cream
+    pill CTAs, Conecta blue band accents, screenshots desktop/mobile/RTL.
 
 ## 7. Workflow contract
 

@@ -8,35 +8,35 @@ export const Footer: React.FC = () => {
   const contact = content.contact;
 
   return (
-    <footer className="bg-[#0C1612] text-white pt-20 pb-12 border-t border-[#1C2C23]">
+    <footer className="bg-[#062b24] text-white pt-20 pb-12 border-t border-[#1C2C23]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-[#1C2C23]">
           {/* Brand & Mission Statement (lg:col-span-4) */}
           <div className="lg:col-span-4">
             <div className="flex items-center gap-2.5 mb-5">
-              <div className="w-8 h-8 rounded-lg bg-[#192F25] text-[#E2BE76] flex items-center justify-center font-bold text-sm tracking-wider border border-[#2A4B3C]">
-                S
+              <div className="w-9 h-9 rotate-45 rounded-[9px_2px_9px_2px] border-[1.5px] border-[#9dd7c2] grid place-items-center">
+                <span className="-rotate-45 font-bold text-sm text-[#9dd7c2]">S</span>
               </div>
-              <span className="text-xl font-bold tracking-tight text-white font-serif">
+              <span className="text-base sm:text-lg font-extrabold uppercase tracking-[0.18em] text-white font-serif whitespace-nowrap">
                 {content.site.name}
               </span>
             </div>
 
-            <p className="text-xs sm:text-sm text-[#A6B4AD] leading-relaxed mb-6 max-w-sm">
+            <p className="text-xs sm:text-sm text-[#aabdb5] leading-relaxed mb-6 max-w-sm">
               {content.site.description}
             </p>
 
-            <span className="text-[11px] font-mono tracking-widest uppercase text-[#E2BE76] font-semibold block">
+            <span className="text-[11px] font-mono tracking-widest uppercase text-[#c7aa79] font-semibold block">
               {content.site.tagline}
             </span>
           </div>
 
           {/* Navigation Column (lg:col-span-2) */}
           <div className="lg:col-span-2">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#E2BE76] block mb-5">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#c7aa79] block mb-5">
               {ft.navTitle}
             </span>
-            <ul className="space-y-3 text-xs text-[#A6B4AD]">
+            <ul className="space-y-3 text-xs text-[#aabdb5]">
               {ft.links.map((link) => (
                 <li key={link.label}>
                   <a href={link.href} className="hover:text-white transition-colors">
@@ -49,10 +49,10 @@ export const Footer: React.FC = () => {
 
           {/* Regional Studios (lg:col-span-3) */}
           <div className="lg:col-span-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#E2BE76] block mb-5">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#c7aa79] block mb-5">
               {ft.studiosTitle}
             </span>
-            <div className="space-y-4 text-xs text-[#A6B4AD]">
+            <div className="space-y-4 text-xs text-[#aabdb5]">
               {contact.regionalStudios.map((studio) => (
                 <div key={studio.city}>
                   <span className="font-semibold text-white block">{studio.city}</span>
@@ -64,10 +64,10 @@ export const Footer: React.FC = () => {
 
           {/* Direct Desk & Certification (lg:col-span-3) */}
           <div className="lg:col-span-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#E2BE76] block mb-5">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#c7aa79] block mb-5">
               {ft.deskTitle}
             </span>
-            <div className="space-y-2.5 text-xs text-[#A6B4AD] mb-6">
+            <div className="space-y-2.5 text-xs text-[#aabdb5] mb-6">
               {contact.emails.map((email) => (
                 <a
                   key={email.href}
@@ -97,18 +97,18 @@ export const Footer: React.FC = () => {
               ))}
             </div>
 
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#14261E] border border-[#244234] text-[11px] font-mono text-[#E2BE76]">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#0a3930] border border-[#F4F1EB]/15 text-[11px] font-mono text-[#c7aa79]">
               <ShieldCheck className="w-3.5 h-3.5" />
               <span>{ft.badge}</span>
             </div>
-            <p className="text-[11px] text-[#7A8A81] leading-relaxed mt-4 max-w-xs">
+            <p className="text-[11px] text-[#8db5a2] leading-relaxed mt-4 max-w-xs">
               {ft.disclaimer}
             </p>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#7A8A81]">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#8db5a2]">
           <p>{ft.rights}</p>
 
           <div className="flex items-center gap-6">
