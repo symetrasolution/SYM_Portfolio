@@ -11,6 +11,7 @@ import { arBundle } from './i18n/locales/ar';
 import { applySeo } from './lib/seo';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
+import { MaquetteSection } from './components/MaquetteSection';
 import { HowItWorks } from './components/HowItWorks';
 import { ArchitectureSection } from './components/ArchitectureSection';
 import { LiveFloorPlan } from './components/LiveFloorPlan';
@@ -121,6 +122,10 @@ export default function App() {
       {/* Main Portfolio Sections */}
       <main className="relative">
         <Hero onOpenBooking={() => setBookingModalOpen(true)} />
+
+        <ArchitecturalScrollSection yOffset={28}>
+          <MaquetteSection onOpenBooking={() => setBookingModalOpen(true)} />
+        </ArchitecturalScrollSection>
 
         <ArchitecturalScrollSection yOffset={32}>
           <ArchitectureSection />

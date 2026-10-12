@@ -55,6 +55,7 @@ export const enBundle = {
       { name: 'Philosophy', href: '#philosophy' },
       { name: 'Turnkey', href: '#turnkey' },
       { name: 'Residences', href: '#residences' },
+      { name: 'Model', href: '#model' },
     ],
     hotlineTitle: 'Direct Engineer Hotline',
     hotlineLabel: 'Riyadh & Cairo Desk',
@@ -411,6 +412,22 @@ export const enBundle = {
         ],
       },
     ] as RoomZone[],
+  },
+
+  maquette: {
+    eyebrow: 'Interactive model',
+    title: 'The villa, in miniature',
+    sub: 'Drag to rotate and choose a room to see what the system does in it.',
+    illustrative: 'Illustrative model',
+    evening: 'Evening',
+    daylight: 'Daylight',
+    roofLift: 'Lift the roof',
+    layersTitle: 'Systems in view',
+    viewRoom: 'View {room}',
+    canvasHint: 'Drag to rotate. Scroll to zoom after clicking the model.',
+    loading: 'Preparing the 3D model…',
+    noWebgl: '3D preview unavailable — showing the floor plan instead.',
+    discuss: 'Discuss this room with our team',
   },
 
   moments: {

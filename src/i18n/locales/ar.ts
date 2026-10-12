@@ -46,6 +46,7 @@ export const arBundle: Bundle = {
       { name: 'الفلسفة', href: '#philosophy' },
       { name: 'منهجية التنفيذ', href: '#turnkey' },
       { name: 'المشاريع', href: '#residences' },
+      { name: 'النموذج', href: '#model' },
     ],
     hotlineTitle: 'خط المهندسين المباشر',
     hotlineLabel: 'مكتب الرياض والقاهرة',
@@ -398,6 +399,22 @@ export const arBundle: Bundle = {
         ],
       },
     ],
+  },
+
+  maquette: {
+    eyebrow: 'نموذج تفاعلي',
+    title: 'الفيلا، بحجم مصغّر',
+    sub: 'اسحب للتدوير واختر غرفة لترى ما تفعله المنظومة فيها.',
+    illustrative: 'نموذج توضيحي',
+    evening: 'المساء',
+    daylight: 'النهار',
+    roofLift: 'ارفع السقف',
+    layersTitle: 'الأنظمة المعروضة',
+    viewRoom: 'عرض {room}',
+    canvasHint: 'اسحب للتدوير. قرّب بالعجلة بعد النقر على النموذج.',
+    loading: 'جارٍ تجهيز النموذج ثلاثي الأبعاد…',
+    noWebgl: 'العرض ثلاثي الأبعاد غير متاح — نعرض مخطط الطابق بدلًا منه.',
+    discuss: 'ناقش هذه الغرفة مع فريقنا',
   },
 
   moments: {

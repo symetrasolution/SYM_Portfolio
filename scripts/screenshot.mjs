@@ -48,9 +48,31 @@ async function shoot(name, width, height, lang, fullPage) {
   await page.close();
 }
 
+async function shootEl(name, width, height, lang, selector) {
+  const page = await browser.newPage({ viewport: { width, height } });
+  if (lang === 'ar') {
+    await page.addInitScript(() => {
+      try {
+        localStorage.setItem('symetra-lang', 'ar');
+      } catch {}
+    });
+  }
+  await page.goto(base, { waitUntil: 'networkidle', timeout: 60000 });
+  await page.waitForTimeout(2500);
+  const el = page.locator(selector);
+  await el.scrollIntoViewIfNeeded();
+  await page.waitForTimeout(800);
+  const file = join(outDir, `${name}.png`);
+  await el.screenshot({ path: file });
+  console.log('[shot]', file);
+  await page.close();
+}
+
 await shoot('desktop-en', 1440, 900, 'en', true);
 await shoot('mobile-en', 390, 844, 'en', true);
 await shoot('desktop-ar', 1440, 900, 'ar', true);
 await shoot('mobile-ar-hero', 390, 844, 'ar', false);
+await shootEl('model-en', 1440, 900, 'en', '#model');
+await shootEl('model-mobile-en', 390, 844, 'en', '#model');
 await browser.close();
 console.log('[shot] done ->', outDir);
